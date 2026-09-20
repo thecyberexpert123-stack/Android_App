@@ -19,10 +19,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.cyberexpert.androde.core.extensions.IconTheme
 
 /**
- * Real file icon resolver using icon theme mappings - Phase 13 with 120 languages.
+ * Real file icon resolver using icon theme mappings - Phase 14 with 130 languages.
  * Similar to VS Code's icon theme resolution, maps file extensions/names to icons and colors.
- * Uses vscode_icons.json and material_icons.json mappings for 120 file types.
- * Production-ready with fallback to extension-based icons for 120 langs.
+ * Uses vscode_icons.json and material_icons.json mappings for 130 file types.
+ * Production-ready with fallback to extension-based icons for 130 langs.
  */
 
 data class FileIcon(
@@ -187,6 +187,16 @@ object FileIconResolver {
             "hx", "hxml" -> "haxe"
             "purs" -> "purescript"
             "re", "rei" -> "reason"
+            "nix" -> "nix"
+            "cob", "cbl", "cpy" -> "cobol"
+            "d" -> "d"
+            "odin" -> "odin"
+            "gleam" -> "gleam"
+            "res", "resi" -> "rescript"
+            "astro" -> "astro"
+            "mdx" -> "mdx"
+            "prisma" -> "prisma"
+            "cue" -> "cue"
             else -> null
         }
     }
@@ -221,9 +231,11 @@ object FileIconResolver {
             "styl", "stylus" -> "_file_stylus"
             "json" -> "_file_json"
             "jsonc", "code-workspace" -> "_file_jsonc"
+            "jsonl", "ndjson" -> "_file_jsonl"
             "md", "markdown" -> "_file_markdown"
             "yaml", "yml" -> "_file_yaml"
-            "xml", "xsl", "xsd", "svg" -> "_file_xml"
+            "xml", "xsd", "svg", "plist" -> "_file_xml"
+            "xsl", "xslt" -> "_file_xsl"
             "sql" -> "_file_sql"
             "sh", "bash", "zsh" -> "_file_shell"
             "go" -> "_file_go"
@@ -321,12 +333,20 @@ object FileIconResolver {
             "ignore", "dockerignore", "npmignore", "eslintignore" -> "_file_ignore"
             "jsx" -> "_file_react"
             "tsx" -> "_file_react_ts"
-            "sv", "svh" -> "_file_systemverilog"
             "zig" -> "_file_zig"
             "hx", "hxml" -> "_file_haxe"
             "purs" -> "_file_purescript"
             "re", "rei" -> "_file_reason"
-            "jsonl", "ndjson" -> "_file_jsonl"
+            "nix" -> "_file_nix"
+            "cob", "cbl", "cpy" -> "_file_cobol"
+            "d" -> "_file_d"
+            "odin" -> "_file_odin"
+            "gleam" -> "_file_gleam"
+            "res", "resi" -> "_file_rescript"
+            "astro" -> "_file_astro"
+            "mdx" -> "_file_mdx"
+            "prisma" -> "_file_prisma"
+            "cue" -> "_file_cue"
             "txt" -> "_file_text"
             else -> "_file"
         }
@@ -446,6 +466,16 @@ object FileIconResolver {
             iconId.contains("purescript") -> Icons.Default.Code to Color(0xFF14161A)
             iconId.contains("reason") -> Icons.Default.Code to Color(0xFFDB4D3D)
             iconId.contains("jsonl") -> Icons.Default.DataObject to Color(0xFF292929)
+            iconId.contains("nix") -> Icons.Default.Code to Color(0xFF7EB5F6)
+            iconId.contains("cobol") -> Icons.Default.Code to Color(0xFF2A2A2A)
+            iconId.contains("_d") -> Icons.Default.Code to Color(0xFFB03931)
+            iconId.contains("odin") -> Icons.Default.Code to Color(0xFF3882D2)
+            iconId.contains("gleam") -> Icons.Default.Code to Color(0xFFFFAFF3)
+            iconId.contains("rescript") -> Icons.Default.Code to Color(0xFFDB4D3D)
+            iconId.contains("astro") -> Icons.Default.Code to Color(0xFFFF5D01)
+            iconId.contains("mdx") -> Icons.Default.Code to Color(0xFFFCB32C)
+            iconId.contains("prisma") -> Icons.Default.Code to Color(0xFF2D3748)
+            iconId.contains("cue") -> Icons.Default.Code to Color(0xFF1E90FF)
             iconId.contains("folder_src") -> Icons.Default.Folder to Color(0xFF90A4AE)
             iconId.contains("folder") -> Icons.Default.Folder to MaterialTheme.colorScheme.primary
             iconId.contains("text") -> Icons.Default.Description to MaterialTheme.colorScheme.onSurfaceVariant

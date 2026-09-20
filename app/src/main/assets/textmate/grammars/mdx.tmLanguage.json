@@ -1,0 +1,33 @@
+{
+  "name": "MDX",
+  "scopeName": "text.mdx",
+  "patterns": [
+    { "include": "#jsx" },
+    { "include": "#markdown" },
+    { "include": "#importexport" }
+  ],
+  "repository": {
+    "jsx": {
+      "patterns": [
+        { "name": "meta.tag.mdx", "begin": "(<)([A-Z][a-zA-Z0-9]*)(\\s|>)", "end": "(>)", "beginCaptures": { "1": { "name": "punctuation.definition.tag.begin.mdx" }, "2": { "name": "entity.name.tag.mdx" } }, "endCaptures": { "1": { "name": "punctuation.definition.tag.end.mdx" } } },
+        { "name": "meta.tag.mdx", "begin": "(</)([A-Z][a-zA-Z0-9]*)", "end": "(>)", "beginCaptures": { "1": { "name": "punctuation.definition.tag.begin.mdx" }, "2": { "name": "entity.name.tag.mdx" } }, "endCaptures": { "1": { "name": "punctuation.definition.tag.end.mdx" } } },
+        { "name": "meta.embedded.expression.mdx", "begin": "\\{", "end": "\\}", "patterns": [{ "include": "source.js" }] }
+      ]
+    },
+    "markdown": {
+      "patterns": [
+        { "name": "markup.heading.mdx", "match": "^#{1,6}\\s+.*$" },
+        { "name": "markup.bold.mdx", "begin": "\\*\\*", "end": "\\*\\*" },
+        { "name": "markup.italic.mdx", "begin": "\\*", "end": "\\*" },
+        { "name": "markup.raw.inline.mdx", "begin": "`", "end": "`" },
+        { "name": "markup.raw.block.mdx", "begin": "```", "end": "```" },
+        { "name": "comment.line.mdx", "match": "^\\s*//.*$" }
+      ]
+    },
+    "importexport": {
+      "patterns": [
+        { "name": "keyword.control.mdx", "match": "\\b(import|export|from|as|default)\\b" }
+      ]
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "CUE",
+  "scopeName": "source.cue",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#keywords" },
+    { "include": "#types" },
+    { "include": "#functions" },
+    { "include": "#numeric" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        { "name": "comment.line.double-slash.cue", "match": "//.*$" },
+        { "name": "comment.block.cue", "begin": "/\\*", "end": "\\*/" }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        { "name": "string.quoted.double.cue", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.cue", "match": "\\\\." }] },
+        { "name": "string.quoted.double.cue", "begin": "\"\"\"", "end": "\"\"\"" },
+        { "name": "string.quoted.single.cue", "begin": "'", "end": "'" },
+        { "name": "string.quoted.single.cue", "begin": "#\"", "end": "\"#" },
+        { "name": "string.quoted.triple.cue", "begin": "#\"\"\"", "end": "\"\"\"#" }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        { "name": "keyword.control.cue", "match": "\\b(package|import|if|for|in|let)\\b" },
+        { "name": "constant.language.cue", "match": "\\b(true|false|null|_|_\\|_|_\\|\\|_|_\\&_)\\b" }
+      ]
+    },
+    "types": {
+      "patterns": [
+        { "name": "storage.type.cue", "match": "\\b(string|bytes|int|float|number|bool|list|struct|null|_)\\b" }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        { "name": "support.function.builtin.cue", "match": "\\b(len|close|and|or|div|mod|quo|rem|abs|floor|ceil|round|sin|cos|exp|log|struct\\.MinFields|struct\\.MaxFields|list\\.MinItems|list\\.MaxItems|string\\.MinRunes|string\\.MaxRunes)\\b" }
+      ]
+    },
+    "numeric": {
+      "patterns": [{ "name": "constant.numeric.cue", "match": "\\b\\d[\\d_]*\\.?[\\d_]*([eE][+-]?\\d+)?\\b" }]
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "Nix",
+  "scopeName": "source.nix",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#keywords" },
+    { "include": "#functions" },
+    { "include": "#constants" },
+    { "include": "#numeric" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        { "name": "comment.line.number-sign.nix", "match": "#.*$" },
+        { "name": "comment.block.nix", "begin": "/\\*", "end": "\\*/" }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        { "name": "string.quoted.double.nix", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.nix", "match": "\\\\." }, { "name": "variable.other.nix", "match": "\\$\\{[^}]+\\}" }] },
+        { "name": "string.quoted.single.nix", "begin": "''", "end": "''" },
+        { "name": "string.quoted.double.nix", "begin": "\"\"", "end": "\"\"" }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        { "name": "keyword.control.nix", "match": "\\b(let|in|with|inherit|if|then|else|assert|rec|or)\\b" },
+        { "name": "keyword.other.nix", "match": "\\b(import|builtins|true|false|null)\\b" },
+        { "name": "storage.type.nix", "match": "\\b(mkDerivation|stdenv|pkgs|lib|callPackage)\\b" }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        { "name": "entity.name.function.nix", "match": "\\b[a-zA-Z_][a-zA-Z0-9_'-]*\\s*(?=\\=)" },
+        { "name": "support.function.nix", "match": "\\b(map|filter|foldl|concatStringsSep|toString|fromJSON|toJSON|derivation)\\b" }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        { "name": "constant.language.nix", "match": "\\b(true|false|null)\\b" },
+        { "name": "variable.other.nix", "match": "\\b[a-zA-Z_][a-zA-Z0-9_'-]*\\b" }
+      ]
+    },
+    "numeric": {
+      "patterns": [{ "name": "constant.numeric.nix", "match": "\\b\\d+(\\.\\d+)?\\b" }]
+    }
+  }
+}

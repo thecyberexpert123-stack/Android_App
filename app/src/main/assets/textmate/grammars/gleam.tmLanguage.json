@@ -1,0 +1,43 @@
+{
+  "name": "Gleam",
+  "scopeName": "source.gleam",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#keywords" },
+    { "include": "#types" },
+    { "include": "#functions" },
+    { "include": "#numeric" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        { "name": "comment.line.double-slash.gleam", "match": "//.*$" }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        { "name": "string.quoted.double.gleam", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.gleam", "match": "\\\\." }] }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        { "name": "keyword.control.gleam", "match": "\\b(import|if|else|case|fn|let|assert|use|pub|opaque|type|const)\\b" },
+        { "name": "keyword.other.gleam", "match": "\\b(True|False|Nil|Ok|Error)\\b" }
+      ]
+    },
+    "types": {
+      "patterns": [
+        { "name": "storage.type.gleam", "match": "\\b(Int|Float|Bool|String|List|Result|Option|BitArray|Nil)\\b" }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        { "name": "entity.name.function.gleam", "match": "\\b[a-z_][a-z0-9_]*\\s*(?=\\()" }
+      ]
+    },
+    "numeric": {
+      "patterns": [{ "name": "constant.numeric.gleam", "match": "\\b\\d[\\d_]*\\b" }]
+    }
+  }
+}

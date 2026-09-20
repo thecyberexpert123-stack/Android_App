@@ -1,0 +1,47 @@
+{
+  "name": "ReScript",
+  "scopeName": "source.rescript",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#keywords" },
+    { "include": "#types" },
+    { "include": "#functions" },
+    { "include": "#numeric" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        { "name": "comment.line.double-slash.rescript", "match": "//.*$" },
+        { "name": "comment.block.rescript", "begin": "/\\*", "end": "\\*/" }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        { "name": "string.quoted.double.rescript", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.rescript", "match": "\\\\." }] },
+        { "name": "string.quoted.single.rescript", "begin": "'", "end": "'" },
+        { "name": "string.quoted.double.rescript", "begin": "`", "end": "`" }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        { "name": "keyword.control.rescript", "match": "\\b(let|type|module|open|include|if|else|switch|when|for|while|try|catch|external|rec|and|as|assert|constraint|exception|lazy|mutable|private|rec|with|open|include)\\b" },
+        { "name": "keyword.other.rescript", "match": "\\b(true|false)\\b" }
+      ]
+    },
+    "types": {
+      "patterns": [
+        { "name": "storage.type.rescript", "match": "\\b(int|float|string|bool|unit|array|list|option|result|promise)\\b" }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        { "name": "entity.name.function.rescript", "match": "\\b[a-zA-Z_][a-zA-Z0-9_']*\\s*(?=\\=)" },
+        { "name": "support.function.rescript", "match": "\\b(Js\\.|Belt\\.|Dom\\.)[a-zA-Z_][a-zA-Z0-9_]*\\b" }
+      ]
+    },
+    "numeric": {
+      "patterns": [{ "name": "constant.numeric.rescript", "match": "\\b\\d[\\d_]*\\.?[\\d_]*\\b" }]
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "name": "Astro",
+  "scopeName": "source.astro",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#frontmatter" },
+    { "include": "#tags" },
+    { "include": "#expressions" },
+    { "include": "#strings" },
+    { "include": "#keywords" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        { "name": "comment.line.double-slash.astro", "match": "//.*$" },
+        { "name": "comment.block.astro", "begin": "/\\*", "end": "\\*/" },
+        { "name": "comment.block.html.astro", "begin": "<!--", "end": "-->" }
+      ]
+    },
+    "frontmatter": {
+      "patterns": [
+        { "name": "meta.embedded.block.astro", "begin": "^---\\s*$", "end": "^---\\s*$", "patterns": [{ "include": "source.ts" }] }
+      ]
+    },
+    "tags": {
+      "patterns": [
+        { "name": "meta.tag.astro", "begin": "(<)([a-zA-Z0-9:-]+)", "end": "(>)", "beginCaptures": { "1": { "name": "punctuation.definition.tag.begin.astro" }, "2": { "name": "entity.name.tag.astro" } }, "endCaptures": { "1": { "name": "punctuation.definition.tag.end.astro" } }, "patterns": [{ "include": "#attribute" }] },
+        { "name": "meta.tag.astro", "begin": "(</)([a-zA-Z0-9:-]+)", "end": "(>)", "beginCaptures": { "1": { "name": "punctuation.definition.tag.begin.astro" }, "2": { "name": "entity.name.tag.astro" } }, "endCaptures": { "1": { "name": "punctuation.definition.tag.end.astro" } } }
+      ]
+    },
+    "attribute": {
+      "patterns": [
+        { "name": "entity.other.attribute-name.astro", "match": "[a-zA-Z-:]+(?=\\=)" },
+        { "name": "string.quoted.double.astro", "begin": "\"", "end": "\"" },
+        { "name": "string.quoted.single.astro", "begin": "'", "end": "'" },
+        { "name": "meta.embedded.expression.astro", "begin": "\\{", "end": "\\}", "patterns": [{ "include": "source.js" }] }
+      ]
+    },
+    "expressions": {
+      "patterns": [
+        { "name": "meta.embedded.expression.astro", "begin": "\\{", "end": "\\}", "patterns": [{ "include": "source.js" }] }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        { "name": "string.quoted.double.astro", "begin": "\"", "end": "\"" },
+        { "name": "string.quoted.single.astro", "begin": "'", "end": "'" }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        { "name": "keyword.control.astro", "match": "\\b(if|else|for|while|return|import|export|from|as)\\b" }
+      ]
+    }
+  }
+}

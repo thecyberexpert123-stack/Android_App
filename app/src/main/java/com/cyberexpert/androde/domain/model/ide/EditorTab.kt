@@ -39,8 +39,8 @@ data class EditorTab(
 }
 
 /**
- * Language mode, similar to VS Code language detection - Phase 13 with 120 languages.
- * Uses file extension to determine language for Sora Editor with 120 TextMate grammars.
+ * Language mode, similar to VS Code language detection - Phase 14 with 130 languages.
+ * Uses file extension to determine language for Sora Editor with 130 TextMate grammars.
  */
 enum class EditorLanguage(
     val id: String,
@@ -167,7 +167,17 @@ enum class EditorLanguage(
     HAXE("haxe", "Haxe", listOf("hx", "hxml")),
     PURESCRIPT("purescript", "PureScript", listOf("purs")),
     REASON("reason", "Reason", listOf("re", "rei")),
-    JSONL("jsonl", "JSON Lines", listOf("jsonl", "ndjson"));
+    JSONL("jsonl", "JSON Lines", listOf("jsonl", "ndjson")),
+    NIX("nix", "Nix", listOf("nix")),
+    COBOL("cobol", "COBOL", listOf("cob", "cbl", "cpy")),
+    D("d", "D", listOf("d")),
+    ODIN("odin", "Odin", listOf("odin")),
+    GLEAM("gleam", "Gleam", listOf("gleam")),
+    RESCRIPT("rescript", "ReScript", listOf("res", "resi")),
+    ASTRO("astro", "Astro", listOf("astro")),
+    MDX("mdx", "MDX", listOf("mdx")),
+    PRISMA("prisma", "Prisma", listOf("prisma")),
+    CUE("cue", "CUE", listOf("cue"));
 
     companion object {
         fun fromExtension(ext: String): EditorLanguage {
@@ -244,6 +254,16 @@ enum class EditorLanguage(
             if (lower == "purs") return PURESCRIPT
             if (lower == "re" || lower == "rei") return REASON
             if (lower == "jsonl" || lower == "ndjson") return JSONL
+            if (lower == "nix") return NIX
+            if (lower == "cob" || lower == "cbl" || lower == "cpy") return COBOL
+            if (lower == "d") return D
+            if (lower == "odin") return ODIN
+            if (lower == "gleam") return GLEAM
+            if (lower == "res" || lower == "resi") return RESCRIPT
+            if (lower == "astro") return ASTRO
+            if (lower == "mdx") return MDX
+            if (lower == "prisma") return PRISMA
+            if (lower == "cue") return CUE
             return entries.find { lower in it.extensions } ?: PLAINTEXT
         }
 

@@ -719,6 +719,66 @@
       "extensions": [".jsonl", ".ndjson"],
       "aliases": ["JSONL", "jsonl", "JSON Lines"],
       "grammar": "textmate/grammars/jsonl.tmLanguage.json"
+    },
+    {
+      "id": "nix",
+      "extensions": [".nix"],
+      "aliases": ["Nix", "nix"],
+      "grammar": "textmate/grammars/nix.tmLanguage.json"
+    },
+    {
+      "id": "cobol",
+      "extensions": [".cob", ".cbl", ".cpy"],
+      "aliases": ["COBOL", "cobol"],
+      "grammar": "textmate/grammars/cobol.tmLanguage.json"
+    },
+    {
+      "id": "d",
+      "extensions": [".d"],
+      "aliases": ["D", "d", "Dlang"],
+      "grammar": "textmate/grammars/d.tmLanguage.json"
+    },
+    {
+      "id": "odin",
+      "extensions": [".odin"],
+      "aliases": ["Odin", "odin"],
+      "grammar": "textmate/grammars/odin.tmLanguage.json"
+    },
+    {
+      "id": "gleam",
+      "extensions": [".gleam"],
+      "aliases": ["Gleam", "gleam"],
+      "grammar": "textmate/grammars/gleam.tmLanguage.json"
+    },
+    {
+      "id": "rescript",
+      "extensions": [".res", ".resi"],
+      "aliases": ["ReScript", "rescript", "res"],
+      "grammar": "textmate/grammars/rescript.tmLanguage.json"
+    },
+    {
+      "id": "astro",
+      "extensions": [".astro"],
+      "aliases": ["Astro", "astro"],
+      "grammar": "textmate/grammars/astro.tmLanguage.json"
+    },
+    {
+      "id": "mdx",
+      "extensions": [".mdx"],
+      "aliases": ["MDX", "mdx"],
+      "grammar": "textmate/grammars/mdx.tmLanguage.json"
+    },
+    {
+      "id": "prisma",
+      "extensions": [".prisma"],
+      "aliases": ["Prisma", "prisma"],
+      "grammar": "textmate/grammars/prisma.tmLanguage.json"
+    },
+    {
+      "id": "cue",
+      "extensions": [".cue"],
+      "aliases": ["CUE", "cue"],
+      "grammar": "textmate/grammars/cue.tmLanguage.json"
     }
   ]
 }

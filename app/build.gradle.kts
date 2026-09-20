@@ -25,8 +25,8 @@ android {
         applicationId = "com.cyberexpert.androde"
         minSdk = 24
         targetSdk = 34
-        versionCode = 13
-        versionName = "11.0.0-androde"
+        versionCode = 14
+        versionName = "12.0.0-androde"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 

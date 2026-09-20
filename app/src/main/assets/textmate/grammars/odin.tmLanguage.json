@@ -1,0 +1,47 @@
+{
+  "name": "Odin",
+  "scopeName": "source.odin",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#keywords" },
+    { "include": "#types" },
+    { "include": "#functions" },
+    { "include": "#numeric" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        { "name": "comment.line.double-slash.odin", "match": "//.*$" },
+        { "name": "comment.block.odin", "begin": "/\\*", "end": "\\*/" }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        { "name": "string.quoted.double.odin", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.odin", "match": "\\\\." }] },
+        { "name": "string.quoted.single.odin", "begin": "'", "end": "'", "patterns": [{ "name": "constant.character.escape.odin", "match": "\\\\." }] },
+        { "name": "string.quoted.double.odin", "begin": "`", "end": "`" }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        { "name": "keyword.control.odin", "match": "\\b(package|import|foreign|proc|struct|enum|union|map|bit_set|bit_field|if|else|when|for|in|do|switch|case|break|continue|return|defer|using|or_return|or_else|try|catch|transmute|cast|auto_cast)\\b" },
+        { "name": "storage.modifier.odin", "match": "\\b(distinct|dynamic)\\b" }
+      ]
+    },
+    "types": {
+      "patterns": [
+        { "name": "storage.type.odin", "match": "\\b(int|i8|i16|i32|i64|i128|uint|u8|u16|u32|u64|u128|uintptr|i16le|i16be|f16|f32|f64|f16le|f16be|complex32|complex64|complex128|quaternion64|quaternion128|quaternion256|bool|string|cstring|rune|rawptr|any)\\b" }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        { "name": "entity.name.function.odin", "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\s*::\\s*proc\\b" },
+        { "name": "entity.name.function.odin", "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\s*(?=\\()" }
+      ]
+    },
+    "numeric": {
+      "patterns": [{ "name": "constant.numeric.odin", "match": "\\b\\d[\\d_]*\\b" }]
+    }
+  }
+}
