@@ -1,0 +1,42 @@
+{
+  "name": "Docker Compose",
+  "scopeName": "source.dockercompose",
+  "fileTypes": ["dockercompose"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#key"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#numeric"}
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {"name": "comment.line.number-sign.dockercompose", "match": "#.*$"}
+      ]
+    },
+    "key": {
+      "patterns": [
+        {"name": "entity.name.tag.dockercompose", "match": "^\\s*[a-zA-Z0-9_\\-]+\\s*(?=:\\s*)"},
+        {"name": "keyword.other.dockercompose", "match": "\\b(version|services|image|build|context|dockerfile|ports|volumes|environment|env_file|depends_on|networks|restart|command|entrypoint|working_dir|user|hostname|domainname|labels|container_name|privileged|cap_add|cap_drop|devices|dns|expose|external_links|extra_hosts|healthcheck|isolation|links|logging|network_mode|pid|security_opt|stop_signal|sysctls|tmpfs|ulimits|deploy|replicas|resources|placement|secrets|configs)\\b"}
+      ]
+    },
+    "string": {
+      "patterns": [
+        {"name": "string.quoted.double.dockercompose", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.dockercompose", "match": "\\\\."}]},
+        {"name": "string.quoted.single.dockercompose", "begin": "'", "end": "'", "patterns": [{"name": "constant.character.escape.dockercompose", "match": "\\\\."}]}
+      ]
+    },
+    "keyword": {
+      "patterns": [
+        {"name": "constant.language.boolean.dockercompose", "match": "\\b(true|false|yes|no|on|off)\\b"},
+        {"name": "constant.language.null.dockercompose", "match": "\\b(null|~)\\b"}
+      ]
+    },
+    "numeric": {
+      "patterns": [
+        {"name": "constant.numeric.dockercompose", "match": "\\b\\d+\\.\\d+\\b|\\b\\d+\\b"}
+      ]
+    }
+  }
+}

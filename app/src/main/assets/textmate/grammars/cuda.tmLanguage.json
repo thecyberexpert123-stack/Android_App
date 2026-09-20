@@ -1,0 +1,65 @@
+{
+  "name": "CUDA",
+  "scopeName": "source.cuda",
+  "fileTypes": ["cu", "cuh"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#type"},
+    {"include": "#cuda_keyword"},
+    {"include": "#function"},
+    {"include": "#variable"},
+    {"include": "#numeric"},
+    {"include": "#preprocessor"}
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {"name": "comment.line.double-slash.cuda", "match": "//.*$"},
+        {"name": "comment.block.cuda", "begin": "/\\*", "end": "\\*/"}
+      ]
+    },
+    "string": {
+      "patterns": [
+        {"name": "string.quoted.double.cuda", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.cuda", "match": "\\\\."}]},
+        {"name": "string.quoted.single.cuda", "begin": "'", "end": "'", "patterns": [{"name": "constant.character.escape.cuda", "match": "\\\\."}]}
+      ]
+    },
+    "keyword": {
+      "patterns": [
+        {"name": "keyword.control.cuda", "match": "\\b(if|else|for|while|do|switch|case|default|break|continue|return|struct|union|enum|typedef|class|namespace|using|public|private|protected|virtual|override|final|template|typename|const|static|extern|inline|volatile|register|explicit|friend|operator|new|delete|this|try|catch|throw|goto|sizeof|alignas|alignof|constexpr|decltype|noexcept|thread_local|auto)\\b"}
+      ]
+    },
+    "cuda_keyword": {
+      "patterns": [
+        {"name": "keyword.other.cuda", "match": "\\b(__global__|__device__|__host__|__shared__|__constant__|__managed__|__forceinline__|__noinline__|__launch_bounds__|__restrict__|__builtin__|__threadfence|__threadfence_block|__threadfence_system|__syncthreads|__syncthreads_and|__syncthreads_count|__syncthreads_or|blockIdx|blockDim|threadIdx|gridDim|warpSize|__shfl|__shfl_down|__shfl_up|__shfl_xor|__ballot|__any|__all|__activemask|__match_any_sync|__match_all_sync)\\b"}
+      ]
+    },
+    "type": {
+      "patterns": [
+        {"name": "storage.type.cuda", "match": "\\b(void|bool|char|short|int|long|float|double|signed|unsigned|size_t|dim3|char1|char2|char3|char4|uchar1|uchar2|uchar3|uchar4|short1|short2|short3|short4|ushort1|ushort2|ushort3|ushort4|int1|int2|int3|int4|uint1|uint2|uint3|uint4|long1|long2|long3|long4|ulong1|ulong2|ulong3|ulong4|float1|float2|float3|float4|double1|double2|cudaError_t|cudaStream_t)\\b"}
+      ]
+    },
+    "function": {
+      "patterns": [
+        {"name": "entity.name.function.cuda", "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\s*(?=\\()"}
+      ]
+    },
+    "variable": {
+      "patterns": [
+        {"name": "variable.other.cuda", "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"}
+      ]
+    },
+    "numeric": {
+      "patterns": [
+        {"name": "constant.numeric.cuda", "match": "\\b\\d+\\.\\d*f?\\b|\\b\\d+\\b|\\b0x[0-9a-fA-F]+\\b"}
+      ]
+    },
+    "preprocessor": {
+      "patterns": [
+        {"name": "keyword.control.directive.cuda", "match": "^\\s*#\\s*(include|define|ifdef|ifndef|if|else|elif|endif|pragma|error|warning|undef|line)\\b"}
+      ]
+    }
+  }
+}

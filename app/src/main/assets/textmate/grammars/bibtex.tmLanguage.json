@@ -1,0 +1,45 @@
+{
+  "name": "BibTeX",
+  "scopeName": "text.bibtex",
+  "fileTypes": ["bib"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#entry"},
+    {"include": "#string"},
+    {"include": "#keyword"}
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {"name": "comment.line.percentage.bibtex", "match": "%.*$"}
+      ]
+    },
+    "entry": {
+      "patterns": [
+        {
+          "name": "meta.entry.bibtex",
+          "begin": "@(article|book|booklet|conference|inbook|incollection|inproceedings|manual|mastersthesis|misc|phdthesis|proceedings|techreport|unpublished|string|preamble|comment)\\s*\\{",
+          "beginCaptures": {"1": {"name": "keyword.other.entry-type.bibtex"}},
+          "end": "\\}",
+          "patterns": [
+            {"name": "entity.name.type.bibtex", "match": "[a-zA-Z0-9_\\-]+"},
+            {"name": "keyword.other.field.bibtex", "match": "\\b(author|title|journal|year|volume|number|pages|publisher|editor|booktitle|series|address|edition|month|note|key|howpublished|institution|organization|school|type|chapter|doi|url|isbn|issn|abstract|keywords)\\b"},
+            {"name": "string.quoted.double.bibtex", "begin": "\"", "end": "\""},
+            {"name": "string.quoted.other.brace.bibtex", "begin": "\\{", "end": "\\}"}
+          ]
+        }
+      ]
+    },
+    "string": {
+      "patterns": [
+        {"name": "string.quoted.double.bibtex", "begin": "\"", "end": "\""},
+        {"name": "string.quoted.other.brace.bibtex", "begin": "\\{", "end": "\\}"}
+      ]
+    },
+    "keyword": {
+      "patterns": [
+        {"name": "keyword.other.bibtex", "match": "@(string|preamble|comment)\\b"}
+      ]
+    }
+  }
+}

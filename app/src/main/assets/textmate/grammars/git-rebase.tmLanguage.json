@@ -1,0 +1,29 @@
+{
+  "name": "Git Rebase",
+  "scopeName": "text.git-rebase",
+  "fileTypes": ["git-rebase"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#keyword"},
+    {"include": "#commit"}
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {"name": "comment.line.number-sign.git-rebase", "match": "#.*$"}
+      ]
+    },
+    "keyword": {
+      "patterns": [
+        {"name": "keyword.control.git-rebase", "match": "^\\s*(pick|reword|edit|e|squash|s|fixup|f|exec|x|break|b|drop|d|label|l|reset|t|merge|m)\\b"},
+        {"name": "keyword.other.git-rebase", "match": "\\b(pick|reword|edit|squash|fixup|exec|break|drop|label|reset|merge)\\b"}
+      ]
+    },
+    "commit": {
+      "patterns": [
+        {"name": "constant.other.commit.git-rebase", "match": "\\b[a-f0-9]{7,40}\\b"},
+        {"name": "string.unquoted.git-rebase", "match": "(?<=\\b[a-f0-9]{7,40}\\s+).*$"}
+      ]
+    }
+  }
+}

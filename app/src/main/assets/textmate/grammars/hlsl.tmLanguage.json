@@ -1,0 +1,54 @@
+{
+  "name": "HLSL",
+  "scopeName": "source.hlsl",
+  "fileTypes": ["hlsl", "fx", "fxh"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#type"},
+    {"include": "#function"},
+    {"include": "#variable"},
+    {"include": "#numeric"}
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {"name": "comment.line.double-slash.hlsl", "match": "//.*$"},
+        {"name": "comment.block.hlsl", "begin": "/\\*", "end": "\\*/"}
+      ]
+    },
+    "string": {
+      "patterns": [
+        {"name": "string.quoted.double.hlsl", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.hlsl", "match": "\\\\."}]},
+        {"name": "string.quoted.single.hlsl", "begin": "'", "end": "'", "patterns": [{"name": "constant.character.escape.hlsl", "match": "\\\\."}]}
+      ]
+    },
+    "keyword": {
+      "patterns": [
+        {"name": "keyword.control.hlsl", "match": "\\b(if|else|for|while|do|switch|case|default|break|continue|return|discard|struct|cbuffer|tbuffer|Buffer|StructuredBuffer|RWBuffer|RWStructuredBuffer|Texture1D|Texture2D|Texture3D|TextureCube|SamplerState|SamplerComparisonState|technique|pass|compile|in|out|inout|uniform|varying|const|static|extern|inline|precise|shared|groupshared|linear|centroid|nointerpolation|noperspective|sample|row_major|column_major|snorm|unorm)\\b"},
+        {"name": "keyword.other.hlsl", "match": "\\b(CompileShader|CompileEffect|SetVertexShader|SetPixelShader|SetGeometryShader|SetBlendState|SetDepthStencilState|SetRasterizerState)\\b"}
+      ]
+    },
+    "type": {
+      "patterns": [
+        {"name": "storage.type.hlsl", "match": "\\b(void|bool|int|uint|dword|half|float|double|min16float|min10float|min16int|min12int|min16uint|string|Texture1D|Texture1DArray|Texture2D|Texture2DArray|Texture2DMS|Texture2DMSArray|Texture3D|TextureCube|TextureCubeArray|SamplerState|SamplerComparisonState|Buffer|StructuredBuffer|RWBuffer|RWStructuredBuffer|ByteAddressBuffer|RWByteAddressBuffer|AppendStructuredBuffer|ConsumeStructuredBuffer|vector|matrix|float2|float3|float4|float2x2|float3x3|float4x4|int2|int3|int4|bool2|bool3|bool4|half2|half3|half4|double2|double3|double4)\\b"}
+      ]
+    },
+    "function": {
+      "patterns": [
+        {"name": "entity.name.function.hlsl", "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\s*(?=\\()"}
+      ]
+    },
+    "variable": {
+      "patterns": [
+        {"name": "variable.other.hlsl", "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"}
+      ]
+    },
+    "numeric": {
+      "patterns": [
+        {"name": "constant.numeric.hlsl", "match": "\\b\\d+\\.\\d*f?\\b|\\b\\d+f?\\b|\\b0x[0-9a-fA-F]+\\b"}
+      ]
+    }
+  }
+}

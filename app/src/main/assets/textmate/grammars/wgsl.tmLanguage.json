@@ -1,0 +1,53 @@
+{
+  "name": "WGSL",
+  "scopeName": "source.wgsl",
+  "fileTypes": ["wgsl"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#type"},
+    {"include": "#function"},
+    {"include": "#variable"},
+    {"include": "#numeric"}
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {"name": "comment.line.double-slash.wgsl", "match": "//.*$"},
+        {"name": "comment.block.wgsl", "begin": "/\\*", "end": "\\*/"}
+      ]
+    },
+    "string": {
+      "patterns": [
+        {"name": "string.quoted.double.wgsl", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.wgsl", "match": "\\\\."}]}
+      ]
+    },
+    "keyword": {
+      "patterns": [
+        {"name": "keyword.control.wgsl", "match": "\\b(fn|let|var|const|if|else|for|while|loop|break|continue|return|discard|struct|type|alias|enable|requires|import|diagnostic|override|true|false|fn|struct|if|else|for|loop|while|break|continue|return|discard|fallthrough|continuing|switch|case|default)\\b"},
+        {"name": "keyword.other.wgsl", "match": "\\b(@vertex|@fragment|@compute|@group|@binding|@location|@builtin|@interpolate|@invariant|@must_use|@workgroup_size|@align|@size|@id)\\b"}
+      ]
+    },
+    "type": {
+      "patterns": [
+        {"name": "storage.type.wgsl", "match": "\\b(bool|i32|u32|f32|f16|vec2|vec3|vec4|vec2i|vec3i|vec4i|vec2u|vec3u|vec4u|vec2f|vec3f|vec4f|mat2x2|mat2x3|mat2x4|mat3x2|mat3x3|mat3x4|mat4x2|mat4x3|mat4x4|array|ptr|atomic|sampler|sampler_comparison|texture_1d|texture_2d|texture_2d_array|texture_3d|texture_cube|texture_cube_array|texture_multisampled_2d|texture_storage_1d|texture_storage_2d|texture_storage_2d_array|texture_storage_3d|texture_depth_2d|texture_depth_2d_array|texture_depth_cube|texture_depth_cube_array|texture_depth_multisampled_2d)\\b"}
+      ]
+    },
+    "function": {
+      "patterns": [
+        {"name": "entity.name.function.wgsl", "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\s*(?=\\()"}
+      ]
+    },
+    "variable": {
+      "patterns": [
+        {"name": "variable.other.wgsl", "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"}
+      ]
+    },
+    "numeric": {
+      "patterns": [
+        {"name": "constant.numeric.wgsl", "match": "\\b\\d+\\.\\d*f?\\b|\\b\\d+u?\\b|\\b0x[0-9a-fA-F]+\\b"}
+      ]
+    }
+  }
+}

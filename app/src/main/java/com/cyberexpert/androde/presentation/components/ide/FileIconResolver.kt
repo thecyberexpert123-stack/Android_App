@@ -19,10 +19,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.cyberexpert.androde.core.extensions.IconTheme
 
 /**
- * Real file icon resolver using icon theme mappings - Phase 11 with 100 languages.
+ * Real file icon resolver using icon theme mappings - Phase 12 with 110 languages.
  * Similar to VS Code's icon theme resolution, maps file extensions/names to icons and colors.
- * Uses vscode_icons.json and material_icons.json mappings for 90+ file types, now 100.
- * Production-ready with fallback to extension-based icons for 100 langs.
+ * Uses vscode_icons.json and material_icons.json mappings for 110 file types.
+ * Production-ready with fallback to extension-based icons for 110 langs.
  */
 
 data class FileIcon(
@@ -62,6 +62,10 @@ object FileIconResolver {
     }
 
     private fun getLanguageIdForFile(fileName: String): String? {
+        val lowerName = fileName.lowercase()
+        if (lowerName == "commit_editmsg" || lowerName == "merge_msg" || lowerName.contains("commit_editmsg")) return "git-commit"
+        if (lowerName == "git-rebase-todo") return "git-rebase"
+        if (lowerName == "docker-compose.yml" || lowerName == "docker-compose.yaml" || lowerName == "compose.yml" || lowerName == "compose.yaml") return "dockercompose"
         val ext = fileName.substringAfterLast('.', "").lowercase()
         return when (ext) {
             "kt", "kts" -> "kotlin"
@@ -69,6 +73,9 @@ object FileIconResolver {
             "js", "jsx", "mjs", "cjs" -> "javascript"
             "ts", "tsx" -> "typescript"
             "py", "pyw" -> "python"
+            "c" -> "c"
+            "h" -> "c"
+            "cpp", "cc", "cxx", "hpp", "hh" -> "cpp"
             "html", "htm" -> "html"
             "css" -> "css"
             "scss" -> "scss"
@@ -81,7 +88,6 @@ object FileIconResolver {
             "sh", "bash", "zsh" -> "shellscript"
             "go" -> "go"
             "rs" -> "rust"
-            "cpp", "cc", "cxx", "hpp", "h", "c" -> "cpp"
             "xml" -> "xml"
             "sql" -> "sql"
             "cs" -> "csharp"
@@ -117,11 +123,12 @@ object FileIconResolver {
             "hbs", "handlebars" -> "handlebars"
             "pug", "jade" -> "pug"
             "cshtml", "razor" -> "razor"
-            "m", "mm" -> "objective-c"
+            "m" -> "objective-c"
+            "mm" -> "objective-cpp"
             "fs", "fsi", "fsx" -> "fsharp"
             "elm" -> "elm"
             "ml", "mli" -> "ocaml"
-            "tex", "ltx", "bib", "sty", "cls" -> "latex"
+            "tex", "ltx", "sty", "cls" -> "latex"
             "sol" -> "solidity"
             "glsl", "vert", "frag", "geom", "comp", "vs" -> "glsl"
             "qml", "qmlproject" -> "qml"
@@ -162,6 +169,14 @@ object FileIconResolver {
             "tf", "hcl", "tfvars" -> "hcl"
             "thrift" -> "thrift"
             "shader", "cginc", "hlslinc" -> "shaderlab"
+            "hlsl", "fx", "fxh" -> "hlsl"
+            "wgsl" -> "wgsl"
+            "cu", "cuh" -> "cuda"
+            "opencl" -> "opencl"
+            "bib" -> "bibtex"
+            "git-commit" -> "git-commit"
+            "git-rebase" -> "git-rebase"
+            "dockercompose" -> "dockercompose"
             else -> null
         }
     }
@@ -173,6 +188,9 @@ object FileIconResolver {
         if (lower == "makefile" || lower == "cmakelists.txt") return "_file_makefile"
         if (lower == "build.gradle" || lower == "settings.gradle") return "_file_gradle"
         if (lower == ".gitignore") return "_file_git"
+        if (lower == "commit_editmsg" || lower == "merge_msg") return "_file_git_commit"
+        if (lower == "git-rebase-todo") return "_file_git_rebase"
+        if (lower == "docker-compose.yml" || lower == "docker-compose.yaml" || lower == "compose.yml" || lower == "compose.yaml") return "_file_dockercompose"
         val ext = fileName.substringAfterLast('.', "").lowercase()
         return when (ext) {
             "kt", "kts" -> "_file_kotlin"
@@ -182,6 +200,10 @@ object FileIconResolver {
             "ts" -> "_file_typescript"
             "tsx" -> "_file_react_ts"
             "py", "pyw" -> "_file_python"
+            "c" -> "_file_c"
+            "h" -> "_file_c_header"
+            "cpp", "cc", "cxx" -> "_file_cpp"
+            "hpp", "hh" -> "_file_hpp"
             "html", "htm" -> "_file_html"
             "css" -> "_file_css"
             "scss" -> "_file_sass"
@@ -196,8 +218,6 @@ object FileIconResolver {
             "sh", "bash", "zsh" -> "_file_shell"
             "go" -> "_file_go"
             "rs" -> "_file_rust"
-            "cpp", "cc", "cxx" -> "_file_cpp"
-            "h", "hpp" -> "_file_h"
             "cs" -> "_file_csharp"
             "dart" -> "_file_dart"
             "php", "phtml" -> "_file_php"
@@ -232,11 +252,12 @@ object FileIconResolver {
             "hbs", "handlebars" -> "_file_handlebars"
             "pug", "jade" -> "_file_pug"
             "cshtml", "razor" -> "_file_razor"
-            "m", "mm" -> "_file_objc"
+            "m" -> "_file_objc"
+            "mm" -> "_file_objcpp"
             "fs", "fsi", "fsx" -> "_file_fsharp"
             "elm" -> "_file_elm"
             "ml", "mli" -> "_file_ocaml"
-            "tex", "ltx", "bib", "sty", "cls" -> "_file_latex"
+            "tex", "ltx", "sty", "cls" -> "_file_latex"
             "sol" -> "_file_solidity"
             "glsl", "vert", "frag", "geom", "comp", "vs" -> "_file_glsl"
             "qml", "qmlproject" -> "_file_qml"
@@ -277,6 +298,14 @@ object FileIconResolver {
             "tf", "hcl", "tfvars" -> "_file_terraform"
             "thrift" -> "_file_thrift"
             "shader", "cginc", "hlslinc" -> "_file_shaderlab"
+            "hlsl", "fx", "fxh" -> "_file_hlsl"
+            "wgsl" -> "_file_wgsl"
+            "cu", "cuh" -> "_file_cuda"
+            "opencl" -> "_file_opencl"
+            "bib" -> "_file_bibtex"
+            "git-commit" -> "_file_git_commit"
+            "git-rebase" -> "_file_git_rebase"
+            "dockercompose" -> "_file_dockercompose"
             "txt" -> "_file_text"
             else -> "_file"
         }
@@ -301,6 +330,7 @@ object FileIconResolver {
             iconId.contains("go") -> Icons.Default.Code to Color(0xFF00ADD8)
             iconId.contains("rust") -> Icons.Default.Code to Color(0xFFDEA584)
             iconId.contains("cpp") || iconId.contains("c_") -> Icons.Default.Code to Color(0xFFF34B7D)
+            iconId.contains("_c") && !iconId.contains("csharp") -> Icons.Default.Code to Color(0xFF555555)
             iconId.contains("csharp") || iconId.contains("razor") -> Icons.Default.Code to Color(0xFF178600)
             iconId.contains("dart") -> Icons.Default.Code to Color(0xFF00B4AB)
             iconId.contains("php") -> Icons.Default.Code to Color(0xFF4F5D95)
@@ -331,7 +361,8 @@ object FileIconResolver {
             iconId.contains("coffeescript") -> Icons.Default.Code to Color(0xFF244776)
             iconId.contains("handlebars") -> Icons.Default.Code to Color(0xFFF7931E)
             iconId.contains("pug") -> Icons.Default.Code to Color(0xFFA86454)
-            iconId.contains("objc") -> Icons.Default.Code to Color(0xFF438EFF)
+            iconId.contains("objc") && !iconId.contains("objcpp") -> Icons.Default.Code to Color(0xFF438EFF)
+            iconId.contains("objcpp") -> Icons.Default.Code to Color(0xFF6866FB)
             iconId.contains("fsharp") -> Icons.Default.Code to Color(0xFFB845FC)
             iconId.contains("elm") -> Icons.Default.Code to Color(0xFF60B5CC)
             iconId.contains("ocaml") -> Icons.Default.Code to Color(0xFF3BE133)
@@ -377,6 +408,14 @@ object FileIconResolver {
             iconId.contains("thrift") -> Icons.Default.Code to Color(0xFFD12127)
             iconId.contains("jsonc") -> Icons.Default.DataObject to Color(0xFF292929)
             iconId.contains("shaderlab") -> Icons.Default.Code to Color(0xFF222C37)
+            iconId.contains("hlsl") -> Icons.Default.Code to Color(0xFF007ACC)
+            iconId.contains("wgsl") -> Icons.Default.Code to Color(0xFF1A5FB4)
+            iconId.contains("cuda") -> Icons.Default.Code to Color(0xFF76B900)
+            iconId.contains("opencl") -> Icons.Default.Code to Color(0xFFCC0000)
+            iconId.contains("bibtex") -> Icons.Default.Description to Color(0xFF8A2BE2)
+            iconId.contains("git_commit") -> Icons.Default.Code to Color(0xFFF05032)
+            iconId.contains("git_rebase") -> Icons.Default.Code to Color(0xFFF05032)
+            iconId.contains("dockercompose") -> Icons.Default.Storage to Color(0xFF0DB7ED)
             iconId.contains("folder_src") -> Icons.Default.Folder to Color(0xFF90A4AE)
             iconId.contains("folder") -> Icons.Default.Folder to MaterialTheme.colorScheme.primary
             iconId.contains("text") -> Icons.Default.Description to MaterialTheme.colorScheme.onSurfaceVariant

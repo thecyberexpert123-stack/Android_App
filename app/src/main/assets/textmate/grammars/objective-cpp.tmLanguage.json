@@ -1,0 +1,65 @@
+{
+  "name": "Objective-C++",
+  "scopeName": "source.objc++",
+  "fileTypes": ["mm"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#type"},
+    {"include": "#function"},
+    {"include": "#variable"},
+    {"include": "#numeric"},
+    {"include": "#preprocessor"},
+    {"include": "#objc_directive"}
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {"name": "comment.line.double-slash.objcpp", "match": "//.*$"},
+        {"name": "comment.block.objcpp", "begin": "/\\*", "end": "\\*/"}
+      ]
+    },
+    "string": {
+      "patterns": [
+        {"name": "string.quoted.double.objcpp", "begin": "@?\"", "end": "\"", "patterns": [{"name": "constant.character.escape.objcpp", "match": "\\\\."}]},
+        {"name": "string.quoted.single.objcpp", "begin": "'", "end": "'", "patterns": [{"name": "constant.character.escape.objcpp", "match": "\\\\."}]}
+      ]
+    },
+    "keyword": {
+      "patterns": [
+        {"name": "keyword.control.objcpp", "match": "\\b(if|else|for|while|do|switch|case|default|break|continue|return|struct|union|enum|typedef|class|namespace|using|public|private|protected|virtual|override|final|template|typename|const|static|extern|inline|volatile|explicit|friend|operator|new|delete|this|try|catch|throw|goto|sizeof|constexpr|decltype|noexcept|thread_local|auto|@interface|@implementation|@end|@property|@synthesize|@dynamic|@class|@protocol|@optional|@required|@public|@private|@protected|@package|@try|@catch|@finally|@throw|@autoreleasepool|@synchronized|self|super|nil|YES|NO|NULL)\\b"}
+      ]
+    },
+    "type": {
+      "patterns": [
+        {"name": "storage.type.objcpp", "match": "\\b(void|bool|char|short|int|long|float|double|id|instancetype|Class|SEL|BOOL|NSInteger|NSUInteger|CGFloat|NSString|NSArray|NSDictionary|NSObject)\\b"}
+      ]
+    },
+    "function": {
+      "patterns": [
+        {"name": "entity.name.function.objcpp", "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\s*(?=\\()|\\b[a-zA-Z_][a-zA-Z0-9_]*:\\s*(?=\\()"}
+      ]
+    },
+    "variable": {
+      "patterns": [
+        {"name": "variable.other.objcpp", "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"}
+      ]
+    },
+    "numeric": {
+      "patterns": [
+        {"name": "constant.numeric.objcpp", "match": "\\b\\d+\\.\\d*f?\\b|\\b\\d+\\b|\\b0x[0-9a-fA-F]+\\b"}
+      ]
+    },
+    "preprocessor": {
+      "patterns": [
+        {"name": "keyword.control.directive.objcpp", "match": "^\\s*#\\s*(include|import|define|ifdef|ifndef|if|else|elif|endif|pragma)\\b"}
+      ]
+    },
+    "objc_directive": {
+      "patterns": [
+        {"name": "keyword.other.objcpp", "match": "@(interface|implementation|end|property|synthesize|dynamic|class|protocol|optional|required|public|private|protected|package|try|catch|finally|throw|autoreleasepool|synchronized)\\b"}
+      ]
+    }
+  }
+}

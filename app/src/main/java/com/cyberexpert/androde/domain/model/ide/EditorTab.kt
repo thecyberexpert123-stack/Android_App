@@ -39,8 +39,8 @@ data class EditorTab(
 }
 
 /**
- * Language mode, similar to VS Code language detection - Phase 11 with 100 languages.
- * Uses file extension to determine language for Sora Editor with 100 TextMate grammars.
+ * Language mode, similar to VS Code language detection - Phase 12 with 110 languages.
+ * Uses file extension to determine language for Sora Editor with 110 TextMate grammars.
  */
 enum class EditorLanguage(
     val id: String,
@@ -53,7 +53,8 @@ enum class EditorLanguage(
     JAVASCRIPT("javascript", "JavaScript", listOf("js", "jsx", "mjs", "cjs")),
     TYPESCRIPT("typescript", "TypeScript", listOf("ts", "tsx")),
     PYTHON("python", "Python", listOf("py", "pyw")),
-    CPP("cpp", "C++", listOf("cpp", "cc", "cxx", "hpp", "h", "c")),
+    C("c", "C", listOf("c", "h")),
+    CPP("cpp", "C++", listOf("cpp", "cc", "cxx", "hpp", "hh")),
     CSHARP("csharp", "C#", listOf("cs")),
     GO("go", "Go", listOf("go")),
     RUST("rust", "Rust", listOf("rs")),
@@ -102,11 +103,12 @@ enum class EditorLanguage(
     HANDLEBARS("handlebars", "Handlebars", listOf("hbs", "handlebars")),
     PUG("pug", "Pug", listOf("pug", "jade")),
     RAZOR("razor", "Razor", listOf("cshtml", "razor")),
-    OBJECTIVEC("objective-c", "Objective-C", listOf("m", "mm")),
+    OBJECTIVEC("objective-c", "Objective-C", listOf("m")),
+    OBJECTIVECPP("objective-cpp", "Objective-C++", listOf("mm")),
     FSHARP("fsharp", "F#", listOf("fs", "fsi", "fsx")),
     ELM("elm", "Elm", listOf("elm")),
     OCAML("ocaml", "OCaml", listOf("ml", "mli")),
-    LATEX("latex", "LaTeX", listOf("tex", "ltx", "sty", "cls", "bib")),
+    LATEX("latex", "LaTeX", listOf("tex", "ltx", "sty", "cls")),
     SOLIDITY("solidity", "Solidity", listOf("sol")),
     GLSL("glsl", "GLSL", listOf("glsl", "vert", "frag", "geom", "comp", "vs", "fs")),
     QML("qml", "QML", listOf("qml", "qmlproject")),
@@ -138,7 +140,7 @@ enum class EditorLanguage(
     RACKET("racket", "Racket", listOf("rkt", "rktl", "rktd")),
     SCHEME("scheme", "Scheme", listOf("scm", "ss", "sch", "sld")),
     NIM("nim", "Nim", listOf("nim", "nims", "nimble")),
-    MATLAB("matlab", "MATLAB", listOf("m", "matlab")),
+    MATLAB("matlab", "MATLAB", listOf("matlab")),
     VB("vb", "Visual Basic", listOf("vb", "bas", "vbs")),
     XAML("xaml", "XAML", listOf("xaml")),
     RST("restructuredtext", "reStructuredText", listOf("rst", "rest")),
@@ -147,7 +149,15 @@ enum class EditorLanguage(
     HCL("hcl", "HCL", listOf("tf", "hcl", "tfvars")),
     THRIFT("thrift", "Thrift", listOf("thrift")),
     JSONC("jsonc", "JSON with Comments", listOf("jsonc", "code-workspace")),
-    SHADERLAB("shaderlab", "ShaderLab", listOf("shader", "cginc", "hlslinc"));
+    SHADERLAB("shaderlab", "ShaderLab", listOf("shader", "cginc", "hlslinc")),
+    HLSL("hlsl", "HLSL", listOf("hlsl", "fx", "fxh")),
+    WGSL("wgsl", "WGSL", listOf("wgsl")),
+    CUDA("cuda", "CUDA", listOf("cu", "cuh")),
+    OPENCL("opencl", "OpenCL", listOf("opencl")),
+    BIBTEX("bibtex", "BibTeX", listOf("bib")),
+    GIT_COMMIT("git-commit", "Git Commit", listOf("git-commit")),
+    GIT_REBASE("git-rebase", "Git Rebase", listOf("git-rebase")),
+    DOCKERCOMPOSE("dockercompose", "Docker Compose", listOf("dockercompose"));
 
     companion object {
         fun fromExtension(ext: String): EditorLanguage {
@@ -161,7 +171,7 @@ enum class EditorLanguage(
             if (lower == "jade") return PUG
             if (lower == "coffee" || lower == "cson" || lower == "iced") return COFFEESCRIPT
             if (lower == "sol") return SOLIDITY
-            if (lower == "tex" || lower == "ltx" || lower == "bib") return LATEX
+            if (lower == "tex" || lower == "ltx") return LATEX
             if (lower == "fs" || lower == "fsi" || lower == "fsx") return FSHARP
             if (lower == "ml" || lower == "mli") return OCAML
             if (lower == "vert" || lower == "frag" || lower == "geom" || lower == "comp" || lower == "vs" || lower == "fs" || lower == "glsl") return GLSL
@@ -204,14 +214,28 @@ enum class EditorLanguage(
             if (lower == "thrift") return THRIFT
             if (lower == "jsonc" || lower == "code-workspace") return JSONC
             if (lower == "shader" || lower == "cginc" || lower == "hlslinc") return SHADERLAB
+            if (lower == "hlsl" || lower == "fx" || lower == "fxh") return HLSL
+            if (lower == "wgsl") return WGSL
+            if (lower == "cu" || lower == "cuh") return CUDA
+            if (lower == "opencl") return OPENCL
+            if (lower == "bib") return BIBTEX
+            if (lower == "git-commit") return GIT_COMMIT
+            if (lower == "git-rebase") return GIT_REBASE
+            if (lower == "dockercompose") return DOCKERCOMPOSE
+            if (lower == "mm") return OBJECTIVECPP
+            if (lower == "c" || lower == "h") return C
             return entries.find { lower in it.extensions } ?: PLAINTEXT
         }
 
         fun fromFileName(name: String): EditorLanguage {
-            if (name == "Dockerfile" || name.lowercase() == "dockerfile") return DOCKERFILE
-            if (name == "Makefile" || name == "makefile" || name.lowercase() == "makefile") return MAKEFILE
-            if (name == "CMakeLists.txt" || name.lowercase() == "cmakelists.txt") return CMAKE
-            if (name == ".gitignore" || name.lowercase() == ".gitignore") return GITIGNORE
+            val lowerName = name.lowercase()
+            if (name == "Dockerfile" || lowerName == "dockerfile") return DOCKERFILE
+            if (name == "Makefile" || name == "makefile" || lowerName == "makefile") return MAKEFILE
+            if (name == "CMakeLists.txt" || lowerName == "cmakelists.txt") return CMAKE
+            if (name == ".gitignore" || lowerName == ".gitignore") return GITIGNORE
+            if (name == "COMMIT_EDITMSG" || name == "MERGE_MSG" || lowerName.contains("commit_editmsg") || lowerName.contains("merge_msg")) return GIT_COMMIT
+            if (name == "git-rebase-todo" || lowerName == "git-rebase-todo") return GIT_REBASE
+            if (name == "docker-compose.yml" || name == "docker-compose.yaml" || name == "compose.yml" || name == "compose.yaml" || lowerName == "docker-compose.yml" || lowerName == "compose.yaml") return DOCKERCOMPOSE
             if (name == "build.gradle" || name == "settings.gradle" || name.endsWith(".gradle")) return GROOVY
             val ext = name.substringAfterLast('.', "")
             return if (ext == name) {

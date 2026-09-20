@@ -80,9 +80,15 @@
     },
     {
       "id": "cpp",
-      "extensions": [".cpp", ".cc", ".cxx", ".hpp", ".h", ".c"],
+      "extensions": [".cpp", ".cc", ".cxx", ".hpp", ".hh"],
       "aliases": ["C++", "cpp"],
       "grammar": "textmate/grammars/cpp.tmLanguage.json"
+    },
+    {
+      "id": "c",
+      "extensions": [".c", ".h"],
+      "aliases": ["C", "c"],
+      "grammar": "textmate/grammars/c.tmLanguage.json"
     },
     {
       "id": "xml",
@@ -326,9 +332,15 @@
     },
     {
       "id": "objective-c",
-      "extensions": [".m", ".mm"],
+      "extensions": [".m"],
       "aliases": ["Objective-C", "objective-c", "objc"],
       "grammar": "textmate/grammars/objectivec.tmLanguage.json"
+    },
+    {
+      "id": "objective-cpp",
+      "extensions": [".mm"],
+      "aliases": ["Objective-C++", "objective-cpp", "objc++"],
+      "grammar": "textmate/grammars/objective-cpp.tmLanguage.json"
     },
     {
       "id": "fsharp",
@@ -350,7 +362,7 @@
     },
     {
       "id": "latex",
-      "extensions": [".tex", ".ltx", ".sty", ".cls", ".bib"],
+      "extensions": [".tex", ".ltx", ".sty", ".cls"],
       "aliases": ["LaTeX", "latex", "tex"],
       "grammar": "textmate/grammars/latex.tmLanguage.json"
     },
@@ -599,6 +611,54 @@
       "extensions": [".shader", ".cginc", ".hlslinc"],
       "aliases": ["ShaderLab", "shaderlab"],
       "grammar": "textmate/grammars/shaderlab.tmLanguage.json"
+    },
+    {
+      "id": "hlsl",
+      "extensions": [".hlsl", ".fx", ".fxh"],
+      "aliases": ["HLSL", "hlsl"],
+      "grammar": "textmate/grammars/hlsl.tmLanguage.json"
+    },
+    {
+      "id": "wgsl",
+      "extensions": [".wgsl"],
+      "aliases": ["WGSL", "wgsl", "WebGPU Shading Language"],
+      "grammar": "textmate/grammars/wgsl.tmLanguage.json"
+    },
+    {
+      "id": "cuda",
+      "extensions": [".cu", ".cuh"],
+      "aliases": ["CUDA", "cuda"],
+      "grammar": "textmate/grammars/cuda.tmLanguage.json"
+    },
+    {
+      "id": "opencl",
+      "extensions": [".opencl"],
+      "aliases": ["OpenCL", "opencl"],
+      "grammar": "textmate/grammars/opencl.tmLanguage.json"
+    },
+    {
+      "id": "bibtex",
+      "extensions": [".bib"],
+      "aliases": ["BibTeX", "bibtex"],
+      "grammar": "textmate/grammars/bibtex.tmLanguage.json"
+    },
+    {
+      "id": "git-commit",
+      "extensions": [".git-commit", "COMMIT_EDITMSG", "MERGE_MSG"],
+      "aliases": ["Git Commit", "git-commit"],
+      "grammar": "textmate/grammars/git-commit.tmLanguage.json"
+    },
+    {
+      "id": "git-rebase",
+      "extensions": [".git-rebase", "git-rebase-todo"],
+      "aliases": ["Git Rebase", "git-rebase"],
+      "grammar": "textmate/grammars/git-rebase.tmLanguage.json"
+    },
+    {
+      "id": "dockercompose",
+      "extensions": [".dockercompose"],
+      "aliases": ["Docker Compose", "dockercompose", "compose"],
+      "grammar": "textmate/grammars/dockercompose.tmLanguage.json"
     }
   ]
 }

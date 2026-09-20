@@ -1,0 +1,35 @@
+{
+  "name": "Git Commit",
+  "scopeName": "text.git-commit",
+  "fileTypes": ["git-commit"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#keyword"},
+    {"include": "#branch"},
+    {"include": "#header"}
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {"name": "comment.line.number-sign.git-commit", "match": "#.*$"}
+      ]
+    },
+    "keyword": {
+      "patterns": [
+        {"name": "keyword.other.git-commit", "match": "\\b(Changes to be committed|Changes not staged for commit|Untracked files|On branch|Your branch|nothing to commit|Unmerged paths)\\b"},
+        {"name": "invalid.illegal.git-commit", "match": "\\b(modified|deleted|new file|renamed|untracked):\\b"}
+      ]
+    },
+    "branch": {
+      "patterns": [
+        {"name": "entity.name.branch.git-commit", "match": "(?<=On branch )\\S+"},
+        {"name": "constant.other.git-commit", "match": "\\b[a-f0-9]{7,40}\\b"}
+      ]
+    },
+    "header": {
+      "patterns": [
+        {"name": "entity.name.section.git-commit", "match": "^[^#\\n].*$", "captures": {}}
+      ]
+    }
+  }
+}
