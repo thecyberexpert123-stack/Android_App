@@ -1,0 +1,26 @@
+{
+  "name": "Smarty",
+  "scopeName": "text.html.smarty",
+  "fileTypes": ["tpl"],
+  "patterns": [
+    {"include": "#smarty-comment"},
+    {"include": "#smarty-tag"},
+    {"include": "#smarty-variable"},
+    {"include": "text.html.basic"}
+  ],
+  "repository": {
+    "smarty-comment": {
+      "name": "comment.block.smarty",
+      "begin": "\\{\\*",
+      "end": "\\*\\}"
+    },
+    "smarty-tag": {
+      "name": "keyword.control.smarty",
+      "match": "\\{/?(if|else|elseif|foreach|foreachelse|/foreach|section|/section|literal|/literal|strip|/strip|assign|include|capture|/capture|php|/php|ldelim|rdelim)\\b[^}]*\\}"
+    },
+    "smarty-variable": {
+      "name": "variable.other.smarty",
+      "match": "\\$[A-Za-z_][A-Za-z0-9_\\.]*"
+    }
+  }
+}

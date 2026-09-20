@@ -1,0 +1,18 @@
+{
+  "name": "XAML",
+  "scopeName": "text.xml.xaml",
+  "fileTypes": ["xaml"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#tag"},
+    {"include": "#string"},
+    {"include": "#entity"}
+  ],
+  "repository": {
+    "comment": {"name": "comment.block.xaml", "begin": "<!--", "end": "-->"},
+    "tag": {"patterns": [{"name": "meta.tag.xaml", "begin": "(</?)([a-zA-Z_][\\w\\-\\.:]*)", "end": "(/?>)", "beginCaptures": {"1": {"name": "punctuation.definition.tag.xaml"}, "2": {"name": "entity.name.tag.xaml"}}, "endCaptures": {"1": {"name": "punctuation.definition.tag.xaml"}}, "patterns": [{"include": "#attribute"}]}]},
+    "attribute": {"name": "entity.other.attribute-name.xaml", "match": "([a-zA-Z_][\\w\\-\\.:]*)\\s*(=)", "captures": {"1": {"name": "entity.other.attribute-name.xaml"}, "2": {"name": "punctuation.separator.key-value.xaml"}}},
+    "string": {"name": "string.quoted.double.xaml", "begin": "\"", "end": "\""},
+    "entity": {"name": "constant.character.entity.xaml", "match": "&[a-zA-Z]+;"}
+  }
+}

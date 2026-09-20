@@ -1,0 +1,45 @@
+{
+  "name": "Material Icons",
+  "type": "iconTheme",
+  "fileExtensions": {
+    "kt": "kotlin",
+    "java": "java",
+    "js": "javascript",
+    "ts": "typescript",
+    "py": "python",
+    "html": "html",
+    "css": "css",
+    "json": "json",
+    "md": "markdown",
+    "yaml": "yaml",
+    "xml": "xml",
+    "sql": "database",
+    "sh": "console",
+    "go": "go",
+    "rs": "rust",
+    "cpp": "cpp",
+    "cs": "csharp",
+    "dart": "dart",
+    "php": "php",
+    "rb": "ruby",
+    "swift": "swift",
+    "properties": "settings",
+    "dockerfile": "docker",
+    "gradle": "gradle",
+    "txt": "document"
+  },
+  "fileNames": {
+    "Dockerfile": "docker",
+    "README.md": "readme",
+    ".gitignore": "git"
+  },
+  "folderNames": {
+    "src": "src",
+    "app": "app",
+    "java": "java",
+    "res": "res",
+    "assets": "assets",
+    "build": "build",
+    ".git": "git"
+  }
+}

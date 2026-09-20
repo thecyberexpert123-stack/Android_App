@@ -1,0 +1,21 @@
+{
+  "name": "Ada",
+  "scopeName": "source.ada",
+  "fileTypes": ["adb", "ads"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#type"},
+    {"include": "#function"},
+    {"include": "#number"}
+  ],
+  "repository": {
+    "comment": {"name": "comment.line.double-dash.ada", "match": "--.*$"},
+    "string": {"name": "string.quoted.double.ada", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.ada", "match": "\"\""}]},
+    "keyword": {"name": "keyword.control.ada", "match": "\\b(abort|abs|abstract|accept|access|aliased|all|and|array|at|begin|body|case|constant|declare|delay|delta|digits|do|else|elsif|end|entry|exception|exit|for|function|generic|goto|if|in|interface|is|limited|loop|mod|new|not|null|of|or|others|out|overriding|package|pragma|private|procedure|protected|raise|range|record|rem|renames|requeue|return|reverse|select|separate|some|subtype|synchronized|tagged|task|terminate|then|type|until|use|when|while|with|xor)\\b"},
+    "type": {"name": "storage.type.ada", "match": "\\b(Integer|Natural|Positive|Float|Boolean|Character|String|Duration)\\b"},
+    "function": {"name": "entity.name.function.ada", "match": "\\b(function|procedure|package)\\s+([A-Za-z_][A-Za-z0-9_]*)\\b", "captures": {"2": {"name": "entity.name.function.ada"}}},
+    "number": {"name": "constant.numeric.ada", "match": "\\b\\d+(\\.\\d+)?\\b"}
+  }
+}

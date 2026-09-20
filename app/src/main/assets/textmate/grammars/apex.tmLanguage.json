@@ -1,0 +1,21 @@
+{
+  "name": "Apex",
+  "scopeName": "source.apex",
+  "fileTypes": ["apex", "cls", "trigger", "apxc", "apxt"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#type"},
+    {"include": "#annotation"},
+    {"include": "#number"}
+  ],
+  "repository": {
+    "comment": {"patterns": [{"name": "comment.line.double-slash.apex", "match": "//.*$"}, {"name": "comment.block.apex", "begin": "/\\*", "end": "\\*/"}]},
+    "string": {"name": "string.quoted.single.apex", "begin": "'", "end": "'", "patterns": [{"name": "constant.character.escape.apex", "match": "\\\\'"}]},
+    "keyword": {"name": "keyword.control.apex", "match": "\\b(trigger|class|public|private|protected|global|with sharing|without sharing|inherited sharing|abstract|virtual|override|static|final|if|else|for|while|do|switch|case|default|break|continue|return|try|catch|finally|throw|new|this|super|instanceof|import|extends|implements|interface|enum|get|set|transient|with|without|inherited)\\b"},
+    "type": {"name": "support.type.apex", "match": "\\b(Integer|Long|Double|Decimal|String|Boolean|ID|Date|Datetime|Time|Blob|List|Set|Map|Database|System|SObject|Account|Contact|Opportunity|Lead|Case|CustomObject__c)\\b"},
+    "annotation": {"name": "storage.type.annotation.apex", "match": "@[A-Za-z_][A-Za-z0-9_]*"},
+    "number": {"name": "constant.numeric.apex", "match": "\\b\\d+(\\.\\d+)?\\b"}
+  }
+}

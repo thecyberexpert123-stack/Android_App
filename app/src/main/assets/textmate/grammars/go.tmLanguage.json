@@ -1,0 +1,15 @@
+{
+  "name": "Go",
+  "scopeName": "source.go",
+  "fileTypes": ["go"],
+  "patterns": [
+    { "name": "comment.line.double-slash.go", "match": "//.*$" },
+    { "name": "comment.block.go", "begin": "/\\*", "end": "\\*/" },
+    { "name": "string.quoted.double.go", "begin": "\"", "end": "\"" },
+    { "name": "string.quoted.single.go", "begin": "`", "end": "`" },
+    { "name": "keyword.control.go", "match": "\\b(break|case|chan|const|continue|default|defer|else|fallthrough|for|func|go|goto|if|import|interface|map|package|range|return|select|struct|switch|type|var|const|func|defer|go)\\b" },
+    { "name": "entity.name.function.go", "match": "\\b(func)\\s+([A-Z][a-zA-Z0-9_]*)" },
+    { "name": "constant.numeric.go", "match": "\\b\\d+(\\.\\d+)?\\b" },
+    { "name": "keyword.operator.go", "match": "\\b(nil|true|false|iota)\\b" }
+  ]
+}

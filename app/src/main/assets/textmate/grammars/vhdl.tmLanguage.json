@@ -1,0 +1,22 @@
+{
+  "scopeName": "source.vhdl",
+  "name": "VHDL",
+  "fileTypes": ["vhd", "vhdl", "vho"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#type"},
+    {"include": "#numeric"}
+  ],
+  "repository": {
+    "comment": {"name": "comment.line.double-dash.vhdl", "match": "--.*$"},
+    "string": {"patterns": [
+      {"name": "string.quoted.double.vhdl", "begin": "\"", "end": "\""},
+      {"name": "string.quoted.single.vhdl", "begin": "'", "end": "'"}
+    ]},
+    "keyword": {"name": "keyword.control.vhdl", "match": "\\b(entity|architecture|component|begin|end|process|if|then|else|elsif|case|when|for|loop|while|generate|port|map|generic|signal|variable|constant|type|subtype|function|procedure|return|package|library|use|is|of|in|out|inout|buffer|linkage|downto|to|others|all|with|select|after|wait|until|not|and|or|xor|nand|nor|xnor|abs|mod|rem|sll|srl|sla|sra|rol|ror)\\b", "captures": {}},
+    "type": {"name": "storage.type.vhdl", "match": "\\b(std_logic|std_logic_vector|std_ulogic|std_ulogic_vector|bit|bit_vector|boolean|integer|natural|positive|real|time|character|string|signed|unsigned)\\b"},
+    "numeric": {"name": "constant.numeric.vhdl", "match": "\\b\\d+(?:_\\d+)*(?:#(?:[0-9A-Fa-f]+(?:\\.[0-9A-Fa-f]+)?)?#|\\.\\d+)?(?:E[+-]?\\d+)?\\b"}
+  }
+}

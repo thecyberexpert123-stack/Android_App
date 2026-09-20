@@ -1,0 +1,26 @@
+{
+  "scopeName": "source.verilog",
+  "name": "Verilog",
+  "fileTypes": ["v", "sv", "svh"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#type"},
+    {"include": "#numeric"},
+    {"include": "#directive"}
+  ],
+  "repository": {
+    "comment": {"patterns": [
+      {"name": "comment.line.double-slash.verilog", "match": "//.*$"},
+      {"name": "comment.block.verilog", "begin": "/\\*", "end": "\\*/"}
+    ]},
+    "string": {"patterns": [
+      {"name": "string.quoted.double.verilog", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.verilog", "match": "\\\\."}]}
+    ]},
+    "keyword": {"name": "keyword.control.verilog", "match": "\\b(module|endmodule|input|output|inout|wire|reg|logic|bit|byte|int|integer|real|realtime|time|parameter|localparam|always|always_comb|always_ff|always_latch|initial|begin|end|if|else|case|casex|casez|endcase|for|while|forever|repeat|assign|function|endfunction|task|endtask|generate|endgenerate|posedge|negedge|edge)\\b"},
+    "type": {"name": "storage.type.verilog", "match": "\\b(wire|reg|logic|bit|byte|int|integer|real|realtime|time|supply0|supply1|tri|triand|trior|tri0|tri1|uwire|wand|wor)\\b"},
+    "numeric": {"name": "constant.numeric.verilog", "match": "\\b\\d+(?:'\\s*[bBoOdDhH]\\s*[0-9A-Fa-f_xXzZ]+|\\.\\d+)?\\b"},
+    "directive": {"name": "keyword.directive.verilog", "match": "`[A-Za-z_][A-Za-z0-9_]*"}
+  }
+}

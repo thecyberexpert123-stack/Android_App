@@ -1,0 +1,16 @@
+{
+  "name": "R",
+  "scopeName": "source.r",
+  "fileTypes": ["r", "R"],
+  "patterns": [
+    { "name": "comment.line.number-sign.r", "match": "#.*$" },
+    { "name": "string.quoted.double.r", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.r", "match": "\\\\." }] },
+    { "name": "string.quoted.single.r", "begin": "'", "end": "'" },
+    { "name": "keyword.control.r", "match": "\\b(if|else|for|while|repeat|break|next|return|function|in|TRUE|FALSE|NULL|NA|Inf|NaN|library|require|source)\\b" },
+    { "name": "entity.name.function.r", "match": "\\b([A-Za-z_][A-Za-z0-9_.]*)\\s*<-\\s*function" },
+    { "name": "entity.name.function.r", "match": "\\b([A-Za-z_][A-Za-z0-9_.]*)\\s*(?=\\()" },
+    { "name": "constant.numeric.r", "match": "\\b\\d+(\\.\\d+)?\\b" },
+    { "name": "support.function.r", "match": "\\b(print|cat|paste|list|c|data\\.frame|matrix|mean|sum|length|nrow|ncol|head|tail|str|summary|plot|ggplot|dplyr|lapply|sapply)\\b" },
+    { "name": "keyword.operator.r", "match": "<-|<<-|%>%|\\$|@|::|:::" }
+  ]
+}

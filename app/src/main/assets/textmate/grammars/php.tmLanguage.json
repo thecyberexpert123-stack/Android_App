@@ -1,0 +1,17 @@
+{
+  "name": "PHP",
+  "scopeName": "source.php",
+  "fileTypes": ["php", "phtml", "php3", "php4", "php5"],
+  "patterns": [
+    { "name": "comment.line.double-slash.php", "match": "//.*$" },
+    { "name": "comment.line.number-sign.php", "match": "#.*$" },
+    { "name": "comment.block.php", "begin": "/\\*", "end": "\\*/" },
+    { "name": "meta.tag.php", "begin": "<\\?php", "end": "\\?>" },
+    { "name": "string.quoted.double.php", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.php", "match": "\\\\." }, { "name": "variable.other.php", "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*" }] },
+    { "name": "string.quoted.single.php", "begin": "'", "end": "'" },
+    { "name": "keyword.control.php", "match": "\\b(abstract|and|array|as|break|callable|case|catch|class|clone|const|continue|declare|default|die|do|echo|else|elseif|empty|enddeclare|endfor|endforeach|endif|endswitch|endwhile|eval|exit|extends|final|finally|for|foreach|function|global|goto|if|implements|include|include_once|instanceof|insteadof|interface|isset|list|namespace|new|or|print|private|protected|public|require|require_once|return|static|switch|throw|trait|try|unset|use|var|while|xor|yield|fn|match)\\b" },
+    { "name": "variable.other.php", "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*" },
+    { "name": "entity.name.function.php", "match": "\\b(function)\\s+([a-zA-Z_][a-zA-Z0-9_]*)" },
+    { "name": "constant.numeric.php", "match": "\\b\\d+(\\.\\d+)?\\b" }
+  ]
+}

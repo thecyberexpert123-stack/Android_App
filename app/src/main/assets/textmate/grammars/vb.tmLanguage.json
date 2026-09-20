@@ -1,0 +1,23 @@
+{
+  "name": "Visual Basic",
+  "scopeName": "source.vb",
+  "fileTypes": ["vb", "bas", "vbs"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#type"},
+    {"include": "#function"},
+    {"include": "#class"},
+    {"include": "#number"}
+  ],
+  "repository": {
+    "comment": {"patterns": [{"name": "comment.line.apostrophe.vb", "match": "'.*$"}, {"name": "comment.line.rem.vb", "match": "(?i)\\bREM\\b.*$"}]},
+    "string": {"name": "string.quoted.double.vb", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.vb", "match": "\"\""}]},
+    "keyword": {"name": "keyword.control.vb", "match": "(?i)\\b(AddHandler|AddressOf|Alias|And|AndAlso|As|Boolean|ByRef|Byte|ByVal|Call|Case|Catch|CBool|CByte|CChar|CDate|CDbl|CDec|Char|CInt|Class|CLng|CObj|Const|Continue|CSByte|CShort|CSng|CStr|CType|CUInt|CULng|CUShort|Date|Decimal|Declare|Default|Delegate|Dim|DirectCast|Do|Double|Each|Else|ElseIf|End|EndIf|Enum|Erase|Error|Event|Exit|False|Finally|For|Friend|Function|Get|Global|GoSub|GoTo|Handles|If|Implements|Imports|In|Inherits|Integer|Interface|Is|IsNot|Let|Lib|Like|Long|Loop|Me|Mod|Module|MustInherit|MustOverride|MyBase|MyClass|Namespace|Narrowing|New|Next|Not|Nothing|NotInheritable|NotOverridable|Object|Of|On|Operator|Option|Optional|Or|OrElse|Overloads|Overridable|Overrides|ParamArray|Partial|Private|Property|Protected|Public|RaiseEvent|ReadOnly|ReDim|REM|RemoveHandler|Resume|Return|SByte|Select|Set|Shadows|Shared|Short|Single|Static|Step|Stop|String|Structure|Sub|SyncLock|Then|Throw|To|True|Try|TryCast|TypeOf|UInteger|ULong|UShort|Using|Variant|Wend|When|While|Widening|With|WithEvents|WriteOnly|Xor)\\b"},
+    "type": {"name": "support.type.vb", "match": "(?i)\\b(Boolean|Byte|Char|Date|Decimal|Double|Integer|Long|Object|SByte|Short|Single|String|UInteger|ULong|UShort|Variant)\\b"},
+    "function": {"name": "entity.name.function.vb", "match": "(?i)\\b(Function|Sub)\\s+([a-zA-Z_]\\w*)", "captures": {"1": {"name": "keyword.control.vb"}, "2": {"name": "entity.name.function.vb"}}},
+    "class": {"name": "entity.name.type.class.vb", "match": "(?i)\\b(Class|Module|Structure|Enum)\\s+([a-zA-Z_]\\w*)", "captures": {"1": {"name": "keyword.control.vb"}, "2": {"name": "entity.name.type.class.vb"}}},
+    "number": {"name": "constant.numeric.vb", "match": "\\b\\d+(\\.\\d+)?\\b"}
+  }
+}

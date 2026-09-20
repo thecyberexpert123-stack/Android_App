@@ -1,0 +1,21 @@
+{
+  "name": "Puppet",
+  "scopeName": "source.puppet",
+  "fileTypes": ["pp", "puppet", "epp"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#variable"},
+    {"include": "#type"},
+    {"include": "#number"}
+  ],
+  "repository": {
+    "comment": {"name": "comment.line.number-sign.puppet", "match": "#.*$"},
+    "string": {"patterns": [{"name": "string.quoted.double.puppet", "begin": "\"", "end": "\"", "patterns": [{"name": "variable.other.puppet", "match": "\\$\\{[A-Za-z_][A-Za-z0-9_]*\\}|\\$[A-Za-z_][A-Za-z0-9_]*"}]}, {"name": "string.quoted.single.puppet", "begin": "'", "end": "'"}]},
+    "keyword": {"name": "keyword.control.puppet", "match": "\\b(class|define|node|if|else|elsif|unless|case|inherits|include|require|contain|import|function|type|attr|private|default|and|or|in|undef|true|false)\\b"},
+    "variable": {"name": "variable.other.puppet", "match": "\\$[A-Za-z_][A-Za-z0-9_:]*|\\$\\{[A-Za-z_][A-Za-z0-9_:]*\\}"},
+    "type": {"name": "support.type.puppet", "match": "\\b(String|Integer|Float|Boolean|Array|Hash|Variant|Optional|Enum|Pattern|Regexp|Sensitive|Undef|Default|Any|Type|Resource|Class|Collection|Scalar|Numeric|Tuple|Struct)\\b"},
+    "number": {"name": "constant.numeric.puppet", "match": "\\b\\d+(\\.\\d+)?\\b"}
+  }
+}

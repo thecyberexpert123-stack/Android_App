@@ -1,0 +1,12 @@
+{
+  "name": "INI",
+  "scopeName": "source.ini",
+  "fileTypes": ["ini", "conf"],
+  "patterns": [
+    { "name": "comment.line.number-sign.ini", "match": "^\\s*[#;].*$" },
+    { "name": "entity.name.section.group-title.ini", "match": "^\\s*\\[.*\\]\\s*$" },
+    { "name": "keyword.other.definition.ini", "match": "^\\s*[a-zA-Z0-9_\\.\\-]+\\s*(?==)" },
+    { "name": "punctuation.separator.key-value.ini", "match": "=" },
+    { "name": "string.unquoted.ini", "match": "(?<==).*$" }
+  ]
+}

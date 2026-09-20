@@ -1,0 +1,89 @@
+{
+  "Kotlin class": {
+    "prefix": "class",
+    "body": [
+      "class ${1:Name} {",
+      "    ${0}",
+      "}"
+    ],
+    "description": "Create a Kotlin class"
+  },
+  "Kotlin data class": {
+    "prefix": "data",
+    "body": [
+      "data class ${1:Name}(",
+      "    val ${2:property}: ${3:String}",
+      ")"
+    ],
+    "description": "Create a Kotlin data class"
+  },
+  "Kotlin function": {
+    "prefix": "fun",
+    "body": [
+      "fun ${1:name}(${2:params}): ${3:Unit} {",
+      "    ${0}",
+      "}"
+    ],
+    "description": "Create a Kotlin function"
+  },
+  "Kotlin main": {
+    "prefix": "main",
+    "body": [
+      "fun main() {",
+      "    ${0}",
+      "}"
+    ],
+    "description": "Main function"
+  },
+  "Kotlin if": {
+    "prefix": "if",
+    "body": [
+      "if (${1:condition}) {",
+      "    ${0}",
+      "}"
+    ],
+    "description": "If statement"
+  },
+  "Kotlin for": {
+    "prefix": "for",
+    "body": [
+      "for (${1:item} in ${2:collection}) {",
+      "    ${0}",
+      "}"
+    ],
+    "description": "For loop"
+  },
+  "Kotlin when": {
+    "prefix": "when",
+    "body": [
+      "when (${1:value}) {",
+      "    ${2:case} -> ${3:action}",
+      "    else -> ${0}",
+      "}"
+    ],
+    "description": "When expression"
+  },
+  "Kotlin val": {
+    "prefix": "val",
+    "body": [
+      "val ${1:name} = ${0}"
+    ],
+    "description": "Val declaration"
+  },
+  "Kotlin var": {
+    "prefix": "var",
+    "body": [
+      "var ${1:name} = ${0}"
+    ],
+    "description": "Var declaration"
+  },
+  "Kotlin companion": {
+    "prefix": "companion",
+    "body": [
+      "companion object {",
+      "    ${0}",
+      "}"
+    ],
+    "description": "Companion object"
+  }
+}

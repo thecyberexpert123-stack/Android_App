@@ -1,0 +1,21 @@
+{
+  "name": "Hack",
+  "scopeName": "source.hack",
+  "fileTypes": ["hack", "hh", "hhi", "hhconfig"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#type"},
+    {"include": "#function"},
+    {"include": "#number"}
+  ],
+  "repository": {
+    "comment": {"patterns": [{"name": "comment.line.double-slash.hack", "match": "//.*$"}, {"name": "comment.block.hack", "begin": "/\\*", "end": "\\*/"}]},
+    "string": {"name": "string.quoted.double.hack", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.hack", "match": "\\\\."}]},
+    "keyword": {"name": "keyword.control.hack", "match": "\\b(function|class|interface|trait|enum|type|newtype|shape|namespace|use|extends|implements|abstract|final|public|private|protected|static|async|await|if|else|elseif|for|foreach|while|do|switch|case|default|break|continue|return|try|catch|finally|throw|new|clone|instanceof|as|is|inout|where|require|include|echo|print|yield|list|array|dict|vec|keyset)\\b"},
+    "type": {"name": "support.type.hack", "match": "\\b(int|string|bool|float|num|arraykey|mixed|dynamic|nothing|noreturn|void|this|self|parent|vec|dict|keyset|varray|darray|Awaitable|ImmVector|ImmMap|ImmSet|Vector|Map|Set|Pair|shape)\\b"},
+    "function": {"name": "entity.name.function.hack", "match": "\\bfunction\\s+([A-Za-z_][A-Za-z0-9_]*)\\b", "captures": {"1": {"name": "entity.name.function.hack"}}},
+    "number": {"name": "constant.numeric.hack", "match": "\\b\\d+(\\.\\d+)?\\b"}
+  }
+}

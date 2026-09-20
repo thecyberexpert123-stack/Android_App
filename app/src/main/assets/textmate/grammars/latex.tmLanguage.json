@@ -1,0 +1,28 @@
+{
+  "scopeName": "text.tex.latex",
+  "name": "LaTeX",
+  "fileTypes": ["tex", "ltx", "sty", "cls", "bib"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#command"},
+    {"include": "#string"},
+    {"include": "#math"}
+  ],
+  "repository": {
+    "comment": {"name": "comment.line.percentage.tex", "match": "%.*$"},
+    "command": {"patterns": [
+      {"name": "keyword.control.tex", "match": "\\\\[A-Za-z]+\\*?"},
+      {"name": "entity.name.section.tex", "match": "\\\\(?:section|subsection|subsubsection|chapter|paragraph|subparagraph)\\*?"},
+      {"name": "entity.name.type.tex", "match": "\\\\(?:begin|end)\\{[^}]+\\}"}
+    ]},
+    "string": {"patterns": [
+      {"name": "string.quoted.double.tex", "begin": "\"", "end": "\""},
+      {"name": "constant.other.brace.tex", "begin": "\\{", "end": "\\}"}
+    ]},
+    "math": {"patterns": [
+      {"name": "string.other.math.tex", "begin": "\\$\\$?", "end": "\\$\\$?"},
+      {"name": "string.other.math.tex", "begin": "\\\\\\[", "end": "\\\\\\]"},
+      {"name": "string.other.math.tex", "begin": "\\\\\\(", "end": "\\\\\\)"}
+    ]}
+  }
+}

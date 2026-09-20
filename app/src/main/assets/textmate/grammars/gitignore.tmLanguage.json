@@ -1,0 +1,12 @@
+{
+  "name": "Git Ignore",
+  "scopeName": "source.gitignore",
+  "fileTypes": ["gitignore"],
+  "patterns": [
+    { "name": "comment.line.number-sign.gitignore", "match": "#.*$" },
+    { "name": "keyword.control.negation.gitignore", "match": "^!.*$" },
+    { "name": "keyword.control.directory.gitignore", "match": "/$|/$" },
+    { "name": "constant.character.escape.gitignore", "match": "\\*\\*|\\*|\\?|\\[|\\]" },
+    { "name": "string.unquoted.gitignore", "match": "^[^#\\s].*$" }
+  ]
+}

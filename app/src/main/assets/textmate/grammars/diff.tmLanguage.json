@@ -1,0 +1,13 @@
+{
+  "name": "Diff",
+  "scopeName": "source.diff",
+  "fileTypes": ["diff", "patch"],
+  "patterns": [
+    { "name": "meta.diff.header.from-file", "match": "^---.*$" },
+    { "name": "meta.diff.header.to-file", "match": "^\\+\\+\\+.*$" },
+    { "name": "meta.diff.range.unified", "match": "^@@.*@@.*$" },
+    { "name": "markup.inserted.diff", "match": "^\\+.*$" },
+    { "name": "markup.deleted.diff", "match": "^-.*$" },
+    { "name": "meta.diff.index", "match": "^Index:.*$|^diff.*$|^\\*\\*\\*.*$|^---.*$" }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Shell Script",
+  "scopeName": "source.shell",
+  "fileTypes": ["sh", "bash", "zsh"],
+  "patterns": [
+    { "name": "comment.line.number-sign.shell", "match": "#.*$" },
+    { "name": "string.quoted.double.shell", "begin": "\"", "end": "\"", "patterns": [{ "name": "variable.other.shell", "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*|\\$\\{[^}]+\\}" }] },
+    { "name": "string.quoted.single.shell", "begin": "'", "end": "'" },
+    { "name": "keyword.control.shell", "match": "\\b(if|then|else|elif|fi|for|while|do|done|case|esac|function|return|exit|break|continue|in|select|until)\\b" },
+    { "name": "support.function.shell", "match": "\\b(echo|printf|cd|ls|cat|grep|awk|sed|find|xargs|chmod|chown|cp|mv|rm|mkdir|rmdir|touch|pwd|whoami|date|head|tail|sort|uniq|wc|cut|tr|env|export|source|alias|unalias|history|jobs|bg|fg|kill|ps|top|df|du|tar|gzip|gunzip|zip|unzip|curl|wget|git|npm|yarn|gradle|adb)\\b" },
+    { "name": "variable.other.shell", "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*|\\$\\{[^}]+\\}|\\$[0-9]|\\$#|\\$@|\\$\\*|\\$\\?|\\$\\$" },
+    { "name": "constant.numeric.shell", "match": "\\b\\d+\\b" }
+  ]
+}

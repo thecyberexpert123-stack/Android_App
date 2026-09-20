@@ -1,0 +1,23 @@
+{
+  "name": "reStructuredText",
+  "scopeName": "text.restructuredtext",
+  "fileTypes": ["rst", "rest"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#directive"},
+    {"include": "#heading"},
+    {"include": "#bold"},
+    {"include": "#italic"},
+    {"include": "#code"},
+    {"include": "#link"}
+  ],
+  "repository": {
+    "comment": {"name": "comment.line.double-dot.rst", "match": "^\\.\\..*$"},
+    "directive": {"name": "keyword.control.directive.rst", "match": "^\\s*\\.\\.\\s+[a-zA-Z_-]+::"},
+    "heading": {"name": "markup.heading.rst", "match": "^[=\\-`:'\"~^_*+#<>]+$"},
+    "bold": {"name": "markup.bold.rst", "begin": "\\*\\*", "end": "\\*\\*"},
+    "italic": {"name": "markup.italic.rst", "begin": "\\*", "end": "\\*"},
+    "code": {"name": "markup.raw.inline.rst", "begin": "``", "end": "``"},
+    "link": {"name": "markup.underline.link.rst", "match": "`[^`]+`_"}
+  }
+}

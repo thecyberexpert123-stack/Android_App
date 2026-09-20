@@ -1,0 +1,21 @@
+{
+  "name": "Fortran",
+  "scopeName": "source.fortran",
+  "fileTypes": ["f", "f90", "f95", "for", "f03", "f08"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#type"},
+    {"include": "#function"},
+    {"include": "#number"}
+  ],
+  "repository": {
+    "comment": {"name": "comment.line.exclamation.fortran", "match": "!.*$"},
+    "string": {"name": "string.quoted.double.fortran", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.fortran", "match": "\"\""}]},
+    "keyword": {"name": "keyword.control.fortran", "match": "\\b(program|end\\s+program|module|end\\s+module|subroutine|end\\s+subroutine|function|end\\s+function|if|then|else|elseif|endif|do|enddo|while|select|case|end\\s+select|where|end\\s+where|forall|end\\s+forall|return|stop|call|contains|use|implicit|none|include|interface|end\\s+interface|type|end\\s+type|class|end\\s+class|extends|import|only|public|private|intent|in|out|inout|parameter|dimension|allocatable|pointer|target|save|data|common|equivalence|external|intrinsic|optional)\\b"},
+    "type": {"name": "storage.type.fortran", "match": "\\b(integer|real|double\\s+precision|complex|character|logical|byte|type|class)\\b"},
+    "function": {"name": "entity.name.function.fortran", "match": "\\b(subroutine|function)\\s+([A-Za-z_][A-Za-z0-9_]*)\\b", "captures": {"2": {"name": "entity.name.function.fortran"}}},
+    "number": {"name": "constant.numeric.fortran", "match": "\\b\\d+(\\.\\d+)?([eE][+-]?\\d+)?\\b"}
+  }
+}

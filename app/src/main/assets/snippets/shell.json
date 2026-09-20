@@ -1,0 +1,27 @@
+{
+  "If": {
+    "prefix": "if",
+    "body": ["if [ ${1:condition} ]; then", "    ${2}", "fi"],
+    "description": "If statement"
+  },
+  "For": {
+    "prefix": "for",
+    "body": ["for ${1:i} in ${2:items}; do", "    ${3}", "done"],
+    "description": "For loop"
+  },
+  "Function": {
+    "prefix": "function",
+    "body": ["${1:name}() {", "    ${2}", "}"],
+    "description": "Function"
+  },
+  "While": {
+    "prefix": "while",
+    "body": ["while [ ${1:condition} ]; do", "    ${2}", "done"],
+    "description": "While loop"
+  },
+  "Case": {
+    "prefix": "case",
+    "body": ["case ${1:var} in", "    ${2:pattern})", "        ${3}", "        ;;", "    *)", "        ${4}", "        ;;", "esac"],
+    "description": "Case statement"
+  }
+}

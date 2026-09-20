@@ -1,0 +1,23 @@
+{
+  "name": "MATLAB",
+  "scopeName": "source.matlab",
+  "fileTypes": ["m", "matlab"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#function"},
+    {"include": "#class"},
+    {"include": "#number"},
+    {"include": "#variable"}
+  ],
+  "repository": {
+    "comment": {"patterns": [{"name": "comment.line.percentage.matlab", "match": "%.*$"}, {"name": "comment.block.matlab", "begin": "%\\{", "end": "%\\}"}]},
+    "string": {"name": "string.quoted.single.matlab", "begin": "'", "end": "'", "patterns": [{"name": "constant.character.escape.matlab", "match": "''"}]},
+    "keyword": {"name": "keyword.control.matlab", "match": "\\b(break|case|catch|classdef|continue|else|elseif|end|for|function|global|if|otherwise|parfor|persistent|return|spmd|switch|try|while|properties|methods|events|enumeration)\\b"},
+    "function": {"name": "entity.name.function.matlab", "match": "\\b(function)\\s+([a-zA-Z_]\\w*)", "captures": {"1": {"name": "keyword.control.matlab"}, "2": {"name": "entity.name.function.matlab"}}},
+    "class": {"name": "entity.name.type.class.matlab", "match": "\\b(classdef)\\s+([a-zA-Z_]\\w*)", "captures": {"1": {"name": "keyword.control.matlab"}, "2": {"name": "entity.name.type.class.matlab"}}},
+    "number": {"name": "constant.numeric.matlab", "match": "\\b\\d+(\\.\\d+)?([eE][+-]?\\d+)?\\b"},
+    "variable": {"name": "variable.other.matlab", "match": "\\b(ans|pi|inf|nan|eps|i|j)\\b"}
+  }
+}

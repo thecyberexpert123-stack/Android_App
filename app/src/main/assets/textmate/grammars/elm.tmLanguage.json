@@ -1,0 +1,27 @@
+{
+  "scopeName": "source.elm",
+  "name": "Elm",
+  "fileTypes": ["elm"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#function"},
+    {"include": "#type"},
+    {"include": "#numeric"}
+  ],
+  "repository": {
+    "comment": {"patterns": [
+      {"name": "comment.line.double-dash.elm", "match": "--.*$"},
+      {"name": "comment.block.elm", "begin": "\\{-", "end": "-\\}"}
+    ]},
+    "string": {"patterns": [
+      {"name": "string.quoted.double.elm", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.elm", "match": "\\\\."}]},
+      {"name": "string.quoted.triple.elm", "begin": "\"\"\"", "end": "\"\"\""}
+    ]},
+    "keyword": {"name": "keyword.control.elm", "match": "\\b(if|then|else|case|of|let|in|type|alias|module|where|import|exposing|as|port|effect|command|subscription)\\b"},
+    "function": {"name": "entity.name.function.elm", "match": "^([a-z_][A-Za-z0-9_']*)\\s*(?::|\\s+[a-z])"},
+    "type": {"name": "entity.name.type.elm", "match": "\\b([A-Z][A-Za-z0-9_']*)\\b"},
+    "numeric": {"name": "constant.numeric.elm", "match": "\\b\\d+(?:\\.\\d+)?\\b"}
+  }
+}

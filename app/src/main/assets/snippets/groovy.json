@@ -1,0 +1,27 @@
+{
+  "Class": {
+    "prefix": "class",
+    "body": ["class ${1:Name} {", "    ${2}", "}"],
+    "description": "Groovy class"
+  },
+  "Method": {
+    "prefix": "def",
+    "body": ["def ${1:name}(${2:params}) {", "    ${3}", "}"],
+    "description": "Groovy method"
+  },
+  "Closure": {
+    "prefix": "closure",
+    "body": ["{ ${1:it} ->", "    ${2}", "}"],
+    "description": "Groovy closure"
+  },
+  "Print": {
+    "prefix": "println",
+    "body": ["println \"${1:message}\""],
+    "description": "Print line"
+  },
+  "Each": {
+    "prefix": "each",
+    "body": ["${1:collection}.each { ${2:it} ->", "    ${3}", "}"],
+    "description": "Each loop"
+  }
+}

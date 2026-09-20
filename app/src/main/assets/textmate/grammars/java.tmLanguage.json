@@ -1,0 +1,33 @@
+{
+  "name": "Java",
+  "scopeName": "source.java",
+  "fileTypes": ["java"],
+  "patterns": [
+    {
+      "name": "comment.line.double-slash.java",
+      "match": "//.*$"
+    },
+    {
+      "name": "comment.block.java",
+      "begin": "/\\*",
+      "end": "\\*/"
+    },
+    {
+      "name": "string.quoted.double.java",
+      "begin": "\"",
+      "end": "\""
+    },
+    {
+      "name": "keyword.control.java",
+      "match": "\\b(public|private|protected|class|interface|extends|implements|import|package|if|else|for|while|return|new|this|super|static|final|void|int|String|boolean|null|true|false|try|catch|finally|throw|throws|abstract|synchronized|volatile|transient|native|strictfp|enum|assert)\\b"
+    },
+    {
+      "name": "entity.name.function.java",
+      "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\("
+    },
+    {
+      "name": "constant.numeric.java",
+      "match": "\\b\\d+(\\.\\d+)?\\b"
+    }
+  ]
+}

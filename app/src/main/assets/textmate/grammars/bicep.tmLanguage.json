@@ -1,0 +1,21 @@
+{
+  "name": "Bicep",
+  "scopeName": "source.bicep",
+  "fileTypes": ["bicep"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#type"},
+    {"include": "#decorator"},
+    {"include": "#number"}
+  ],
+  "repository": {
+    "comment": {"patterns": [{"name": "comment.line.double-slash.bicep", "match": "//.*$"}, {"name": "comment.block.bicep", "begin": "/\\*", "end": "\\*/"}]},
+    "string": {"patterns": [{"name": "string.quoted.single.bicep", "begin": "'", "end": "'"}, {"name": "string.quoted.triple.bicep", "begin": "'''", "end": "'''"}]},
+    "keyword": {"name": "keyword.control.bicep", "match": "\\b(resource|module|param|var|output|targetScope|import|using|extends|as|existing|for|in|if)\\b"},
+    "type": {"name": "support.type.bicep", "match": "\\b(string|int|bool|array|object)\\b"},
+    "decorator": {"name": "entity.name.function.decorator.bicep", "match": "@[a-zA-Z_][\\w]*"},
+    "number": {"name": "constant.numeric.bicep", "match": "\\b\\d+\\b"}
+  }
+}

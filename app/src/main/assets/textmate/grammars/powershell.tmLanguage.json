@@ -1,0 +1,16 @@
+{
+  "name": "PowerShell",
+  "scopeName": "source.powershell",
+  "fileTypes": ["ps1", "psm1", "psd1"],
+  "patterns": [
+    { "name": "comment.line.number-sign.powershell", "match": "#.*$" },
+    { "name": "comment.block.powershell", "begin": "<#", "end": "#>" },
+    { "name": "string.quoted.double.powershell", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.powershell", "match": "`." }, { "name": "variable.other.powershell", "match": "\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*" }] },
+    { "name": "string.quoted.single.powershell", "begin": "'", "end": "'" },
+    { "name": "keyword.control.powershell", "match": "\\b(if|else|elseif|for|foreach|while|do|until|switch|break|continue|return|function|filter|class|enum|try|catch|finally|throw|param|begin|process|end|in|not|and|or|is|as)\\b" },
+    { "name": "entity.name.function.powershell", "match": "\\bfunction\\s+([A-Za-z_][A-Za-z0-9_\\-]*)", "captures": { "1": { "name": "entity.name.function.powershell" } } },
+    { "name": "support.function.powershell", "match": "\\b(Write-Host|Write-Output|Get-ChildItem|Set-Location|New-Item|Remove-Item|Copy-Item|Move-Item|Get-Content|Set-Content|Out-File|Invoke-Expression|Start-Process)\\b" },
+    { "name": "variable.other.powershell", "match": "\\$[A-Za-z_][A-Za-z0-9_]*|\\$_|\\$args|\\$null|\\$true|\\$false" },
+    { "name": "constant.numeric.powershell", "match": "\\b\\d+(\\.\\d+)?\\b" }
+  ]
+}

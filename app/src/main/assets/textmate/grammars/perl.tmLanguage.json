@@ -1,0 +1,14 @@
+{
+  "name": "Perl",
+  "scopeName": "source.perl",
+  "fileTypes": ["pl", "pm", "t"],
+  "patterns": [
+    { "name": "comment.line.number-sign.perl", "match": "#.*$" },
+    { "name": "string.quoted.double.perl", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.perl", "match": "\\\\." }, { "name": "variable.other.perl", "match": "\\$[A-Za-z_][A-Za-z0-9_]*|@[^\\s]+|%[^\\s]+" }] },
+    { "name": "string.quoted.single.perl", "begin": "'", "end": "'" },
+    { "name": "keyword.control.perl", "match": "\\b(if|else|elsif|unless|while|until|for|foreach|do|last|next|redo|return|sub|my|our|local|package|use|require|BEGIN|END|print|say|die|warn|open|close|chomp|push|pop|shift|unshift|splice|join|split|map|grep|sort)\\b" },
+    { "name": "entity.name.function.perl", "match": "\\bsub\\s+([A-Za-z_][A-Za-z0-9_]*)", "captures": { "1": { "name": "entity.name.function.perl" } } },
+    { "name": "variable.other.perl", "match": "\\$[A-Za-z_][A-Za-z0-9_]*|@\\w+|%\\w+|\\$_|\\$[0-9]+|\\$\\{|\\$\\}" },
+    { "name": "constant.numeric.perl", "match": "\\b\\d+(\\.\\d+)?\\b" }
+  ]
+}

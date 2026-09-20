@@ -1,0 +1,16 @@
+{
+  "name": "Groovy",
+  "scopeName": "source.groovy",
+  "fileTypes": ["groovy", "gradle"],
+  "patterns": [
+    { "name": "comment.line.double-slash.groovy", "match": "//.*$" },
+    { "name": "comment.block.groovy", "begin": "/\\*", "end": "\\*/" },
+    { "name": "string.quoted.triple.double.groovy", "begin": "\"\"\"", "end": "\"\"\"", "patterns": [{ "name": "constant.character.escape.groovy", "match": "\\\\." }] },
+    { "name": "string.quoted.double.groovy", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.groovy", "match": "\\\\." }, { "name": "variable.other.groovy", "match": "\\$\\{[^}]+\\}|\\$[a-zA-Z_][a-zA-Z0-9_]*" }] },
+    { "name": "string.quoted.single.groovy", "begin": "'", "end": "'" },
+    { "name": "keyword.control.groovy", "match": "\\b(def|class|interface|extends|implements|import|package|if|else|for|while|return|new|this|super|static|final|void|int|String|boolean|null|true|false|try|catch|finally|throw|throws|abstract|synchronized|volatile|transient|native|strictfp|enum|assert|in|as|trait|with|it)\\b" },
+    { "name": "entity.name.type.class.groovy", "match": "\\b(class|interface|enum|trait)\\s+([A-Za-z_][A-Za-z0-9_]*)", "captures": { "2": { "name": "entity.name.type.class.groovy" } } },
+    { "name": "entity.name.function.groovy", "match": "\\b([A-Za-z_][A-Za-z0-9_]*)\\s*(?=\\()" },
+    { "name": "constant.numeric.groovy", "match": "\\b\\d+(\\.\\d+)?[fFdDlL]?\\b" }
+  ]
+}

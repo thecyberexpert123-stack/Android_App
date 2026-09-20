@@ -1,0 +1,210 @@
+# Tech Stack - Androde (VS Code for Android) - Phase 11 Deep Research
+
+## Language
+- Kotlin 1.9.24 (stable, compatible with AGP 8.x, Kotlin-first per CodeAssist)
+
+## UI
+- Jetpack Compose BOM 2024.09.02 + Material3 + Material Icons Extended
+- Activity Compose, Lifecycle Runtime Compose, Navigation Compose 2.8.2 with kotlinx.serialization type-safe routes
+- DocumentFile 1.0.1 for SAF, WindowSizeClass for responsive (phone/tablet)
+- Edge-to-edge (enableEdgeToEdge), touch-friendly, gestures, bottom sheets
+- WorkbenchLayout with ActivityBar (48dp), Sidebar (170-600dp resizable), Editor (weight 1f), Panel (100-800dp resizable), StatusBar (22dp), TitleBar
+
+## Architecture - VS Code 4 Layers + Clean Architecture
+
+### VS Code 4 Layers (from microsoft/vscode)
+- **Base Layer** (`core/base/`): Disposable, IDisposable, DisposableStore, ActionDisposable, Emitter, Event, EventMultiplexer, platform detection, URI, path, collections, async. Similar to VS Code's src/vs/base/common/lifecycle.ts, event.ts. Implemented with MutableSharedFlow extraBufferCapacity 64, CopyOnWriteArrayList, Log, lifecycle management.
+- **Platform Layer** (`core/platform/`, `core/theme/`, `core/workspace/`): FileService, ConfigurationService, ThemeService, KeybindingService, ExtensionManagementService, Telemetry, Storage. Similar to VS Code's src/vs/platform/. FileService with SAF, canonical checks, size limits, forbidden dirs, recent files, Emitter, Dispatchers.IO. ThemeService with ColorThemeId (DARK, LIGHT, MONOKAI, DRACULA, etc.), IconThemeId (VSCODE_ICONS, MATERIAL_ICONS), DataStore, Emitter. ConfigurationService via SettingsRepository with formatOnSave, emmetOnTab, iconThemeId, breadcrumbsEnabled, minimapEnabled, fontSize, tabSize, wordWrap, theme, profiles. KeybindingService with default keybindings (Ctrl+O, Ctrl+N, Ctrl+S, etc.), when clause, DataStore.
+- **Editor Layer** (`core/editor/`, `presentation/components/ide/`): Sora Editor + TextMate + TreeSitter, LanguageService (EditorLanguage 100), EditorService (openFile, saveFile, tabs, groups), ModelService (TextModel), Brackets, Minimap, Breadcrumbs Advanced, etc. Similar to VS Code's src/vs/editor/.
+- **Workbench Layer** (`core/workbench/`, `presentation/components/workbench/`): Workbench, WorkbenchPart (TITLEBAR, BANNER, ACTIVITYBAR, SIDEBAR, AUXILIARYBAR, EDITOR, PANEL, STATUSBAR), WorkbenchLayout, LayoutService, EditorGroupsService, ActivityBar, Sidebar, Editor, Panel, StatusBar, TitleBar, AuxiliaryBar, contributions (files, search, scm, debug, terminal, extensions, etc.). Similar to VS Code's src/vs/workbench/ with parts, layout service, editor groups service, viewlets, views, contributions.
+
+**Dependency Rule (strict, like VS Code):**
+```
+Workbench -> Editor -> Platform -> Base
+Presentation -> Domain <- Data
+```
+
+### Clean Architecture (Android)
+- **Presentation**: Compose UI, ViewModel, UiState, Navigation, WorkbenchLayout, SoraEditorView with toolbar Format/Emmet/Zoom, FileExplorerView with FileIconResolver 100, BreadcrumbsView, OutlineView, TimelineView, WorkspaceView, TerminalView with AnsiParser, ProblemsView, OutputView, DebugView, SearchView, ExtensionsView, MarketplaceScreen, TasksScreen, etc. No direct data access, only via repositories, StateFlow UDF, single source of truth.
+- **Domain**: Pure Kotlin, no Android deps (except File for IDE models), models: Project, FileNode, EditorTab, EditorLanguage (100), SearchResult, GitRepository/Status/File/Branch/Commit, TerminalSession, PtySession, Extension, Command, Diagnostic, DebugSession, Breakpoint, WorkbenchPart, WorkbenchLayout, EditorGroup, FileStat, ThemeState, LspMessage, DapMessage, etc., repository interfaces: FileSystemRepository, EditorRepository, SearchRepository, GitRepository, TerminalRepository, TerminalPtyRepository, SettingsRepository, DiagnosticsRepository, DebugRepository, DebugAdapterRepository, WorkspaceRepository, WorkspaceTrustRepository, KeybindingRepository, LspRepository, ExtensionRepository, ExtensionHost, SnippetRepository, FormattingRepository, EmmetService, IconThemeRepository, SshRepository, MarketplaceRepository, TaskRepository, CodeLensRepository, SettingsSyncRepository, LiveShareRepository, BreadcrumbsRepository, MinimapRepository, ExtensionApiFull, ExtensionApiExtended, ExtensionApiAdvanced, ILayoutService, IEditorGroupsService, IFileService, IThemeService, ILspClient, IDapClient, etc.
+- **Data**: Android-dependent implementations, Remote (Retrofit for marketplace Open VSX), Local (FileSystemRepositoryImpl with FileObserver callbackFlow, EditorRepositoryImpl, SearchRepositoryImpl with real replace, GitRepositoryImpl with JGit 6.10.0, TerminalRepositoryImpl with persistent shell ConcurrentHashMap, TerminalPtyRepositoryImpl with TERM=xterm-256color, SettingsRepositoryImpl with DataStore, DiagnosticsRepositoryImpl, DebugRepositoryImpl with JDI adapter + evaluate + stepping, WorkspaceRepositoryImpl, KeybindingRepositoryImpl, LspRepositoryImpl with parsing + snippets + Emmet, ExtensionRepositoryImpl with kotlinx.serialization, ExtensionHostImpl with Rhino 1.7.14, SnippetRepositoryImpl with 10 langs 57 snippets, FormattingRepositoryImpl with C-style/Python/HTML/JSON/CSS + format on save, EmmetServiceImpl with recursive parser, IconThemeRepositoryImpl with 2 themes, SshRepositoryImpl with JSch 0.1.55, WorkspaceTrustRepositoryImpl, ExtensionApiFullImpl, MarketplaceRepositoryImpl with Open VSX fallback, TaskRepositoryImpl with tasks.json/launch.json parsing + ProcessBuilder, CodeLensRepositoryImpl with regex, TerminalPtyRepositoryImpl, DebugAdapterRepositoryImpl with JDWP, ExtensionApiExtendedImpl, SettingsSyncRepositoryImpl, LiveShareRepositoryImpl, BreadcrumbsRepositoryImpl, MinimapRepositoryImpl, ExtensionApiAdvancedImpl, LayoutServiceImpl, EditorGroupsServiceImpl, FileServiceImpl, ThemeServiceImpl, LspClientImpl with JSON-RPC Content-Length framing, DapClientImpl with DAP JSON-RPC, etc.), Mappers.
+
+### DI
+- Hilt 2.51 + Hilt Navigation Compose, compile-time safety, official Google guidance
+- IdeModule with @Module @InstallIn(SingletonComponent::class) abstract class with @Binds @Singleton, 37 bindings Phase 11 (was 31 Phase 10, 28 Phase 9, 23 Phase 8, 19 Phase 7, 17 Phase 5, 12 Phase 3)
+- Similar to VS Code's service registration with ServiceCollection, createDecorator, registerSingleton, @IFileService injection
+
+## Androde IDE Core - Deep Research Implementation
+
+### Editor - Sora Editor 0.23.6 (from https://github.com/Rosemoe/sora-editor)
+- **Maven**: io.github.Rosemoe.sora-editor:editor:0.23.6, language-textmate, language-treesitter, language-monarch, editor-bom, editor-lsp, oniguruma-native
+- **License**: LGPL-2.1, maintained by Rosemoe, latest June 2025
+- **Features**: incremental syntax highlight, auto-completion with snippets, auto-indent, code block lines, scale text, undo/redo, search/replace, auto wordwrap, non-printable chars, diagnostic markers, text magnifier, sticky scroll, highlight bracket pairs, bracket pair colorization, event system, TextMate and TreeSitter support
+- **Androde Integration**: AndrodeApp loads 3 themes via ThemeRegistry.loadTheme + 100 grammars via GrammarRegistry.loadGrammars("textmate/languages.json") with AssetsFileResolver, FileProviderRegistry, background CoroutineScope IO, Log. SoraEditorView uses TextMateColorScheme.create(ThemeRegistry) + TextMateLanguage.create(scopeName, true) with 100 scope mappings, LaunchedEffect for language/theme switching, ContentListener with DisposableEffect cleanup (fixes duplicate listeners), toolbar Format/Emmet/Zoom with fontSize pt and minimap status, minimap toggle via setMinimapEnabled reflection + blockLine fallback, multi-cursor via setMultiCursorEnabled reflection + default support (Alt+Click, Ctrl+D), zoom via setPinchZoomEnabled reflection + fontSize scaling 8-32, bracket pair colorization via setBracketPairColorization true, 100 grammars available.
+- **Why Sora vs Monaco**: Native Android View, optimized for mobile, no WebView overhead, used by AndroidIDE, CodeAssist, LGPL compatible, active, TextMate + TreeSitter. Monaco via WebView has performance issues, touch handling problems, larger APK, needs JS bridge. Decision: Sora for production Android IDE.
+
+### File System - Platform Layer FileService
+- **VS Code**: src/vs/platform/files/common/fileService.ts with FileService, FileSystemProvider, watch, etc.
+- **Androde**: IFileService + FileServiceImpl with listFiles, readFile, writeFile, exists, isDirectory, createFile, createDirectory, delete, rename, copy, watch, getFileStat, onDidFilesChange Flow via Emitter, recentFiles StateFlow, canonical checks, size limits (10MB read, 5MB search skip), forbidden dirs (/, /system, /proc, /data), Dispatchers.IO, Log, security validation. Plus FileSystemRepositoryImpl with FileObserver ALL_EVENTS callbackFlow trySend startWatching awaitClose stopWatching, similar to VS Code FileSystemWatcher. Plus SAF via SafRepository with ACTION_OPEN_DOCUMENT_TREE intent READ/WRITE/PERSISTABLE flags, takePersistableUriPermission, DocumentFile.fromTreeUri, listFilesFromSaf, isSafUri, SafFolderPicker with OpenDocumentTree launcher, CoroutineScope IO for persist, Main for callback, Toast errors.
+
+### Search - Ripgrep-like
+- **VS Code**: ripgrep for fast search, search service with include/exclude, regex, case, whole word
+- **Androde**: SearchRepository with search(query, root) Flow<SearchProgress> with FileSearched and ResultFound, regex handling for isRegex and isCaseSensitive, collectFiles skipping node_modules/.git/build/.gradle and binary and >5MB, Dispatchers.IO, Log, real replace with readText/writeText, newContent via regex.replace or case-insensitive Regex(escape(query), IGNORE_CASE) or simple replace, writeText if changed, count replaced files, returns Result.success(replaced) with count, similar to VS Code search replace.
+
+### Git - JGit 6.10.0
+- **Maven**: org.eclipse.jgit:org.eclipse.jgit:6.10.0.202406032230-r (latest 7.7.1, we use 6.10.0 for stability)
+- **Source**: https://www.eclipse.org/jgit/, EDL license compatible
+- **Features**: Pure Java Git, works on Android with desugaring and packaging excludes, FileRepositoryBuilder, status, add, commit, push/pull, branches, history, diff, blame (future)
+- **Androde**: GitRepository with openRepository, status via git.status().call() mapped to GitStatus (staged, unstaged, untracked, conflicted), stage via git.add().addFilepattern(relativePath).call(), commit via git.commit().setMessage(message).call(), push/pull via git.push/pull, branches via git.branchList, history via git.log, Impl with MutableStateFlow, Log, security checks
+- **Why JGit vs CLI**: Pure Java, works on Android, no need for git binary, API. Git CLI requires binary on device, not available on Android, needs root or Termux. Decision: JGit.
+
+### Terminal - ProcessBuilder + PTY + AnsiParser
+- **VS Code**: xterm.js + PTY host process (Node.js) + ConPTY/PTY, TERM=xterm-256color, 256-color, true-color, vim, tab completion, resize
+- **Androde**: 
+  - TerminalRepository with persistent shell ProcessBuilder(shell).directory(workingDir).start(), ConcurrentHashMap processes/writers/readers/errorReaders, createSession starts persistent process with Log, closeSession cleanup, executeCommand handles cd specially with validateWorkingDir canonical check preventing /, /system, /proc, persistent shell writes to stdin via BufferedWriter.write+flush, reads available output via reader.ready() loop 100 lines limit, fallback to one-shot if persistent not alive, Dispatchers.IO, Log.e/w/d
+  - TerminalPtyRepository with PtySession(id/shell/workingDir/cols/rows/isAlive/createdAt)/PtyOutput(sessionId/data/isError/timestamp) + interface with getSessions/getOutput/createPtySession/writeToPty/resizePty/closePtySession/executeInPty, Impl with createPtySession via ProcessBuilder(shell).directory(canonicalDir) with env TERM=xterm-256color COLORTERM=truecolor COLUMNS/LINES TERM_PROGRAM=Androde, security canonical check preventing / /system /proc, ConcurrentHashMap for processes/writers/readers/errorReaders, writeToPty via writer.write+flush with cd handling, resizePty with cols/rows update and session map, closePtySession cleanup writers/readers/process destroy, executeInPty with persistent shell writer.write+flush + reader.ready() loop 10000 limit + errorReader + fallback one-shot, StateFlow _sessions/_outputs takeLast 1000, Dispatchers.IO, Log, similar to VS Code terminal PTY with libterm concept (vim, tab completion via shell)
+  - AnsiParser with regex \u001B\[([0-9;]+)m, color maps 30-37 90-97 foreground (30 Black #000000, 31 Red #CD3131, 32 Green #0DBC79, 33 Yellow #E5E510, 34 Blue #2472C8, 35 Magenta #BC3FBC, 36 Cyan #11A8CD, 37 White #E5E5E5, 90 Bright Black #666666, 91 Bright Red #F14C4C etc), 40-47 background, xterm256Colors lazy list (0-15 system #000000 #800000 #008000 #808000 #000080 #800080 #008080 #C0C0C0 #808080 #FF0000 #00FF00 #FFFF00 #0000FF #FF00FF #00FFFF #FFFFFF, 16-231 6x6x6 cube with 55+r*40 formula, 232-255 grayscale 8+i*10), true-color 38;2;R;G;B and 48;2;R;G;B, italic/underline TextDecoration, getXterm256Color helper, parseToAnnotatedString with hasAnsi flag, strip/contains helpers, updateState handling 0 reset 1 bold 3 italic 4 underline 22 normal 30-37 90-97 fg 39 default fg 40-47 bg 49 default bg, plus 38;5;N and 48;5;N 256-color and 38;2;R;G;B true-color
+- **Why ProcessBuilder vs Termux**: Built-in, works in app sandbox, simple, streams output, no extra deps. Termux full terminal emulator needs libterm C, complex, but more features (PTY). Decision: ProcessBuilder for MVP + PTY service for advanced, Termux integration documented for future.
+
+### LSP - Language Server Protocol 3.17/3.18 + LSP4J 0.22.0
+- **Spec**: https://microsoft.github.io/language-server-protocol/, JSON-RPC over stdio/pipe/socket/node-ipc, Content-Length framing, base protocol with Message, RequestMessage, ResponseMessage, NotificationMessage, Progress, TextDocumentSyncKind None/Full/Incremental, TextDocumentSyncOptions openClose/change/willSave/willSaveWaitUntil/save, language features declaration/definition/typeDefinition/implementation/references/callHierarchy/typeHierarchy/documentHighlight/documentLink/hover/codeLens/foldingRange/selectionRange/documentSymbol/semanticTokens/inlayHint/inlineValue/moniker/completion/diagnostics/signatureHelp/codeAction/documentColor, window features, implementation considerations stdio/pipe/socket/node-ipc, metaModel.json for code gen
+- **Maven**: org.eclipse.lsp4j:org.eclipse.lsp4j:0.22.0, Eclipse
+- **Androde**:
+  - LspRepository with diagnostics Flow, start/stop server, didOpen/didChange/didClose, completion, hover, definition, CompletionItem, Hover, Location, Range models, Impl with servers map, real diagnostics via parsing - checks TODO/FIXME, Kotlin var without init, println, Java System.out.println, Python print, long lines >100, trailing whitespace, language-specific, fileName from File, severity INFO/WARNING/HINT, source Androde/Kotlin/Java/Python, code todo/fixme/no-init/println/sysout/print/line-too-long/trailing-whitespace, _diagnostics filtered by filePath + new diagnostics, Log.i, real completion based on file content and prefix, keywords per language (Kotlin 30+, Java 20+, Python 20+, JS/TS 20+, etc. for 100 langs), symbol extraction via Regex (fun|class|val|var|def|function)\s+([a-zA-Z_][a-zA-Z0-9_]*), prefix matching, distinctBy label, take 50, Log.d, plus SnippetRepository and EmmetService integration for snippets and Emmet completion for html/css/scss/less, openFileLanguages map, didOpen stores languageId
+  - LspClient (Phase 11 new) with real LSP JSON-RPC Content-Length framing, BufferedReader/Writer, start/stop, isRunning, sendRequest/sendNotification, didOpen/didChange/didClose, completion, diagnostics via Emitter, pendingRequests ConcurrentHashMap, CoroutineScope IO, Log, similar to VS Code language client (vscode-languageclient). Real impl would start language server as process via ProcessBuilder (e.g., kotlin-language-server) and communicate via stdin/stdout with Content-Length framing. For MVP, simulated with parsing fallback.
+
+### DAP - Debug Adapter Protocol + JDWP + DapClient
+- **Spec**: https://microsoft.github.io/debug-adapter-protocol/, introduced 2015 for VS Code, complementary to LSP, JSON-based wire protocol between debug clients and language-specific debug adapters, decouples UI from runtime, similar framing to LSP Content-Length, requests initialize/launch/attach/setBreakpoints/configurationDone/threads/stackTrace/scopes/variables/evaluate/next/continue/disconnect, events initialized/stopped/continued/exited/terminated/breakpoint/output, etc., implementations vscode-js-debug for JS/TS/Node, cpptools for C/C++ with GDB/LLDB, debugpy for Python, etc., security note DAP over TCP without auth vulnerable to CSRF port scanning, use stdio or auth
+- **Androde**:
+  - DebugRepository with sessions, activeSession, breakpoints, start/stop, toggleBreakpoint, Impl with MutableStateFlow, real breakpoint verification (file exists isFile, line range, empty, comment via // # /* * -- ; % <!-- (* {- --[[ ### for 100 langs), variable extraction regex per language (Kotlin val/var, Java type name=, Python name=, JS const/let/var, Go :=, Rust let mut, Dart var/final/const, Solidity type name=, etc.), call stack with main+run+function frames via extractFunctionAtLine backward 15 lines with 11 patterns fun/function/def/arrow/class/func/let/contract/module, evaluateExpression with variable lookup, numeric/string/boolean detection, simple arithmetic +-*/ evaluation, file content search, stepOver/stepInto/stepOut/continue/pause with call stack manipulation, JDI availability check via Class.forName com.sun.jdi.Bootstrap, Log, Dispatchers.IO
+  - DebugAdapterRepository with JdwpConnection(id/host/port/isConnected/vmName/connectedAt)/DebugAdapterSession(id/name/type/jdwpConnectionId/isRunning/breakpoints/threads)/DebugBreakpoint(id/filePath/line/condition/isVerified/hitCount)/DebugThread(id/name/status/callStack)/DebugFrame(id/name/filePath/line/column/variables)/DebugVar(name/value/type/scope) + interface with getJdwpConnections/getAdapterSessions/attachJdwp/detachJdwp/startAdapterSession/stopAdapterSession/setBreakpoint/removeBreakpoint/getThreads/getVariables/evaluateInFrame, Impl with attachJdwp with JDI availability via Class.forName, UUID connectionId, simulated VM storage map, JdwpConnection with isConnected true vmName OpenJDK or Simulated, _jdwpConnections StateFlow, detachJdwp removes vmStorage, startAdapterSession with UUID main thread with main frame, setBreakpoint verifies file exists isFile line range empty comment, removeBreakpoint, getThreads, getVariables simulated with this/args/x/y, evaluateInFrame with numeric/string/boolean/arithmetic via split + toDoubleOrNull + variable lookup, Dispatchers.IO, Log, similar to VS Code DAP with JDI JDWP attach
+  - DapClient (Phase 11 new) with real DAP JSON-RPC Content-Length framing, BufferedReader/Writer, start/stop, isRunning, initialize, launch, attach, setBreakpoints, configurationDone, threads, stackTrace, scopes, variables, evaluate, next, continueExecution, stepIn, stepOut, disconnect, events stopped/continued/exited via Emitter, pendingRequests ConcurrentHashMap, seq counter, CoroutineScope IO, Log, similar to VS Code debug adapter client. Real impl would start debug adapter process via ProcessBuilder and communicate via stdin/stdout.
+
+### Extension Host - Rhino 1.7.14
+- **Maven**: org.mozilla:rhino:1.7.14, pure Java JS engine, works on Android, Context.enter() optimizationLevel -1 for Android, initStandardObjects(), Androde API
+- **Why Rhino vs QuickJS/J2V8**: Pure Java, no NDK, no native .so, easy ProGuard, optimizationLevel -1 for Android compatibility. J2V8 and QuickJS require NDK and native .so, more complex. Rhino slower but works for MVP. Decision: Rhino.
+- **Androde**: ExtensionHost with getRunningExtensions Flow, activateExtension, deactivateExtension, executeCommand, getExtensionApi, RunningExtension(extension, isActivated, activationTime, api), ExtensionActivationResult(success, extensionId, error, exports), ExtensionCommandResult(success, result, error), ExtensionApi(extensionId, commands, languages, themes), Snippet, Formatting, Emmet, IconTheme models, Impl with _running MutableStateFlow, activatedApis map, rhinoContexts map Pair<Context, Scriptable>, activateExtension with Dispatchers.IO Log.i activating, if builtin create ExtensionApi with commands/languages/themes and RunningExtension with isActivated true activationTime currentTimeMillis, else try Context.enter() optimizationLevel -1 initStandardObjects() androdeApi string with androde version 9.0.0-androde commands registerCommand languages registerCompletionItemProvider window showInformationMessage/showErrorMessage vscode=androde exports={} evaluateString androde-api, try load JS from assets/extensions/{id}/extension.js or mock activation with function activate(context) { console.log } and deactivate, evaluateString extensionJs, get activate function via scope.get("activate", scope) check is Function, call with rhino.call, store context Pair, Context.exit(), create api and running, _running.value filter + running, return ExtensionActivationResult success true. Catch exceptions Log.e, Context.exit() in try/catch, return success false error message. deactivateExtension with Dispatchers.IO Log.i deactivating, call deactivate() if exists via scope.get("deactivate", scope) Function.call, remove rhinoContexts, activatedApis, _running filter, Log.i deactivated, return true/false. executeCommand with Dispatchers.IO Log.i executing command, if activatedApis[extensionId] != null try rhinoContexts[extensionId] get cmdFunction via scope.get(command.substringAfterLast("."), scope) Function.call with args, return success true result toString, else mock success true result Executed command. getExtensionApi return activatedApis[extensionId].
+
+### Other Core
+- **Snippets**: assets/snippets/*.json 10 languages 57 total (kotlin 10, java 6, javascript 7, python 6, html 3, toml 5, groovy 5, lua 6, shell 5, yaml 4), SnippetRepository with getSnippetsForLanguage Flow, loadSnippets Map, searchSnippets, Impl with MutableStateFlow allSnippets Map, loadSnippets parsing assets/snippets/*.json with kotlinx.serialization, languages list 10, search filtering prefix/name/description, Log
+- **Formatting**: FormattingRepository with formatDocument(content, languageId, tabSize, insertSpaces) FormattingResult and formatRange(content, range, languageId, tabSize), FormattingResult success/formattedContent/error, TextRange, Impl with formatDocument Dispatchers.IO Log.i formatting, indent = if insertSpaces " ".repeat(tabSize) else "\t", when languageId lowercase kotlin/java/javascript/typescript/csharp/dart/swift/cpp/go/rust -> formatCStyle, python -> formatPython, html/xml -> formatHtmlXml, json -> formatJson, css -> formatCss, else generic trim trailing whitespace + newline, formatCStyle lines result mutableList indentLevel 0 for rawLine trim if startsWith } ) ] decrease indentLevel coerceAtLeast 0 add indent.repeat(indentLevel) + line if endsWith { ( [ increase indentLevel, handle } else { case, formatPython lines result indentLevel 0 indentStack mutableList for rawLine trim if startsWith elif else: except finally: decrease via indentStack removeAt lastIndex add indent.repeat(indentLevel) + line if endsWith : add to stack and increase, formatHtmlXml lines result indentLevel 0 if startsWith </ decrease add indent + line if startsWith < and !startsWith </ and !endsWith /> and !contains </ and tagName not in voidElements (area/base/br/col/embed/hr/img/input/link/meta/param/source/track/wbr) increase, formatJson try JSONObject(content).toString(4) catch JSONArray.toString(4) catch fallback formatCStyle, formatCss formatCStyle, formatRange lines check range valid rangeContent subList startLine..endLine join \n formatDocument rangeContent if !success return formattedLines newLines mutableList for i in range replace with formatted return FormattingResult success true formattedContent newLines join \n
+- **Emmet**: EmmetService with expandAbbreviation(abbreviation, languageId) EmmetResult and isEmmetAbbreviation(text), EmmetResult success/expanded/error, Impl with expandAbbreviation Dispatchers.IO Log.i expanding isEmmetAbbreviation check when languageId html/xml/php -> expandHtml css/scss/less -> expandCss else expandHtml, isEmmetAbbreviation heuristic trimmed.isEmpty false if startsWith < and endsWith > and contains </ false emmetOperators > + * # . [ { ( ) ^ any contains knownTags div/span/p/a/ul/ol/li/table/tr/td/th/form/input/button/h1/h2/h3/h4/h5/h6/header/footer/nav/section/article/aside/main/img/br/hr/link/meta/script/style/html/head/body/title contains or matches [a-z]+[0-9]*, expandHtml try parseEmmet with indentLevel 0 returning Pair<String, Int> else fallback simpleExpandHtml, simpleExpandHtml handle multiplication li*3 via regex (.+)\*(\d+) base count expandedBase simpleExpandHtml base (1..count).joinToString \n expandedBase, handle child div>ul>li via split > limit 2 parent parseTag child simpleExpandHtml child indented 4 spaces <parent.openTag>\nindentedChild\n</parent.tagName>, handle sibling div+p via split + join \n simpleExpandHtml, handle single tag via parseTag: remaining abbr trim tagName default div id via regex #([a-zA-Z_][a-zA-Z0-9_\-]*), classes via regex \.([a-zA-Z_][a-zA-Z0-9_\-]*) findAll, attributes via regex \[([^\]]+)\] split space key=value or key, text via regex \{([^}]+)\}, remaining trim if matches [a-zA-Z][a-zA-Z0-9]* tagName = remaining build openTag with id class attributes, parseEmmet more advanced recursive parser simplified, expandCss simple CSS Emmet m10 -> margin:10px; via regex ([a-z]+)(\d+)(?:-(\d+))? propAbbr value1 value2 prop cssMap m->margin p->padding bg->background c->color w->width h->height d->display pos->position f->font fz->font-size fw->font-weight ta->text-align lh->line-height bd->border br->border-radius if value2 blank prop: value1px; else prop: value1px value2px; fallback if contains : if endsWith ; else ; else prop: ;
+- **Icon Themes**: assets/icons/vscode_icons.json with fileExtensions 30+ mappings, fileNames, folderNames, folderNamesExpanded, languageIds, material_icons.json with material style, IconThemeRepository with getAvailableThemes Flow, getCurrentTheme Flow, setTheme, loadThemes, getIconForFile/getIconForFolder, Impl with MutableStateFlow themes/current, loadThemes parsing assets/icons/*.json with kotlinx.serialization, fileExtensions/fileNames/folderNames/folderNamesExpanded/languageIds maps, fallback hardcoded, Log
+- **FileIconResolver**: Real icon theme resolution for 100 languages, resolveFileIcon with iconTheme mappings + fallback getFallbackIconId for 100 langs, getIconAndColor mapping iconId to Material icons with colors for 100 langs (kotlin primary, java #B07219, js #F1E05A, python #3572A5, etc. for 100), getFolderIconAndColor for src/app/java/res/gradle/build/.git/test special tints with Folder and FolderOpen
+- **Remote SSH**: SshRepository with JSch 0.1.55 pure Java, JSch(), sessions ConcurrentHashMap, _connections MutableStateFlow, connect with JSch.getSession setPassword addIdentity private key with passphrase Properties StrictHostKeyChecking no for MVP timeout 10000 connect UUID connectionId, disconnect, executeCommand with ChannelExec setCommand ByteArrayOutputStream stdout/stderr outputStream/errStream connect while !isClosed Thread.sleep 100 exitStatus disconnect, listFiles with sftp ChannelSftp ls, downloadFile sftp get, uploadFile put, Dispatchers.IO, Log. Why JSch vs Apache MINA sshd: pure Java, works on Android without NDK, simpler API, widely used. Decision: JSch.
+
+## Networking (Marketplace, Sync, Live Share)
+- Retrofit 2.11.0 + OkHttp 4.12.0 + OkHttp Logging Interceptor, Converter kotlinx.serialization 1.7.3, kotlinx-serialization-json
+- MarketplaceApi Retrofit interface searchExtensions/getExtension/getDownloadUrl with ApiResponse/DownloadUrlResponse, NetworkModule provides MarketplaceApi via Open VSX https://open-vsx.org/api/ + fallback BuildConfig.API_BASE_URL with try/catch, MarketplaceRepositoryImpl with optional marketplaceApi + fallback hardcoded 7 builtin with downloadCount/rating, search with api try fallback local filtering by displayName/description/tags/categories/publisher + categoryFiltered + sorted by downloads/rating/updated, install duplicate check, uninstall blocks builtin, download returns /data/data/.../files/extensions/id.vsix path, publish checks file.exists, Dispatchers.IO, Log, similar to VS Code marketplace
+- SettingsSyncRepository with SyncProfile/SyncSettings/SyncKeybinding/RemoteTunnel, Impl with StateFlow _profiles with default Default profile, _currentProfile, _syncSettings, _remoteTunnels, createProfile blank/duplicate check UUID, deleteProfile blocks default, switchProfile updates lastUsedAt, syncSettings simulates cloud sync via Retrofit (GitHub/Microsoft) with lastSyncedAt update, createTunnel validates name/host/port 1..65535 UUID, deleteTunnel, startTunnel/stopTunnel with isActive toggle, Dispatchers.IO, Log, similar to VS Code Settings Sync, Profiles, Remote Tunnels
+- LiveShareRepository with LiveShareSession/LiveShareParticipant/LiveShareMessage, Impl with StateFlow _sessions/_messages Map, createSession validates blank UUID sessionId + hostParticipant UUID isHost true, joinSession checks active, leaveSession filters participants, if empty deactivates and removes messages, shareFile/unshareFile with contains check, sendMessage validates blank UUID messageId takeLast 100, updateCursor maps participants with cursorFile/line/column, Dispatchers.IO, Log, WebRTC concept (real WebRTC would use org.webrtc:google-webrtc), similar to VS Code Live Share
+
+## Local Storage
+- Room 2.6.1 (KSP) - legacy for User sample, future for recent projects cache
+- DataStore Preferences 1.1.1 (settings: theme, font size, tab size, word wrap, minimap, auto save, show hidden, recent projects, layout, profiles, etc.)
+- Security Crypto 1.1.0-alpha06 (EncryptedSharedPreferences guidance for secrets)
+- commons-io 2.16.1 (FileUtils), guava 33.2.1-jre
+
+## Build
+- AGP 8.5.2, Gradle 8.7 (wrapper), Kotlin DSL + Version Catalog (gradle/libs.versions.toml)
+- KSP 1.9.24-1.0.20, Compile SDK 34, Min SDK 24, Target SDK 34
+- SigningConfigs release with keystore.path/password/alias from local.properties/env V3/V4, buildTypes release signingConfig + baselineProfile automaticGenerationDuringBuild false, debug with applicationIdSuffix .debug versionNameSuffix -debug
+- Packaging excludes for META-INF, JNI legacy packaging for JGit, multiDex false
+- versionCode 11 versionName 9.0.0-androde (Phase 11)
+- Baseline profile with 30+ critical journeys (MainActivity, IdeScreen, IdeViewModel with 37 repos, Sora CodeEditor setText/setEditorLanguage TextMateLanguage/TextMateColorScheme, FileSystemRepositoryImpl listFiles/readFile, FileIconResolver resolveFileIcon, EditorLanguage fromExtension, EditorRepositoryImpl openFile/saveFile, AndrodeTheme, NavHost, SearchRepositoryImpl search, GitRepositoryImpl status, TerminalRepositoryImpl executeCommand, TerminalPtyRepositoryImpl createPtySession, LspRepositoryImpl completion, DiagnosticsRepositoryImpl getDiagnostics, ExtensionRepositoryImpl loadBuiltinExtensions, MarketplaceRepositoryImpl searchMarketplace, TaskRepositoryImpl loadTasksFile, DebugRepositoryImpl toggleBreakpoint, DebugAdapterRepositoryImpl attachJdwp, BreadcrumbsRepositoryImpl getFileBreadcrumbs, MinimapRepositoryImpl buildSections, SettingsSyncRepositoryImpl createProfile, LiveShareRepositoryImpl createSession, ExtensionApiAdvancedImpl getSession, LayoutServiceImpl isVisible, EditorGroupsServiceImpl createGroup, FileServiceImpl listFiles, ThemeServiceImpl setColorTheme, LspClientImpl start, DapClientImpl initialize, WorkbenchLayout)
+- ProGuard/R8 full mode with keep rules for Sora, JGit, LSP4J, commons-io, guava, kotlinx.serialization, Rhino, JSch, workspace, diagnostics, marketplace, tasks, editor, terminal, debug, sync, collab, breadcrumbs, minimap, advanced API, workbench, platform, theme, lsp client, dap client
+
+## Quality
+- Android Lint (disable InvalidPackage for JGit, abortOnError false, checkReleaseBuilds true, warningsAsErrors false)
+- Detekt 1.23.7 (config in config/detekt/detekt.yml, buildUponDefaultConfig true)
+- EditorConfig + Kotlin official style
+
+## Testing
+- JUnit 4.13.2, Mockk 1.13.12, Turbine 1.0.0 (Flow testing), Coroutines Test 1.8.1, Room testing
+- Compose BOM testing: ui-test-junit4, ui-test-manifest
+- Hilt testing, AndroidX Test: core, runner, espresso
+- 87 tests Phase 11 (FileNodeTest 8, OutlineTest 6, ExtensionTest 5, Phase4Test 12, Phase5Test 8, Phase6Test 8, Phase7Test 8, Phase8Test 8, Phase9Test 8, Phase10Test 8, Phase11Test 8)
+- Tests for: EditorLanguage 100, FileIconResolver 100, Workbench parts 8, LayoutService, EditorGroupsService, LSP client framing, DAP client, Sora scope 100, fromExtension special
+
+## Security
+- Network Security Config (cleartext disabled)
+- FileProvider, path traversal validation (canonical check), file size limits (10MB read, 5MB search skip), forbidden dirs (/, /system, /proc, /data)
+- Storage permissions with maxSdkVersion (READ 32, WRITE 29, MANAGE for file explorer with scoped storage handling), SAF persistable URI permissions
+- Rhino sandbox: optimizationLevel -1, isolated contexts per extension, no Java access by default
+- JSch: StrictHostKeyChecking no for MVP, timeout 10000, ConcurrentHashMap sessions
+- Workspace trust: trusted_workspaces stringSet + trust_enabled boolean, security-first
+- Debug JDI: Class.forName check for com.sun.jdi.Bootstrap, fallback to verification, file validation, JDWP attach validation host/port
+- Marketplace: Retrofit with Open VSX, fallback local, file.exists checks
+- Tasks: ProcessBuilder with workingDir validation, env handling
+- PTY: canonical validation, forbidden dirs, env TERM=xterm-256color, ConcurrentHashMap
+- DAP: file validation for breakpoints, comment checks, JDI reflection, vmStorage map
+- Extension API Advanced: validation for blank keys, duplicate checks, secure token handling, EncryptedSharedPreferences for secrets in production
+- Breadcrumbs: file existence check for navigation
+- Minimap: safe line handling
+- Merge: safety break 1000 lines
+- Play Store signing: keystore from local.properties/env, never commit, V3/V4 signing
+- ProGuard keep rules for all libs
+- LSP/DAP: Content-Length validation, JSON parsing try/catch, process lifecycle
+
+## CI
+- GitHub Actions: JDK 17, Android SDK, Gradle cache, wrapper jar regeneration via gradle wrapper --gradle-version 8.7
+- Jobs: lintDebug, detekt, testDebugUnitTest (87 tests), assembleDebug, assembleRelease (with signing if keystore configured)
+- Baseline profile generation: gradlew :app:generateBaselineProfile
+
+## Why These Choices? (Deep Research Justification)
+
+### Sora Editor vs Monaco via WebView vs CodeMirror vs Ace
+- **Sora**: Native Android View, optimized for mobile, no WebView overhead, used by AndroidIDE, CodeAssist, LGPL, active 0.23.6 June 2025, TextMate and TreeSitter support, incremental highlight, auto-completion, auto-indent, block lines, scale text, undo/redo, search/replace, wordwrap, diagnostic markers, magnifier, sticky scroll, bracket pair colorization. Best for Android.
+- **Monaco via WebView**: WebView performance issues on Android, touch handling problems, larger APK, needs JS bridge, but richest feature set (60+ langs, IntelliSense, diff editor, minimap, command palette, snippets). Good for web, not Android native.
+- **CodeMirror 6**: First-class mobile responsiveness, highly flexible, modular, plugin-based IntelliSense, built-in collaborative editing, CSS variables theming. Good for mobile web, but not native Android View.
+- **Ace**: 100+ langs, medium bundle, no minimap, no command palette. Legacy.
+- **Decision**: Sora for production Android IDE, with Monaco concepts adapted (provider-based language features, TextMate grammars, theme format).
+
+### JGit vs Git CLI vs libgit2
+- **JGit**: Pure Java, works on Android, no need for git binary, FileRepositoryBuilder, status, add, commit, push/pull via API, EDL license. Used by AndroidIDE, CodeAssist.
+- **Git CLI**: Requires git binary on device, not available on Android, needs root or Termux.
+- **libgit2**: C library, needs NDK, JNI, complex.
+- **Decision**: JGit for Android git integration.
+
+### ProcessBuilder vs Termux vs libterm
+- **ProcessBuilder**: Built-in, works in app sandbox, simple, streams output, no extra dependencies, persistent shell via ConcurrentHashMap.
+- **Termux**: Full terminal emulator, uses libterm C, libvterm, needs NDK, complex, but more features (PTY, vim, etc.).
+- **libterm**: C library, needs NDK.
+- **Decision**: ProcessBuilder for MVP + PtyService for advanced (TERM=xterm-256color, resize, etc.), Termux integration documented for future with libterm.
+
+### LSP4J vs Custom LSP Client
+- **LSP4J**: Eclipse, 0.22.0, Java implementation of LSP, used by many IDEs, provides types and JSON-RPC.
+- **Custom**: Implement JSON-RPC with Content-Length framing, similar to VS Code language client, more control for Android.
+- **Decision**: Use LSP4J for types + custom LspClient with Content-Length framing for transport (stdio/socket), similar to VS Code's vscode-languageclient. Provides both parsing fallback and real server support.
+
+### DAP vs JDWP Direct
+- **DAP**: Standardized protocol, decouples UI from runtime, supports many languages via adapters (JS via vscode-js-debug, C++ via cpptools GDB/LLDB, Python via debugpy, Java via JDWP adapter), JSON-RPC with Content-Length, similar to LSP.
+- **JDWP Direct**: Java Debug Wire Protocol, specific to Java, JDI for Java.
+- **Decision**: Implement DapClient with DAP JSON-RPC + JDWP via JDI for Java/Kotlin, similar to VS Code DAP. Provides generic debugging UI + language-specific adapters.
+
+### Rhino vs QuickJS vs J2V8 for Extension Host
+- **Rhino**: Pure Java, works on Android without NDK, no native .so, easy ProGuard, optimizationLevel -1 for Android compatibility, slower but works for MVP. Mozilla, 1.7.14.
+- **QuickJS**: C library, needs NDK, faster, but complex.
+- **J2V8**: V8 via JNI, needs NDK, fastest, but large APK, complex.
+- **Decision**: Rhino for extension host MVP, with sandboxing (isolated contexts per extension, no Java access by default). Future: QuickJS or J2V8 via NDK for performance.
+
+### Version Catalog vs BuildSrc
+- **Version Catalog**: Centralizes dependencies, type-safe, Google recommended (Now in Android), easy to update Sora, JGit versions, dependency discipline per guideline 16.
+- **BuildSrc**: Legacy, slower.
+- **Decision**: Version Catalog (gradle/libs.versions.toml).
+
+### Why Not Alternatives?
+- Koin: Runtime DI, less compile-time safety vs Hilt
+- RxJava: Legacy, Flow is official, coroutines
+- Moshi: Extra dep when kotlinx.serialization suffices, Kotlin-first
+- SharedPreferences: Deprecated, DataStore preferred
+- Views XML: Compose is Google recommended for new apps, better for IDE UI with dynamic lists, Material3, edge-to-edge
+- Electron: Desktop only, not Android
+- WebView Monaco: Performance issues on Android
+
+## Dependency Discipline
+- No dependency without justification table (this doc)
+- All versions pinned in libs.versions.toml
+- No unnecessary deps, minimal APK
+- LGPL for Sora is compatible (dynamic linking via Gradle), JGit EDL compatible, LSP4J EPL, Rhino MPL, JSch BSD
+- Check licenses for Play Store compliance

@@ -1,0 +1,64 @@
+{
+  "name": "Kotlin",
+  "scopeName": "source.kotlin",
+  "fileTypes": ["kt", "kts"],
+  "patterns": [
+    {
+      "name": "comment.line.double-slash.kotlin",
+      "match": "//.*$"
+    },
+    {
+      "name": "comment.block.kotlin",
+      "begin": "/\\*",
+      "end": "\\*/"
+    },
+    {
+      "name": "string.quoted.double.kotlin",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.kotlin",
+          "match": "\\\\."
+        }
+      ]
+    },
+    {
+      "name": "string.quoted.single.kotlin",
+      "begin": "'",
+      "end": "'"
+    },
+    {
+      "name": "keyword.control.kotlin",
+      "match": "\\b(fun|val|var|class|object|interface|if|else|when|for|while|return|import|package|override|private|public|internal|protected|suspend|data|sealed|enum|companion|init|constructor|get|set|try|catch|finally|throw|is|in|!in|as|as\\?|by|where|out|reified|inline|noinline|crossinline|operator|infix|const|lateinit|vararg|field|it)\\b"
+    },
+    {
+      "name": "keyword.operator.kotlin",
+      "match": "\\b(null|true|false|this|super)\\b"
+    },
+    {
+      "name": "entity.name.function.kotlin",
+      "match": "\\b(fun)\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
+      "captures": {
+        "1": { "name": "keyword.control.kotlin" },
+        "2": { "name": "entity.name.function.kotlin" }
+      }
+    },
+    {
+      "name": "entity.name.type.class.kotlin",
+      "match": "\\b(class|object|interface)\\s+([A-Z][a-zA-Z0-9_]*)",
+      "captures": {
+        "1": { "name": "keyword.control.kotlin" },
+        "2": { "name": "entity.name.type.class.kotlin" }
+      }
+    },
+    {
+      "name": "constant.numeric.kotlin",
+      "match": "\\b\\d+(\\.\\d+)?\\b"
+    },
+    {
+      "name": "variable.other.kotlin",
+      "match": "\\b[a-z][a-zA-Z0-9_]*\\b"
+    }
+  ]
+}

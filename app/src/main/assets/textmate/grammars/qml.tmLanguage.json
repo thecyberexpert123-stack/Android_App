@@ -1,0 +1,29 @@
+{
+  "scopeName": "source.qml",
+  "name": "QML",
+  "fileTypes": ["qml", "qmlproject"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#function"},
+    {"include": "#type"},
+    {"include": "#numeric"},
+    {"include": "#property"}
+  ],
+  "repository": {
+    "comment": {"patterns": [
+      {"name": "comment.line.double-slash.qml", "match": "//.*$"},
+      {"name": "comment.block.qml", "begin": "/\\*", "end": "\\*/"}
+    ]},
+    "string": {"patterns": [
+      {"name": "string.quoted.double.qml", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.qml", "match": "\\\\."}]},
+      {"name": "string.quoted.single.qml", "begin": "'", "end": "'"}
+    ]},
+    "keyword": {"name": "keyword.control.qml", "match": "\\b(import|as|if|else|for|while|do|switch|case|default|break|continue|return|function|var|let|const|property|signal|on|readonly|required|alias|enum)\\b"},
+    "function": {"name": "entity.name.function.qml", "match": "\\bfunction\\s+([A-Za-z_][A-Za-z0-9_]*)"},
+    "type": {"name": "entity.name.type.qml", "match": "\\b(Item|Rectangle|Text|Image|MouseArea|Column|Row|Grid|ListView|Button|ApplicationWindow|Window|Component|QtObject|Connections|Timer|Loader|Repeater|Model|View|Delegate|State|Transition|Animation|NumberAnimation|PropertyAnimation|SequentialAnimation|ParallelAnimation)\\b"},
+    "property": {"name": "variable.other.property.qml", "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\s*(?=:)"},
+    "numeric": {"name": "constant.numeric.qml", "match": "\\b\\d+(?:\\.\\d+)?\\b"}
+  }
+}

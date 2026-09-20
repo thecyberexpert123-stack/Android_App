@@ -1,0 +1,604 @@
+{
+  "languages": [
+    {
+      "id": "kotlin",
+      "extensions": [".kt", ".kts"],
+      "aliases": ["Kotlin", "kotlin"],
+      "grammar": "textmate/grammars/kotlin.tmLanguage.json"
+    },
+    {
+      "id": "java",
+      "extensions": [".java"],
+      "aliases": ["Java", "java"],
+      "grammar": "textmate/grammars/java.tmLanguage.json"
+    },
+    {
+      "id": "javascript",
+      "extensions": [".js", ".jsx", ".mjs", ".cjs"],
+      "aliases": ["JavaScript", "javascript", "js"],
+      "grammar": "textmate/grammars/javascript.tmLanguage.json"
+    },
+    {
+      "id": "typescript",
+      "extensions": [".ts", ".tsx"],
+      "aliases": ["TypeScript", "typescript", "ts"],
+      "grammar": "textmate/grammars/typescript.tmLanguage.json"
+    },
+    {
+      "id": "python",
+      "extensions": [".py", ".pyw"],
+      "aliases": ["Python", "python"],
+      "grammar": "textmate/grammars/python.tmLanguage.json"
+    },
+    {
+      "id": "html",
+      "extensions": [".html", ".htm"],
+      "aliases": ["HTML", "html"],
+      "grammar": "textmate/grammars/html.tmLanguage.json"
+    },
+    {
+      "id": "css",
+      "extensions": [".css"],
+      "aliases": ["CSS", "css"],
+      "grammar": "textmate/grammars/css.tmLanguage.json"
+    },
+    {
+      "id": "json",
+      "extensions": [".json"],
+      "aliases": ["JSON", "json"],
+      "grammar": "textmate/grammars/json.tmLanguage.json"
+    },
+    {
+      "id": "markdown",
+      "extensions": [".md", ".markdown"],
+      "aliases": ["Markdown", "markdown"],
+      "grammar": "textmate/grammars/markdown.tmLanguage.json"
+    },
+    {
+      "id": "yaml",
+      "extensions": [".yaml", ".yml"],
+      "aliases": ["YAML", "yaml"],
+      "grammar": "textmate/grammars/yaml.tmLanguage.json"
+    },
+    {
+      "id": "shellscript",
+      "extensions": [".sh", ".bash", ".zsh"],
+      "aliases": ["Shell Script", "shellscript"],
+      "grammar": "textmate/grammars/shell.tmLanguage.json"
+    },
+    {
+      "id": "go",
+      "extensions": [".go"],
+      "aliases": ["Go", "go"],
+      "grammar": "textmate/grammars/go.tmLanguage.json"
+    },
+    {
+      "id": "rust",
+      "extensions": [".rs"],
+      "aliases": ["Rust", "rust"],
+      "grammar": "textmate/grammars/rust.tmLanguage.json"
+    },
+    {
+      "id": "cpp",
+      "extensions": [".cpp", ".cc", ".cxx", ".hpp", ".h", ".c"],
+      "aliases": ["C++", "cpp"],
+      "grammar": "textmate/grammars/cpp.tmLanguage.json"
+    },
+    {
+      "id": "xml",
+      "extensions": [".xml", ".xsl", ".xsd", ".svg", ".plist"],
+      "aliases": ["XML", "xml"],
+      "grammar": "textmate/grammars/xml.tmLanguage.json"
+    },
+    {
+      "id": "sql",
+      "extensions": [".sql"],
+      "aliases": ["SQL", "sql"],
+      "grammar": "textmate/grammars/sql.tmLanguage.json"
+    },
+    {
+      "id": "csharp",
+      "extensions": [".cs"],
+      "aliases": ["C#", "csharp", "cs"],
+      "grammar": "textmate/grammars/csharp.tmLanguage.json"
+    },
+    {
+      "id": "dart",
+      "extensions": [".dart"],
+      "aliases": ["Dart", "dart"],
+      "grammar": "textmate/grammars/dart.tmLanguage.json"
+    },
+    {
+      "id": "php",
+      "extensions": [".php", ".phtml"],
+      "aliases": ["PHP", "php"],
+      "grammar": "textmate/grammars/php.tmLanguage.json"
+    },
+    {
+      "id": "ruby",
+      "extensions": [".rb", ".rake", ".gemspec"],
+      "aliases": ["Ruby", "ruby"],
+      "grammar": "textmate/grammars/ruby.tmLanguage.json"
+    },
+    {
+      "id": "swift",
+      "extensions": [".swift"],
+      "aliases": ["Swift", "swift"],
+      "grammar": "textmate/grammars/swift.tmLanguage.json"
+    },
+    {
+      "id": "properties",
+      "extensions": [".properties", ".conf", ".cfg"],
+      "aliases": ["Properties", "properties"],
+      "grammar": "textmate/grammars/properties.tmLanguage.json"
+    },
+    {
+      "id": "dockerfile",
+      "extensions": ["Dockerfile", ".dockerfile"],
+      "aliases": ["Dockerfile", "dockerfile"],
+      "grammar": "textmate/grammars/dockerfile.tmLanguage.json"
+    },
+    {
+      "id": "ini",
+      "extensions": [".ini"],
+      "aliases": ["Ini", "ini"],
+      "grammar": "textmate/grammars/ini.tmLanguage.json"
+    },
+    {
+      "id": "toml",
+      "extensions": [".toml"],
+      "aliases": ["TOML", "toml"],
+      "grammar": "textmate/grammars/toml.tmLanguage.json"
+    },
+    {
+      "id": "groovy",
+      "extensions": [".groovy", ".gradle"],
+      "aliases": ["Groovy", "groovy"],
+      "grammar": "textmate/grammars/groovy.tmLanguage.json"
+    },
+    {
+      "id": "lua",
+      "extensions": [".lua"],
+      "aliases": ["Lua", "lua"],
+      "grammar": "textmate/grammars/lua.tmLanguage.json"
+    },
+    {
+      "id": "r",
+      "extensions": [".r", ".R"],
+      "aliases": ["R", "r"],
+      "grammar": "textmate/grammars/r.tmLanguage.json"
+    },
+    {
+      "id": "bat",
+      "extensions": [".bat", ".cmd"],
+      "aliases": ["Batch", "bat"],
+      "grammar": "textmate/grammars/bat.tmLanguage.json"
+    },
+    {
+      "id": "powershell",
+      "extensions": [".ps1", ".psm1", ".psd1"],
+      "aliases": ["PowerShell", "powershell"],
+      "grammar": "textmate/grammars/powershell.tmLanguage.json"
+    },
+    {
+      "id": "makefile",
+      "extensions": ["Makefile", "makefile", ".mk"],
+      "aliases": ["Makefile", "makefile"],
+      "grammar": "textmate/grammars/makefile.tmLanguage.json"
+    },
+    {
+      "id": "cmake",
+      "extensions": [".cmake", "CMakeLists.txt"],
+      "aliases": ["CMake", "cmake"],
+      "grammar": "textmate/grammars/cmake.tmLanguage.json"
+    },
+    {
+      "id": "clojure",
+      "extensions": [".clj", ".cljs", ".cljc", ".edn"],
+      "aliases": ["Clojure", "clojure"],
+      "grammar": "textmate/grammars/clojure.tmLanguage.json"
+    },
+    {
+      "id": "elixir",
+      "extensions": [".ex", ".exs"],
+      "aliases": ["Elixir", "elixir"],
+      "grammar": "textmate/grammars/elixir.tmLanguage.json"
+    },
+    {
+      "id": "erlang",
+      "extensions": [".erl", ".hrl"],
+      "aliases": ["Erlang", "erlang"],
+      "grammar": "textmate/grammars/erlang.tmLanguage.json"
+    },
+    {
+      "id": "haskell",
+      "extensions": [".hs", ".lhs"],
+      "aliases": ["Haskell", "haskell"],
+      "grammar": "textmate/grammars/haskell.tmLanguage.json"
+    },
+    {
+      "id": "julia",
+      "extensions": [".jl"],
+      "aliases": ["Julia", "julia"],
+      "grammar": "textmate/grammars/julia.tmLanguage.json"
+    },
+    {
+      "id": "scala",
+      "extensions": [".scala", ".sc"],
+      "aliases": ["Scala", "scala"],
+      "grammar": "textmate/grammars/scala.tmLanguage.json"
+    },
+    {
+      "id": "perl",
+      "extensions": [".pl", ".pm", ".t"],
+      "aliases": ["Perl", "perl"],
+      "grammar": "textmate/grammars/perl.tmLanguage.json"
+    },
+    {
+      "id": "vue",
+      "extensions": [".vue"],
+      "aliases": ["Vue", "vue"],
+      "grammar": "textmate/grammars/vue.tmLanguage.json"
+    },
+    {
+      "id": "svelte",
+      "extensions": [".svelte"],
+      "aliases": ["Svelte", "svelte"],
+      "grammar": "textmate/grammars/svelte.tmLanguage.json"
+    },
+    {
+      "id": "graphql",
+      "extensions": [".graphql", ".gql"],
+      "aliases": ["GraphQL", "graphql"],
+      "grammar": "textmate/grammars/graphql.tmLanguage.json"
+    },
+    {
+      "id": "proto",
+      "extensions": [".proto"],
+      "aliases": ["Proto", "proto", "protobuf"],
+      "grammar": "textmate/grammars/proto.tmLanguage.json"
+    },
+    {
+      "id": "csv",
+      "extensions": [".csv"],
+      "aliases": ["CSV", "csv"],
+      "grammar": "textmate/grammars/csv.tmLanguage.json"
+    },
+    {
+      "id": "diff",
+      "extensions": [".diff", ".patch"],
+      "aliases": ["Diff", "diff"],
+      "grammar": "textmate/grammars/diff.tmLanguage.json"
+    },
+    {
+      "id": "gitignore",
+      "extensions": [".gitignore"],
+      "aliases": ["Git Ignore", "gitignore"],
+      "grammar": "textmate/grammars/gitignore.tmLanguage.json"
+    },
+    {
+      "id": "nginx",
+      "extensions": [".conf", ".nginx"],
+      "aliases": ["Nginx", "nginx"],
+      "grammar": "textmate/grammars/nginx.tmLanguage.json"
+    },
+    {
+      "id": "scss",
+      "extensions": [".scss"],
+      "aliases": ["SCSS", "scss"],
+      "grammar": "textmate/grammars/scss.tmLanguage.json"
+    },
+    {
+      "id": "less",
+      "extensions": [".less"],
+      "aliases": ["Less", "less"],
+      "grammar": "textmate/grammars/less.tmLanguage.json"
+    },
+    {
+      "id": "stylus",
+      "extensions": [".styl", ".stylus"],
+      "aliases": ["Stylus", "stylus"],
+      "grammar": "textmate/grammars/stylus.tmLanguage.json"
+    },
+    {
+      "id": "coffeescript",
+      "extensions": [".coffee", ".cson", ".iced"],
+      "aliases": ["CoffeeScript", "coffeescript"],
+      "grammar": "textmate/grammars/coffeescript.tmLanguage.json"
+    },
+    {
+      "id": "handlebars",
+      "extensions": [".hbs", ".handlebars"],
+      "aliases": ["Handlebars", "handlebars"],
+      "grammar": "textmate/grammars/handlebars.tmLanguage.json"
+    },
+    {
+      "id": "pug",
+      "extensions": [".pug", ".jade"],
+      "aliases": ["Pug", "pug", "Jade"],
+      "grammar": "textmate/grammars/pug.tmLanguage.json"
+    },
+    {
+      "id": "razor",
+      "extensions": [".cshtml", ".razor"],
+      "aliases": ["Razor", "razor", "cshtml"],
+      "grammar": "textmate/grammars/razor.tmLanguage.json"
+    },
+    {
+      "id": "objective-c",
+      "extensions": [".m", ".mm"],
+      "aliases": ["Objective-C", "objective-c", "objc"],
+      "grammar": "textmate/grammars/objectivec.tmLanguage.json"
+    },
+    {
+      "id": "fsharp",
+      "extensions": [".fs", ".fsi", ".fsx"],
+      "aliases": ["F#", "fsharp"],
+      "grammar": "textmate/grammars/fsharp.tmLanguage.json"
+    },
+    {
+      "id": "elm",
+      "extensions": [".elm"],
+      "aliases": ["Elm", "elm"],
+      "grammar": "textmate/grammars/elm.tmLanguage.json"
+    },
+    {
+      "id": "ocaml",
+      "extensions": [".ml", ".mli"],
+      "aliases": ["OCaml", "ocaml"],
+      "grammar": "textmate/grammars/ocaml.tmLanguage.json"
+    },
+    {
+      "id": "latex",
+      "extensions": [".tex", ".ltx", ".sty", ".cls", ".bib"],
+      "aliases": ["LaTeX", "latex", "tex"],
+      "grammar": "textmate/grammars/latex.tmLanguage.json"
+    },
+    {
+      "id": "solidity",
+      "extensions": [".sol"],
+      "aliases": ["Solidity", "solidity"],
+      "grammar": "textmate/grammars/solidity.tmLanguage.json"
+    },
+    {
+      "id": "glsl",
+      "extensions": [".glsl", ".vert", ".frag", ".geom", ".comp", ".vs", ".fs"],
+      "aliases": ["GLSL", "glsl"],
+      "grammar": "textmate/grammars/glsl.tmLanguage.json"
+    },
+    {
+      "id": "qml",
+      "extensions": [".qml", ".qmlproject"],
+      "aliases": ["QML", "qml"],
+      "grammar": "textmate/grammars/qml.tmLanguage.json"
+    },
+    {
+      "id": "wasm",
+      "extensions": [".wat", ".wasm"],
+      "aliases": ["WebAssembly", "wasm", "wat"],
+      "grammar": "textmate/grammars/wasm.tmLanguage.json"
+    },
+    {
+      "id": "twig",
+      "extensions": [".twig"],
+      "aliases": ["Twig", "twig"],
+      "grammar": "textmate/grammars/twig.tmLanguage.json"
+    },
+    {
+      "id": "ejs",
+      "extensions": [".ejs"],
+      "aliases": ["EJS", "ejs"],
+      "grammar": "textmate/grammars/ejs.tmLanguage.json"
+    },
+    {
+      "id": "haml",
+      "extensions": [".haml"],
+      "aliases": ["Haml", "haml"],
+      "grammar": "textmate/grammars/haml.tmLanguage.json"
+    },
+    {
+      "id": "slim",
+      "extensions": [".slim"],
+      "aliases": ["Slim", "slim"],
+      "grammar": "textmate/grammars/slim.tmLanguage.json"
+    },
+    {
+      "id": "vhdl",
+      "extensions": [".vhd", ".vhdl", ".vho"],
+      "aliases": ["VHDL", "vhdl"],
+      "grammar": "textmate/grammars/vhdl.tmLanguage.json"
+    },
+    {
+      "id": "verilog",
+      "extensions": [".v", ".sv", ".svh"],
+      "aliases": ["Verilog", "verilog"],
+      "grammar": "textmate/grammars/verilog.tmLanguage.json"
+    },
+    {
+      "id": "crystal",
+      "extensions": [".cr"],
+      "aliases": ["Crystal", "crystal"],
+      "grammar": "textmate/grammars/crystal.tmLanguage.json"
+    },
+    {
+      "id": "smarty",
+      "extensions": [".tpl"],
+      "aliases": ["Smarty", "smarty"],
+      "grammar": "textmate/grammars/smarty.tmLanguage.json"
+    },
+    {
+      "id": "liquid",
+      "extensions": [".liquid"],
+      "aliases": ["Liquid", "liquid"],
+      "grammar": "textmate/grammars/liquid.tmLanguage.json"
+    },
+    {
+      "id": "mustache",
+      "extensions": [".mustache"],
+      "aliases": ["Mustache", "mustache"],
+      "grammar": "textmate/grammars/mustache.tmLanguage.json"
+    },
+    {
+      "id": "jinja",
+      "extensions": [".jinja", ".j2"],
+      "aliases": ["Jinja", "jinja", "jinja2"],
+      "grammar": "textmate/grammars/jinja.tmLanguage.json"
+    },
+    {
+      "id": "velocity",
+      "extensions": [".vm", ".vtl"],
+      "aliases": ["Velocity", "velocity"],
+      "grammar": "textmate/grammars/velocity.tmLanguage.json"
+    },
+    {
+      "id": "fortran",
+      "extensions": [".f", ".f90", ".f95", ".for", ".f03", ".f08"],
+      "aliases": ["Fortran", "fortran"],
+      "grammar": "textmate/grammars/fortran.tmLanguage.json"
+    },
+    {
+      "id": "pascal",
+      "extensions": [".pas", ".p", ".pp"],
+      "aliases": ["Pascal", "pascal"],
+      "grammar": "textmate/grammars/pascal.tmLanguage.json"
+    },
+    {
+      "id": "ada",
+      "extensions": [".adb", ".ads"],
+      "aliases": ["Ada", "ada"],
+      "grammar": "textmate/grammars/ada.tmLanguage.json"
+    },
+    {
+      "id": "lisp",
+      "extensions": [".lisp", ".lsp", ".cl"],
+      "aliases": ["Lisp", "lisp"],
+      "grammar": "textmate/grammars/lisp.tmLanguage.json"
+    },
+    {
+      "id": "tcl",
+      "extensions": [".tcl"],
+      "aliases": ["Tcl", "tcl"],
+      "grammar": "textmate/grammars/tcl.tmLanguage.json"
+    },
+    {
+      "id": "asm",
+      "extensions": [".asm", ".s", ".nasm", ".inc", ".S"],
+      "aliases": ["Assembly", "asm", "assembly"],
+      "grammar": "textmate/grammars/asm.tmLanguage.json"
+    },
+    {
+      "id": "hack",
+      "extensions": [".hack", ".hh", ".hhi", ".hhconfig"],
+      "aliases": ["Hack", "hack"],
+      "grammar": "textmate/grammars/hack.tmLanguage.json"
+    },
+    {
+      "id": "apex",
+      "extensions": [".apex", ".cls", ".trigger", ".apxc", ".apxt"],
+      "aliases": ["Apex", "apex"],
+      "grammar": "textmate/grammars/apex.tmLanguage.json"
+    },
+    {
+      "id": "abap",
+      "extensions": [".abap"],
+      "aliases": ["ABAP", "abap"],
+      "grammar": "textmate/grammars/abap.tmLanguage.json"
+    },
+    {
+      "id": "actionscript",
+      "extensions": [".as"],
+      "aliases": ["ActionScript", "actionscript", "as"],
+      "grammar": "textmate/grammars/actionscript.tmLanguage.json"
+    },
+    {
+      "id": "puppet",
+      "extensions": [".pp", ".puppet", ".epp"],
+      "aliases": ["Puppet", "puppet"],
+      "grammar": "textmate/grammars/puppet.tmLanguage.json"
+    },
+    {
+      "id": "smalltalk",
+      "extensions": [".st", ".cs"],
+      "aliases": ["Smalltalk", "smalltalk"],
+      "grammar": "textmate/grammars/smalltalk.tmLanguage.json"
+    },
+    {
+      "id": "racket",
+      "extensions": [".rkt", ".rktl", ".rktd"],
+      "aliases": ["Racket", "racket"],
+      "grammar": "textmate/grammars/racket.tmLanguage.json"
+    },
+    {
+      "id": "scheme",
+      "extensions": [".scm", ".ss", ".sch", ".sld"],
+      "aliases": ["Scheme", "scheme"],
+      "grammar": "textmate/grammars/scheme.tmLanguage.json"
+    },
+    {
+      "id": "nim",
+      "extensions": [".nim", ".nims", ".nimble"],
+      "aliases": ["Nim", "nim"],
+      "grammar": "textmate/grammars/nim.tmLanguage.json"
+    },
+    {
+      "id": "matlab",
+      "extensions": [".m", ".matlab"],
+      "aliases": ["MATLAB", "matlab", "octave"],
+      "grammar": "textmate/grammars/matlab.tmLanguage.json"
+    },
+    {
+      "id": "vb",
+      "extensions": [".vb", ".bas", ".vbs"],
+      "aliases": ["Visual Basic", "vb", "vba"],
+      "grammar": "textmate/grammars/vb.tmLanguage.json"
+    },
+    {
+      "id": "xaml",
+      "extensions": [".xaml"],
+      "aliases": ["XAML", "xaml"],
+      "grammar": "textmate/grammars/xaml.tmLanguage.json"
+    },
+    {
+      "id": "restructuredtext",
+      "extensions": [".rst", ".rest"],
+      "aliases": ["reStructuredText", "rst", "restructuredtext"],
+      "grammar": "textmate/grammars/rst.tmLanguage.json"
+    },
+    {
+      "id": "log",
+      "extensions": [".log"],
+      "aliases": ["Log", "log"],
+      "grammar": "textmate/grammars/log.tmLanguage.json"
+    },
+    {
+      "id": "bicep",
+      "extensions": [".bicep"],
+      "aliases": ["Bicep", "bicep"],
+      "grammar": "textmate/grammars/bicep.tmLanguage.json"
+    },
+    {
+      "id": "hcl",
+      "extensions": [".tf", ".hcl", ".tfvars"],
+      "aliases": ["HCL", "hcl", "Terraform", "terraform"],
+      "grammar": "textmate/grammars/hcl.tmLanguage.json"
+    },
+    {
+      "id": "thrift",
+      "extensions": [".thrift"],
+      "aliases": ["Thrift", "thrift"],
+      "grammar": "textmate/grammars/thrift.tmLanguage.json"
+    },
+    {
+      "id": "jsonc",
+      "extensions": [".jsonc", ".code-workspace"],
+      "aliases": ["JSON with Comments", "jsonc"],
+      "grammar": "textmate/grammars/jsonc.tmLanguage.json"
+    },
+    {
+      "id": "shaderlab",
+      "extensions": [".shader", ".cginc", ".hlslinc"],
+      "aliases": ["ShaderLab", "shaderlab"],
+      "grammar": "textmate/grammars/shaderlab.tmLanguage.json"
+    }
+  ]
+}

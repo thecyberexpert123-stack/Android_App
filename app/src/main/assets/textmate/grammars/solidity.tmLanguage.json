@@ -1,0 +1,30 @@
+{
+  "scopeName": "source.solidity",
+  "name": "Solidity",
+  "fileTypes": ["sol"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#function"},
+    {"include": "#class"},
+    {"include": "#numeric"},
+    {"include": "#variable"}
+  ],
+  "repository": {
+    "comment": {"patterns": [
+      {"name": "comment.line.double-slash.solidity", "match": "//.*$"},
+      {"name": "comment.block.solidity", "begin": "/\\*", "end": "\\*/"},
+      {"name": "comment.block.documentation.solidity", "begin": "/\\*\\*", "end": "\\*/"}
+    ]},
+    "string": {"patterns": [
+      {"name": "string.quoted.double.solidity", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.solidity", "match": "\\\\."}]},
+      {"name": "string.quoted.single.solidity", "begin": "'", "end": "'"}
+    ]},
+    "keyword": {"name": "keyword.control.solidity", "match": "\\b(contract|library|interface|function|modifier|event|struct|enum|mapping|address|bool|string|bytes|byte|int|uint|int8|int16|int32|int64|int128|int256|uint8|uint16|uint32|uint64|uint128|uint256|public|private|internal|external|view|pure|payable|memory|storage|calldata|if|else|for|while|do|break|continue|return|emit|require|assert|revert|try|catch|new|delete|this|super|import|pragma|using|is|from|as|abstract|override|virtual|constructor|fallback|receive|unchecked)\\b"},
+    "function": {"name": "entity.name.function.solidity", "match": "\\bfunction\\s+([A-Za-z_][A-Za-z0-9_]*)"},
+    "class": {"name": "entity.name.type.class.solidity", "match": "\\b(?:contract|library|interface|struct|enum)\\s+([A-Za-z_][A-Za-z0-9_]*)"},
+    "numeric": {"name": "constant.numeric.solidity", "match": "\\b\\d+(?:\\.\\d+)?(?:e[+-]?\\d+)?\\b"},
+    "variable": {"name": "variable.other.solidity", "match": "\\b(msg|block|tx)\\.[A-Za-z_][A-Za-z0-9_]*\\b"}
+  }
+}

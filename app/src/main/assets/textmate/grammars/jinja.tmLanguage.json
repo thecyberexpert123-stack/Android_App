@@ -1,0 +1,31 @@
+{
+  "name": "Jinja",
+  "scopeName": "text.html.jinja",
+  "fileTypes": ["jinja", "j2"],
+  "patterns": [
+    {"include": "#jinja-comment"},
+    {"include": "#jinja-tag"},
+    {"include": "#jinja-variable"},
+    {"include": "text.html.basic"}
+  ],
+  "repository": {
+    "jinja-comment": {
+      "name": "comment.block.jinja",
+      "begin": "\\{#",
+      "end": "#\\}"
+    },
+    "jinja-tag": {
+      "name": "keyword.control.jinja",
+      "match": "\\{%\\s*(if|elif|else|endif|for|endfor|block|endblock|extends|include|import|from|macro|endmacro|set|filter|endfilter|call|endcall|with|endwith|raw|endraw)\\b[^%]*%\\}"
+    },
+    "jinja-variable": {
+      "name": "variable.other.jinja",
+      "begin": "\\{\\{",
+      "end": "\\}\\}",
+      "patterns": [
+        {"name": "variable.other.jinja", "match": "[A-Za-z_][A-Za-z0-9_\\.]*"},
+        {"name": "support.function.jinja", "match": "\\b(range|dict|join|replace|upper|lower|trim|striptags|safe|escape|default|length|first|last|sort|reverse|map|select|reject)\\b"}
+      ]
+    }
+  }
+}

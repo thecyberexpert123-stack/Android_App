@@ -1,0 +1,16 @@
+{
+  "name": "Elixir",
+  "scopeName": "source.elixir",
+  "fileTypes": ["ex", "exs"],
+  "patterns": [
+    { "name": "comment.line.number-sign.elixir", "match": "#.*$" },
+    { "name": "string.quoted.double.elixir", "begin": "\"\"\"", "end": "\"\"\"", "patterns": [{ "name": "constant.character.escape.elixir", "match": "\\\\." }] },
+    { "name": "string.quoted.double.elixir", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.elixir", "match": "\\\\." }, { "name": "variable.other.elixir", "match": "#\\{[^}]+\\}" }] },
+    { "name": "string.quoted.single.elixir", "begin": "'", "end": "'" },
+    { "name": "keyword.control.elixir", "match": "\\b(def|defp|defmodule|defmacro|defmacrop|defstruct|defprotocol|defimpl|defexception|if|unless|else|case|cond|with|for|try|catch|rescue|after|raise|import|alias|use|require|quote|unquote|do|end|fn|end|true|false|nil)\\b" },
+    { "name": "entity.name.function.elixir", "match": "\\bdef(p)?\\s+([A-Za-z_][A-Za-z0-9_!?]*)", "captures": { "2": { "name": "entity.name.function.elixir" } } },
+    { "name": "entity.name.type.class.elixir", "match": "\\bdefmodule\\s+([A-Za-z_][A-Za-z0-9_.]*)", "captures": { "1": { "name": "entity.name.type.class.elixir" } } },
+    { "name": "constant.numeric.elixir", "match": "\\b\\d+(\\.\\d+)?\\b" },
+    { "name": "variable.other.elixir", "match": "@[A-Za-z_][A-Za-z0-9_]*|:[A-Za-z_][A-Za-z0-9_]*" }
+  ]
+}

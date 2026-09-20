@@ -1,0 +1,22 @@
+{
+  "Key Value": {
+    "prefix": "kv",
+    "body": ["${1:key}: ${2:value}"],
+    "description": "Key value"
+  },
+  "List": {
+    "prefix": "list",
+    "body": ["${1:key}:", "  - ${2:item1}", "  - ${3:item2}"],
+    "description": "YAML list"
+  },
+  "Map": {
+    "prefix": "map",
+    "body": ["${1:key}:", "  ${2:subkey}: ${3:value}"],
+    "description": "YAML map"
+  },
+  "Document": {
+    "prefix": "doc",
+    "body": ["---", "${1:key}: ${2:value}", "..."],
+    "description": "YAML document"
+  }
+}

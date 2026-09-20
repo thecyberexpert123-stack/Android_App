@@ -1,0 +1,15 @@
+{
+  "name": "Makefile",
+  "scopeName": "source.makefile",
+  "fileTypes": ["makefile", "Makefile", "mk"],
+  "patterns": [
+    { "name": "comment.line.number-sign.makefile", "match": "#.*$" },
+    { "name": "entity.name.function.target.makefile", "match": "^([A-Za-z0-9_\\-\\.\\/]+)\\s*:(?!=)" },
+    { "name": "keyword.control.makefile", "match": "^(\\.PHONY|\\.SUFFIXES|\\.DEFAULT|\\.PRECIOUS|\\.INTERMEDIATE|\\.SECONDARY|\\.SECONDEXPANSION|\\.DELETE_ON_ERROR|\\.IGNORE|\\.LOW_RESOLUTION_TIME|\\.SILENT|\\.EXPORT_ALL_VARIABLES|\\.NOTPARALLEL|\\.ONESHELL|\\.POSIX)" },
+    { "name": "variable.other.makefile", "match": "\\$\\([A-Za-z0-9_]+\\)|\\$\\{[A-Za-z0-9_]+\\}|\\$[@%<?^+]|\\$\\$|\\$[A-Za-z]" },
+    { "name": "keyword.other.directive.makefile", "match": "^(include|define|endef|ifdef|ifndef|ifeq|ifneq|else|endif|override|export|unexport|vpath)\\b" },
+    { "name": "string.quoted.double.makefile", "begin": "\"", "end": "\"" },
+    { "name": "string.quoted.single.makefile", "begin": "'", "end": "'" },
+    { "name": "constant.numeric.makefile", "match": "\\b\\d+\\b" }
+  ]
+}

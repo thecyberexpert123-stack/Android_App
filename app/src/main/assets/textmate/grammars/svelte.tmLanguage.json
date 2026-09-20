@@ -1,0 +1,13 @@
+{
+  "name": "Svelte",
+  "scopeName": "text.html.svelte",
+  "fileTypes": ["svelte"],
+  "patterns": [
+    { "name": "comment.block.html", "begin": "<!--", "end": "-->" },
+    { "name": "meta.tag.script.svelte", "begin": "<script>", "end": "</script>", "patterns": [{ "include": "source.js" }] },
+    { "name": "meta.tag.style.svelte", "begin": "<style>", "end": "</style>", "patterns": [{ "include": "source.css" }] },
+    { "name": "meta.tag.any.html", "begin": "(</?)([A-Za-z0-9_\\-:]+)", "end": "(>)", "captures": { "2": { "name": "entity.name.tag.html" } }, "patterns": [{ "name": "entity.other.attribute-name.html", "match": "[A-Za-z0-9_\\-:]+(?=\\=)" }, { "name": "string.quoted.double.html", "begin": "\"", "end": "\"" }] },
+    { "name": "keyword.control.svelte", "match": "\\b\\{#if|\\{:else|\\{/if|\\{#each|\\{/each|\\{#await|\\{/await|\\$:|\\$\\$props|\\$\\$slots|on:click|bind:value\\b" },
+    { "name": "variable.other.svelte", "match": "\\{[^}]+\\}" }
+  ]
+}

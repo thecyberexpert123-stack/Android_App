@@ -1,0 +1,18 @@
+{
+  "scopeName": "text.html.cshtml",
+  "name": "Razor",
+  "fileTypes": ["cshtml", "razor"],
+  "patterns": [
+    {"include": "#razor"},
+    {"include": "text.html.basic"},
+    {"include": "source.cs"}
+  ],
+  "repository": {
+    "razor": {"patterns": [
+      {"name": "comment.block.razor", "begin": "@\\*", "end": "\\*@"},
+      {"name": "keyword.control.razor", "match": "@(?=if|else|for|foreach|while|switch|using|model|inject|code|functions|section|await|Html|Url|ViewBag|Model|\\{)"},
+      {"name": "entity.name.tag.razor", "begin": "@\\{", "end": "\\}"},
+      {"name": "variable.other.razor", "match": "@[A-Za-z_][A-Za-z0-9_\\.]*"}
+    ]}
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Protocol Buffer",
+  "scopeName": "source.proto",
+  "fileTypes": ["proto"],
+  "patterns": [
+    { "name": "comment.line.double-slash.proto", "match": "//.*$" },
+    { "name": "comment.block.proto", "begin": "/\\*", "end": "\\*/" },
+    { "name": "keyword.control.proto", "match": "\\b(syntax|package|import|option|message|enum|service|rpc|returns|oneof|map|repeated|optional|required|reserved|to|max|extend|extensions)\\b" },
+    { "name": "keyword.other.type.proto", "match": "\\b(double|float|int32|int64|uint32|uint64|sint32|sint64|fixed32|fixed64|sfixed32|sfixed64|bool|string|bytes)\\b" },
+    { "name": "entity.name.type.class.proto", "match": "\\b(message|enum|service)\\s+([A-Za-z_][A-Za-z0-9_]*)", "captures": { "2": { "name": "entity.name.type.class.proto" } } },
+    { "name": "entity.name.function.proto", "match": "\\brpc\\s+([A-Za-z_][A-Za-z0-9_]*)", "captures": { "1": { "name": "entity.name.function.proto" } } },
+    { "name": "string.quoted.double.proto", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.proto", "match": "\\\\." }] },
+    { "name": "constant.numeric.proto", "match": "\\b\\d+\\b" }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Thrift",
+  "scopeName": "source.thrift",
+  "fileTypes": ["thrift"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#type"},
+    {"include": "#number"}
+  ],
+  "repository": {
+    "comment": {"patterns": [{"name": "comment.line.double-slash.thrift", "match": "//.*$"}, {"name": "comment.line.number-sign.thrift", "match": "#.*$"}, {"name": "comment.block.thrift", "begin": "/\\*", "end": "\\*/"}]},
+    "string": {"name": "string.quoted.double.thrift", "begin": "\"", "end": "\""},
+    "keyword": {"name": "keyword.control.thrift", "match": "\\b(namespace|include|struct|enum|service|exception|union|typedef|seth|extends|throws|required|optional|oneway|void)\\b"},
+    "type": {"name": "support.type.thrift", "match": "\\b(bool|byte|i16|i32|i64|double|string|binary|list|set|map)\\b"},
+    "number": {"name": "constant.numeric.thrift", "match": "\\b\\d+\\b"}
+  }
+}

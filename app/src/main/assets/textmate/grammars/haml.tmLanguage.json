@@ -1,0 +1,25 @@
+{
+  "scopeName": "text.haml",
+  "name": "Haml",
+  "fileTypes": ["haml"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#tag"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#variable"}
+  ],
+  "repository": {
+    "comment": {"patterns": [
+      {"name": "comment.line.slash.haml", "match": "/.*$"},
+      {"name": "comment.block.haml", "begin": "-#", "end": "$"}
+    ]},
+    "tag": {"name": "entity.name.tag.haml", "match": "^\\s*%?[a-zA-Z][a-zA-Z0-9]*"},
+    "string": {"patterns": [
+      {"name": "string.quoted.double.haml", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.haml", "match": "\\\\."}, {"name": "variable.other.haml", "match": "#\\{[^}]+\\}"}]},
+      {"name": "string.quoted.single.haml", "begin": "'", "end": "'"}
+    ]},
+    "keyword": {"name": "keyword.control.haml", "match": "\\b(if|else|elsif|unless|for|each|while|case|when|block|yield|content_for)\\b"},
+    "variable": {"name": "variable.other.haml", "match": "-\\s*([A-Za-z_][A-Za-z0-9_]*)\\s*="}
+  }
+}

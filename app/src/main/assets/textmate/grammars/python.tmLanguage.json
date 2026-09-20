@@ -1,0 +1,17 @@
+{
+  "name": "Python",
+  "scopeName": "source.python",
+  "fileTypes": ["py", "pyw"],
+  "patterns": [
+    { "name": "comment.line.number-sign.python", "match": "#.*$" },
+    { "name": "string.quoted.double.python", "begin": "\"\"\"", "end": "\"\"\"" },
+    { "name": "string.quoted.single.python", "begin": "'''", "end": "'''" },
+    { "name": "string.quoted.double.python", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.python", "match": "\\\\." }] },
+    { "name": "string.quoted.single.python", "begin": "'", "end": "'", "patterns": [{ "name": "constant.character.escape.python", "match": "\\\\." }] },
+    { "name": "keyword.control.python", "match": "\\b(and|as|assert|break|class|continue|def|del|elif|else|except|exec|finally|for|from|global|if|import|in|is|lambda|not|or|pass|print|raise|return|try|while|with|yield|async|await|nonlocal|True|False|None|self|cls)\\b" },
+    { "name": "entity.name.function.python", "match": "\\b(def)\\s+([a-zA-Z_][a-zA-Z0-9_]*)", "captures": { "1": { "name": "keyword.control.python" }, "2": { "name": "entity.name.function.python" } } },
+    { "name": "entity.name.type.class.python", "match": "\\b(class)\\s+([A-Z][a-zA-Z0-9_]*)", "captures": { "1": { "name": "keyword.control.python" }, "2": { "name": "entity.name.type.class.python" } } },
+    { "name": "constant.numeric.python", "match": "\\b\\d+(\\.\\d+)?\\b" },
+    { "name": "support.function.python", "match": "\\b(len|range|print|open|str|int|float|list|dict|set|tuple|type|isinstance|issubclass|super|self)\\b" }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "ABAP",
+  "scopeName": "source.abap",
+  "fileTypes": ["abap"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#type"},
+    {"include": "#number"}
+  ],
+  "repository": {
+    "comment": {"patterns": [{"name": "comment.line.asterisk.abap", "match": "^\\*.*$"}, {"name": "comment.line.double-quote.abap", "match": "\".*$"}]},
+    "string": {"name": "string.quoted.single.abap", "begin": "'", "end": "'", "patterns": [{"name": "constant.character.escape.abap", "match": "''"}]},
+    "keyword": {"name": "keyword.control.abap", "match": "\\b(?i)(REPORT|WRITE|DATA|TYPES|CONSTANTS|PARAMETERS|SELECT|FROM|WHERE|INTO|TABLE|LOOP|ENDLOOP|IF|ELSE|ELSEIF|ENDIF|CASE|WHEN|ENDCASE|DO|ENDDO|WHILE|ENDWHILE|CALL|FUNCTION|METHOD|FORM|ENDFORM|ENDFUNCTION|ENDMETHOD|CLASS|ENDCLASS|INTERFACE|ENDINTERFACE|TRY|CATCH|ENDTRY|RAISE|MESSAGE|INCLUDE|TYPE|LIKE|STRUCTURE|BEGIN|OF|END|OF|APPEND|CLEAR|REFRESH|FREE|READ|MODIFY|DELETE|INSERT|UPDATE|COMMIT|ROLLBACK|LEAVE|EXIT|CONTINUE|CHECK|RETURN)\\b"},
+    "type": {"name": "support.type.abap", "match": "\\b(?i)(I|F|C|N|D|T|STRING|XSTRING|X|DECFLOAT16|DECFLOAT34|P)\\b"},
+    "number": {"name": "constant.numeric.abap", "match": "\\b\\d+(\\.\\d+)?\\b"}
+  }
+}

@@ -1,0 +1,4 @@
+<resources>
+    <!-- Base theme for XML compatibility, Compose uses Material3 Theme.kt -->
+    <style name="Theme.AndroidApp" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>

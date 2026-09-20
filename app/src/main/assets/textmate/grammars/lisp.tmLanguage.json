@@ -1,0 +1,21 @@
+{
+  "name": "Lisp",
+  "scopeName": "source.lisp",
+  "fileTypes": ["lisp", "lsp", "cl"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#function"},
+    {"include": "#variable"},
+    {"include": "#number"}
+  ],
+  "repository": {
+    "comment": {"name": "comment.line.semicolon.lisp", "match": ";.*$"},
+    "string": {"name": "string.quoted.double.lisp", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.lisp", "match": "\\\\."}]},
+    "keyword": {"name": "keyword.control.lisp", "match": "\\b(defun|defmacro|defvar|defparameter|defconstant|defclass|defmethod|defgeneric|defstruct|defpackage|in-package|let|let\\*|if|when|unless|cond|case|loop|do|dolist|dotimes|progn|block|return|return-from|lambda|funcall|apply|mapcar|car|cdr|cons|list|append|quote|backquote|unquote|eval|setq|setf|incf|decf|format|print|princ)\\b"},
+    "function": {"name": "entity.name.function.lisp", "match": "\\((defun|defmacro|defmethod)\\s+([A-Za-z0-9_\\-\\*\\+\\!\\?<>]+)"},
+    "variable": {"name": "variable.other.lisp", "match": "\\*[A-Za-z0-9_\\-\\*]+\\*"},
+    "number": {"name": "constant.numeric.lisp", "match": "\\b-?\\d+(\\.\\d+)?\\b"}
+  }
+}

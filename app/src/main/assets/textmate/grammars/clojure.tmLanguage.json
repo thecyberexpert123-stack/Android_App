@@ -1,0 +1,15 @@
+{
+  "name": "Clojure",
+  "scopeName": "source.clojure",
+  "fileTypes": ["clj", "cljs", "cljc", "edn"],
+  "patterns": [
+    { "name": "comment.line.semicolon.clojure", "match": ";.*$" },
+    { "name": "comment.block.clojure", "begin": "\\(comment", "end": "\\)" },
+    { "name": "string.quoted.double.clojure", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.clojure", "match": "\\\\." }] },
+    { "name": "keyword.control.clojure", "match": "\\b(def|defn|defmacro|defmethod|defmulti|defonce|defprotocol|defrecord|defstruct|deftype|fn|let|if|when|cond|case|do|loop|recur|throw|try|catch|finally|ns|require|import|use|refer|in-ns)\\b" },
+    { "name": "entity.name.function.clojure", "match": "\\b(defn|defmacro)\\s+([A-Za-z0-9_\\-!\\?\\*\\+]+)", "captures": { "2": { "name": "entity.name.function.clojure" } } },
+    { "name": "constant.numeric.clojure", "match": "\\b\\d+(\\.\\d+)?\\b" },
+    { "name": "constant.language.clojure", "match": "\\b(true|false|nil)\\b" },
+    { "name": "variable.other.clojure", "match": ":[A-Za-z0-9_\\-]+" }
+  ]
+}

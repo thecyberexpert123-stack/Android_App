@@ -1,0 +1,22 @@
+{
+  "scopeName": "text.slim",
+  "name": "Slim",
+  "fileTypes": ["slim"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#tag"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#variable"}
+  ],
+  "repository": {
+    "comment": {"name": "comment.line.slash.slim", "match": "/.*$"},
+    "tag": {"name": "entity.name.tag.slim", "match": "^\\s*[a-zA-Z][a-zA-Z0-9]*"},
+    "string": {"patterns": [
+      {"name": "string.quoted.double.slim", "begin": "\"", "end": "\""},
+      {"name": "string.quoted.single.slim", "begin": "'", "end": "'"}
+    ]},
+    "keyword": {"name": "keyword.control.slim", "match": "\\b(if|else|elsif|unless|for|each|while|case|when|block|yield|content_for|doctype)\\b"},
+    "variable": {"name": "variable.other.slim", "match": "-\\s*([A-Za-z_][A-Za-z0-9_]*)\\s*="}
+  }
+}

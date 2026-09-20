@@ -1,0 +1,16 @@
+{
+  "name": "GraphQL",
+  "scopeName": "source.graphql",
+  "fileTypes": ["graphql", "gql"],
+  "patterns": [
+    { "name": "comment.line.number-sign.graphql", "match": "#.*$" },
+    { "name": "keyword.control.graphql", "match": "\\b(query|mutation|subscription|fragment|on|true|false|null)\\b" },
+    { "name": "keyword.other.type.graphql", "match": "\\b(type|interface|union|enum|input|extend|directive|scalar|schema)\\b" },
+    { "name": "entity.name.function.graphql", "match": "\\b(query|mutation|subscription)\\s+([A-Za-z_][A-Za-z0-9_]*)", "captures": { "2": { "name": "entity.name.function.graphql" } } },
+    { "name": "entity.name.type.graphql", "match": "\\b(type|interface|enum|input|scalar)\\s+([A-Za-z_][A-Za-z0-9_]*)", "captures": { "2": { "name": "entity.name.type.graphql" } } },
+    { "name": "variable.other.graphql", "match": "\\$[A-Za-z_][A-Za-z0-9_]*|@[A-Za-z_][A-Za-z0-9_]*" },
+    { "name": "string.quoted.double.graphql", "begin": "\"\"\"", "end": "\"\"\"" },
+    { "name": "string.quoted.double.graphql", "begin": "\"", "end": "\"" },
+    { "name": "constant.numeric.graphql", "match": "\\b\\d+(\\.\\d+)?\\b" }
+  ]
+}

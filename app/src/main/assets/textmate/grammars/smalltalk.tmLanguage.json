@@ -1,0 +1,19 @@
+{
+  "name": "Smalltalk",
+  "scopeName": "source.smalltalk",
+  "fileTypes": ["st", "cs"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#symbol"},
+    {"include": "#keyword"},
+    {"include": "#number"}
+  ],
+  "repository": {
+    "comment": {"name": "comment.quoted.smalltalk", "begin": "\"", "end": "\""},
+    "string": {"name": "string.quoted.single.smalltalk", "begin": "'", "end": "'", "patterns": [{"name": "constant.character.escape.smalltalk", "match": "''"}]},
+    "symbol": {"name": "constant.other.symbol.smalltalk", "match": "#[A-Za-z_][A-Za-z0-9_]*|#\\+|#-|#\\*|#/|#<|#>|#="},
+    "keyword": {"name": "keyword.control.smalltalk", "match": "\\b(self|super|true|false|nil|thisContext)\\b"},
+    "number": {"name": "constant.numeric.smalltalk", "match": "\\b\\d+(\\.\\d+)?\\b"}
+  }
+}

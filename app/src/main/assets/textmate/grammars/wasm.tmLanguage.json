@@ -1,0 +1,26 @@
+{
+  "scopeName": "source.wat",
+  "name": "WebAssembly",
+  "fileTypes": ["wat", "wasm"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#function"},
+    {"include": "#type"},
+    {"include": "#numeric"}
+  ],
+  "repository": {
+    "comment": {"patterns": [
+      {"name": "comment.line.double-semicolon.wat", "match": ";;.*$"},
+      {"name": "comment.block.wat", "begin": "\\(;", "end": ";\\)"}
+    ]},
+    "string": {"patterns": [
+      {"name": "string.quoted.double.wat", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.wat", "match": "\\\\."}]}
+    ]},
+    "keyword": {"name": "keyword.control.wat", "match": "\\b(module|func|import|export|memory|table|global|local|param|result|type|block|loop|if|then|else|end|br|br_if|br_table|return|call|call_indirect|drop|select|get_local|set_local|tee_local|get_global|set_global|load|store|offset|align|i32|i64|f32|f64|i32\\.const|i64\\.const|f32\\.const|f64\\.const|i32\\.add|i32\\.sub|i32\\.mul|i32\\.div_s|i32\\.div_u|i32\\.rem_s|i32\\.rem_u|i32\\.and|i32\\.or|i32\\.xor|i32\\.shl|i32\\.shr_s|i32\\.shr_u|i32\\.rotl|i32\\.rotr|i32\\.eq|i32\\.ne|i32\\.lt_s|i32\\.lt_u|i32\\.gt_s|i32\\.gt_u|i32\\.le_s|i32\\.le_u|i32\\.ge_s|i32\\.ge_u)\\b"},
+    "function": {"name": "entity.name.function.wat", "match": "\\$[A-Za-z_][A-Za-z0-9_]*"},
+    "type": {"name": "storage.type.wat", "match": "\\b(i32|i64|f32|f64)\\b"},
+    "numeric": {"name": "constant.numeric.wat", "match": "\\b\\d+(?:\\.\\d+)?\\b"}
+  }
+}

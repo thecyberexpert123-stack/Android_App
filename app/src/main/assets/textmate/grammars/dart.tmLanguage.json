@@ -1,0 +1,16 @@
+{
+  "name": "Dart",
+  "scopeName": "source.dart",
+  "fileTypes": ["dart"],
+  "patterns": [
+    { "name": "comment.line.double-slash.dart", "match": "//.*$" },
+    { "name": "comment.block.dart", "begin": "/\\*", "end": "\\*/" },
+    { "name": "string.quoted.double.dart", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.dart", "match": "\\\\." }, { "name": "variable.other.dart", "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*|\\$\\{[^}]+\\}" }] },
+    { "name": "string.quoted.single.dart", "begin": "'", "end": "'" },
+    { "name": "keyword.control.dart", "match": "\\b(abstract|as|assert|async|await|break|case|catch|class|const|continue|covariant|default|deferred|do|dynamic|else|enum|export|extends|extension|external|factory|false|final|finally|for|Function|get|hide|if|implements|import|in|interface|is|late|library|mixin|new|null|on|operator|part|required|rethrow|return|set|show|static|super|switch|sync|this|throw|true|try|typedef|var|void|while|with|yield)\\b" },
+    { "name": "entity.name.type.class.dart", "match": "\\b(class|mixin|extension|enum)\\s+([A-Z][a-zA-Z0-9_]*)" },
+    { "name": "entity.name.function.dart", "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\(" },
+    { "name": "constant.numeric.dart", "match": "\\b\\d+(\\.\\d+)?\\b" },
+    { "name": "support.type.dart", "match": "\\b(int|double|String|bool|List|Map|Set|Future|Stream|num|Object|dynamic|void)\\b" }
+  ]
+}

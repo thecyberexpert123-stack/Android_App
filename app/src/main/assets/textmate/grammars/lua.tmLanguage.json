@@ -1,0 +1,17 @@
+{
+  "name": "Lua",
+  "scopeName": "source.lua",
+  "fileTypes": ["lua"],
+  "patterns": [
+    { "name": "comment.line.double-dash.lua", "match": "--.*$" },
+    { "name": "comment.block.lua", "begin": "--\\[\\[", "end": "\\]\\]" },
+    { "name": "string.quoted.double.lua", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.lua", "match": "\\\\." }] },
+    { "name": "string.quoted.single.lua", "begin": "'", "end": "'" },
+    { "name": "string.quoted.double.lua", "begin": "\\[\\[", "end": "\\]\\]" },
+    { "name": "keyword.control.lua", "match": "\\b(and|break|do|else|elseif|end|false|for|function|goto|if|in|local|nil|not|or|repeat|return|then|true|until|while)\\b" },
+    { "name": "entity.name.function.lua", "match": "\\bfunction\\s+([A-Za-z_][A-Za-z0-9_.:]*)", "captures": { "1": { "name": "entity.name.function.lua" } } },
+    { "name": "entity.name.type.class.lua", "match": "\\b([A-Za-z_][A-Za-z0-9_]*)\\s*=\\s*\\{" },
+    { "name": "constant.numeric.lua", "match": "\\b\\d+(\\.\\d+)?\\b" },
+    { "name": "support.function.lua", "match": "\\b(print|require|type|tostring|tonumber|pairs|ipairs|next|table\\.insert|table\\.remove|string\\.format|string\\.sub|math\\.floor|math\\.ceil|math\\.random)\\b" }
+  ]
+}

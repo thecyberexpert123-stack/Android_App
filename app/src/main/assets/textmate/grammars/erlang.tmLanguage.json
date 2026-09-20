@@ -1,0 +1,15 @@
+{
+  "name": "Erlang",
+  "scopeName": "source.erlang",
+  "fileTypes": ["erl", "hrl"],
+  "patterns": [
+    { "name": "comment.line.percentage.erlang", "match": "%.*$" },
+    { "name": "string.quoted.double.erlang", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.erlang", "match": "\\\\." }] },
+    { "name": "keyword.control.erlang", "match": "\\b(if|case|of|when|end|fun|receive|after|try|catch|begin|let|maybe|else|cond|maybe)\\b" },
+    { "name": "keyword.other.directive.erlang", "match": "-(module|export|import|compile|define|include|include_lib|record|type|spec|behaviour|behavior)\\b" },
+    { "name": "entity.name.function.erlang", "match": "^([a-z][a-zA-Z0-9_@]*)\\s*\\(" },
+    { "name": "constant.numeric.erlang", "match": "\\b\\d+(\\.\\d+)?\\b" },
+    { "name": "constant.language.erlang", "match": "\\b(true|false)\\b" },
+    { "name": "variable.other.erlang", "match": "\\b[A-Z][a-zA-Z0-9_]*\\b|\\b_[A-Za-z0-9_]*\\b" }
+  ]
+}

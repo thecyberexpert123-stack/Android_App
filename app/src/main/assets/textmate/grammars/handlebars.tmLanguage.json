@@ -1,0 +1,21 @@
+{
+  "scopeName": "text.html.handlebars",
+  "name": "Handlebars",
+  "fileTypes": ["hbs", "handlebars"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#handlebars"},
+    {"include": "text.html.basic"}
+  ],
+  "repository": {
+    "comment": {"name": "comment.block.handlebars", "begin": "\\{\\{!", "end": "\\}\\}"},
+    "handlebars": {"patterns": [
+      {"name": "entity.name.tag.mustache.handlebars", "begin": "\\{\\{\\{?", "end": "\\}\\}\\}?", "patterns": [
+        {"name": "keyword.control.handlebars", "match": "\\b(if|else|unless|each|with|lookup|log|block|content|partial|#|/|>|\\^)\\b"},
+        {"name": "variable.other.handlebars", "match": "[A-Za-z_][A-Za-z0-9_\\./]*"},
+        {"name": "string.quoted.double.handlebars", "begin": "\"", "end": "\""},
+        {"name": "string.quoted.single.handlebars", "begin": "'", "end": "'"}
+      ]}
+    ]}
+  }
+}

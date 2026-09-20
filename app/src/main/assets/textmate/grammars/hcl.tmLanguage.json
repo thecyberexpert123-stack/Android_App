@@ -1,0 +1,21 @@
+{
+  "name": "HCL",
+  "scopeName": "source.hcl",
+  "fileTypes": ["tf", "hcl", "tfvars"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#type"},
+    {"include": "#number"},
+    {"include": "#variable"}
+  ],
+  "repository": {
+    "comment": {"patterns": [{"name": "comment.line.number-sign.hcl", "match": "#.*$"}, {"name": "comment.line.double-slash.hcl", "match": "//.*$"}, {"name": "comment.block.hcl", "begin": "/\\*", "end": "\\*/"}]},
+    "string": {"name": "string.quoted.double.hcl", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.hcl", "match": "\\\\."}, {"name": "variable.other.hcl", "match": "\\$\\{[^}]+\\}"}]},
+    "keyword": {"name": "keyword.control.hcl", "match": "\\b(resource|data|variable|output|module|provider|terraform|provisioner|connection|count|depends_on|lifecycle|backend|locals)\\b"},
+    "type": {"name": "support.type.hcl", "match": "\\b(string|number|bool|list|map|set|object|tuple|any)\\b"},
+    "number": {"name": "constant.numeric.hcl", "match": "\\b\\d+(\\.\\d+)?\\b"},
+    "variable": {"name": "variable.other.hcl", "match": "\\b(var|local|module|data|path|terraform)\\.[a-zA-Z_][\\w]*"}
+  }
+}

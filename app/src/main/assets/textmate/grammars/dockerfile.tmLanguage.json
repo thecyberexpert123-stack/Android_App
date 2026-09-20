@@ -1,0 +1,13 @@
+{
+  "name": "Dockerfile",
+  "scopeName": "source.dockerfile",
+  "fileTypes": ["dockerfile", "Dockerfile"],
+  "patterns": [
+    { "name": "comment.line.number-sign.dockerfile", "match": "#.*$" },
+    { "name": "keyword.control.dockerfile", "match": "^\\s*(FROM|RUN|CMD|LABEL|MAINTAINER|EXPOSE|ENV|ADD|COPY|ENTRYPOINT|VOLUME|USER|WORKDIR|ARG|ONBUILD|STOPSIGNAL|HEALTHCHECK|SHELL)\\b" },
+    { "name": "string.quoted.double.dockerfile", "begin": "\"", "end": "\"" },
+    { "name": "string.quoted.single.dockerfile", "begin": "'", "end": "'" },
+    { "name": "variable.other.dockerfile", "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*|\\$\\{[^}]+\\}" },
+    { "name": "constant.numeric.dockerfile", "match": "\\b\\d+\\b" }
+  ]
+}

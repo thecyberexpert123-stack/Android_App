@@ -1,0 +1,21 @@
+{
+  "name": "Assembly",
+  "scopeName": "source.asm",
+  "fileTypes": ["asm", "s", "nasm", "inc", "S"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#register"},
+    {"include": "#directive"},
+    {"include": "#number"}
+  ],
+  "repository": {
+    "comment": {"name": "comment.line.semicolon.asm", "match": ";.*$"},
+    "string": {"name": "string.quoted.double.asm", "begin": "\"", "end": "\""},
+    "keyword": {"name": "keyword.control.asm", "match": "\\b(mov|add|sub|mul|div|inc|dec|and|or|xor|not|shl|shr|jmp|je|jne|jg|jl|jge|jle|ja|jb|call|ret|push|pop|cmp|test|lea|nop|int|syscall|hlt|cli|sti|loop|rep|movsb|movsw|movsd|stosb|stosw|stosd|lodsb|lodsw|lodsd|in|out|enter|leave|bound|aam|aad)\\b"},
+    "register": {"name": "variable.other.register.asm", "match": "\\b(eax|ebx|ecx|edx|esi|edi|esp|ebp|rax|rbx|rcx|rdx|rsi|rdi|rsp|rbp|r8|r9|r10|r11|r12|r13|r14|r15|al|ah|bl|bh|cl|ch|dl|dh|ax|bx|cx|dx|si|di|sp|bp)\\b"},
+    "directive": {"name": "keyword.other.directive.asm", "match": "\\b(section|global|extern|db|dw|dd|dq|resb|resw|resd|resq|equ|times|bits|org|align)\\b"},
+    "number": {"name": "constant.numeric.asm", "match": "\\b0x[0-9A-Fa-f]+|\\b\\d+\\b"}
+  }
+}

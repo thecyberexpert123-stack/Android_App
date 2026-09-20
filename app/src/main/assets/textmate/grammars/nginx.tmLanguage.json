@@ -1,0 +1,14 @@
+{
+  "name": "Nginx",
+  "scopeName": "source.nginx",
+  "fileTypes": ["conf", "nginx"],
+  "patterns": [
+    { "name": "comment.line.number-sign.nginx", "match": "#.*$" },
+    { "name": "keyword.control.directive.nginx", "match": "\\b(server|location|http|events|upstream|if|return|rewrite|proxy_pass|proxy_set_header|listen|server_name|root|index|error_page|access_log|error_log|include|worker_processes|worker_connections|keepalive_timeout|gzip|ssl_certificate|ssl_certificate_key|add_header)\\b" },
+    { "name": "string.quoted.double.nginx", "begin": "\"", "end": "\"" },
+    { "name": "string.quoted.single.nginx", "begin": "'", "end": "'" },
+    { "name": "variable.other.nginx", "match": "\\$[A-Za-z_][A-Za-z0-9_]*" },
+    { "name": "constant.numeric.nginx", "match": "\\b\\d+[kmgt]?\\b" },
+    { "name": "keyword.operator.nginx", "match": "[{};]" }
+  ]
+}

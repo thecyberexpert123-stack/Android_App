@@ -1,0 +1,18 @@
+{
+  "scopeName": "text.html.ejs",
+  "name": "EJS",
+  "fileTypes": ["ejs"],
+  "patterns": [
+    {"include": "#ejs"},
+    {"include": "text.html.basic"},
+    {"include": "source.js"}
+  ],
+  "repository": {
+    "ejs": {"patterns": [
+      {"name": "comment.block.ejs", "begin": "<%#", "end": "%>"},
+      {"name": "entity.name.tag.ejs", "begin": "<%[_=\\-]?", "end": "-?%>", "patterns": [
+        {"include": "source.js"}
+      ]}
+    ]}
+  }
+}

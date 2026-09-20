@@ -1,0 +1,16 @@
+{
+  "name": "C#",
+  "scopeName": "source.cs",
+  "fileTypes": ["cs"],
+  "patterns": [
+    { "name": "comment.line.double-slash.cs", "match": "//.*$" },
+    { "name": "comment.block.cs", "begin": "/\\*", "end": "\\*/" },
+    { "name": "string.quoted.double.cs", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.cs", "match": "\\\\." }] },
+    { "name": "string.quoted.single.cs", "begin": "'", "end": "'" },
+    { "name": "string.quoted.triple.cs", "begin": "@\"", "end": "\"" },
+    { "name": "keyword.control.cs", "match": "\\b(abstract|as|base|bool|break|byte|case|catch|char|checked|class|const|continue|decimal|default|delegate|do|double|else|enum|event|explicit|extern|false|finally|fixed|float|for|foreach|goto|if|implicit|in|int|interface|internal|is|lock|long|namespace|new|null|object|operator|out|override|params|private|protected|public|readonly|ref|return|sbyte|sealed|short|sizeof|stackalloc|static|string|struct|switch|this|throw|true|try|typeof|uint|ulong|unchecked|unsafe|ushort|using|virtual|void|volatile|while|var|dynamic|async|await|get|set|value|add|remove|yield|partial|where|select|from|group|into|orderby|join|let|in|on|equals|by|ascending|descending)\\b" },
+    { "name": "entity.name.type.class.cs", "match": "\\b(class|struct|interface|enum)\\s+([A-Z][a-zA-Z0-9_]*)", "captures": { "1": { "name": "keyword.control.cs" }, "2": { "name": "entity.name.type.class.cs" } } },
+    { "name": "entity.name.function.cs", "match": "\\b([A-Z][a-zA-Z0-9_]*)\\s*\\(" },
+    { "name": "constant.numeric.cs", "match": "\\b\\d+(\\.\\d+)?[fFdDmM]?\\b" }
+  ]
+}

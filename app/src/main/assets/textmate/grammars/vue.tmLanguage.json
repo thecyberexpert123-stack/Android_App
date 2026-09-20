@@ -1,0 +1,13 @@
+{
+  "name": "Vue",
+  "scopeName": "text.html.vue",
+  "fileTypes": ["vue"],
+  "patterns": [
+    { "name": "comment.block.html", "begin": "<!--", "end": "-->" },
+    { "name": "meta.tag.template.vue", "begin": "<template>", "end": "</template>", "patterns": [{ "include": "text.html.basic" }] },
+    { "name": "meta.tag.script.vue", "begin": "<script>", "end": "</script>", "patterns": [{ "include": "source.js" }] },
+    { "name": "meta.tag.style.vue", "begin": "<style>", "end": "</style>", "patterns": [{ "include": "source.css" }] },
+    { "name": "meta.tag.any.html", "begin": "(</?)([A-Za-z0-9_\\-:]+)", "end": "(>)", "captures": { "2": { "name": "entity.name.tag.html" } }, "patterns": [{ "name": "entity.other.attribute-name.html", "match": "[A-Za-z0-9_\\-:]+(?=\\=)" }, { "name": "string.quoted.double.html", "begin": "\"", "end": "\"" }] },
+    { "name": "keyword.control.vue", "match": "\\b(v-if|v-else|v-for|v-model|v-bind|v-on|v-show|v-html|v-text|:class|:style|@click|@input)\\b" }
+  ]
+}

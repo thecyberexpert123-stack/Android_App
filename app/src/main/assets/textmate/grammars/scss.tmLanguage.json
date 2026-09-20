@@ -1,0 +1,19 @@
+{
+  "name": "SCSS",
+  "scopeName": "source.css.scss",
+  "fileTypes": ["scss"],
+  "patterns": [
+    { "name": "comment.block.css", "begin": "/\\*", "end": "\\*/" },
+    { "name": "comment.line.double-slash.scss", "match": "//.*$" },
+    { "name": "variable.other.scss", "match": "\\$[A-Za-z_][A-Za-z0-9_\\-]*" },
+    { "name": "entity.name.tag.css", "match": "\\b(a|abbr|address|article|aside|audio|b|body|button|canvas|div|footer|form|h1|h2|h3|h4|h5|h6|header|html|img|input|li|nav|p|section|span|ul|ol)\\b" },
+    { "name": "entity.other.attribute-name.class.css", "match": "\\.[A-Za-z_][A-Za-z0-9_\\-]*" },
+    { "name": "entity.other.attribute-name.id.css", "match": "#[A-Za-z_][A-Za-z0-9_\\-]*" },
+    { "name": "support.type.property-name.css", "match": "\\b(margin|padding|background|color|font|display|position|width|height|border|flex|grid|animation|transition|transform)\\b" },
+    { "name": "keyword.control.at-rule.css", "match": "@[A-Za-z_][A-Za-z0-9_\\-]*" },
+    { "name": "constant.numeric.css", "match": "\\b\\d+(px|em|rem|%|vh|vw)?\\b" },
+    { "name": "constant.other.color.rgb-value.css", "match": "#[0-9a-fA-F]{3,6}\\b" },
+    { "name": "string.quoted.double.css", "begin": "\"", "end": "\"" },
+    { "name": "string.quoted.single.css", "begin": "'", "end": "'" }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "Table": {
+    "prefix": "table",
+    "body": ["[${1:table}]", "${2:key} = \"${3:value}\""],
+    "description": "TOML table"
+  },
+  "Array Table": {
+    "prefix": "arraytable",
+    "body": ["[[${1:table}]]", "${2:key} = \"${3:value}\""],
+    "description": "TOML array of tables"
+  },
+  "Key Value": {
+    "prefix": "kv",
+    "body": ["${1:key} = \"${2:value}\""],
+    "description": "Key value pair"
+  },
+  "Boolean": {
+    "prefix": "bool",
+    "body": ["${1:key} = ${2|true,false|}"],
+    "description": "Boolean value"
+  },
+  "Integer": {
+    "prefix": "int",
+    "body": ["${1:key} = ${2:42}"],
+    "description": "Integer value"
+  }
+}

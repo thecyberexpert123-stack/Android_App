@@ -1,0 +1,14 @@
+{
+  "name": "Stylus",
+  "scopeName": "source.stylus",
+  "fileTypes": ["styl", "stylus"],
+  "patterns": [
+    { "name": "comment.line.double-slash.stylus", "match": "//.*$" },
+    { "name": "comment.block.stylus", "begin": "/\\*", "end": "\\*/" },
+    { "name": "variable.other.stylus", "match": "\\$?[A-Za-z_][A-Za-z0-9_\\-]*\\s*(?=\\=)" },
+    { "name": "entity.name.tag.css", "match": "\\b(a|abbr|address|article|aside|audio|b|body|button|canvas|div|footer|form|h1|h2|h3|h4|h5|h6|header|html|img|input|li|nav|p|section|span|ul|ol)\\b" },
+    { "name": "support.type.property-name.css", "match": "\\b(margin|padding|background|color|font|display|position|width|height|border|flex|grid)\\b" },
+    { "name": "constant.numeric.stylus", "match": "\\b\\d+(px|em|rem|%|vh|vw)?\\b" },
+    { "name": "constant.other.color.rgb-value.stylus", "match": "#[0-9a-fA-F]{3,6}\\b" }
+  ]
+}

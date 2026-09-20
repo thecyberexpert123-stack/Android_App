@@ -1,0 +1,179 @@
+{
+  "extensions": [
+    {
+      "id": "androde.kotlin",
+      "name": "kotlin",
+      "displayName": "Kotlin",
+      "description": "Kotlin language support with syntax highlighting, snippets, and IntelliSense",
+      "version": "1.0.0",
+      "publisher": "Androde",
+      "categories": ["Programming Languages"],
+      "tags": ["kotlin", "jvm", "android"],
+      "isBuiltin": true,
+      "contributes": {
+        "languages": [
+          {
+            "id": "kotlin",
+            "extensions": [".kt", ".kts"],
+            "aliases": ["Kotlin", "kotlin"],
+            "configuration": "kotlin-language-configuration.json"
+          }
+        ],
+        "grammars": [
+          {
+            "language": "kotlin",
+            "scopeName": "source.kotlin",
+            "path": "textmate/grammars/kotlin.tmLanguage.json"
+          }
+        ],
+        "snippets": [
+          {
+            "language": "kotlin",
+            "path": "snippets/kotlin.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "androde.java",
+      "name": "java",
+      "displayName": "Java",
+      "description": "Java language support with syntax highlighting and IntelliSense",
+      "version": "1.0.0",
+      "publisher": "Androde",
+      "categories": ["Programming Languages"],
+      "tags": ["java", "jvm"],
+      "isBuiltin": true,
+      "contributes": {
+        "languages": [
+          {
+            "id": "java",
+            "extensions": [".java"],
+            "aliases": ["Java", "java"]
+          }
+        ],
+        "grammars": [
+          {
+            "language": "java",
+            "scopeName": "source.java",
+            "path": "textmate/grammars/java.tmLanguage.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "androde.python",
+      "name": "python",
+      "displayName": "Python",
+      "description": "Python language support",
+      "version": "1.0.0",
+      "publisher": "Androde",
+      "categories": ["Programming Languages"],
+      "tags": ["python"],
+      "isBuiltin": true,
+      "contributes": {
+        "languages": [
+          {
+            "id": "python",
+            "extensions": [".py", ".pyw"],
+            "aliases": ["Python", "python"]
+          }
+        ],
+        "grammars": [
+          {
+            "language": "python",
+            "scopeName": "source.python",
+            "path": "textmate/grammars/python.tmLanguage.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "androde.javascript",
+      "name": "javascript",
+      "displayName": "JavaScript",
+      "description": "JavaScript language support",
+      "version": "1.0.0",
+      "publisher": "Androde",
+      "categories": ["Programming Languages"],
+      "tags": ["javascript", "js"],
+      "isBuiltin": true,
+      "contributes": {
+        "languages": [
+          {
+            "id": "javascript",
+            "extensions": [".js", ".jsx", ".mjs", ".cjs"],
+            "aliases": ["JavaScript", "javascript", "js"]
+          }
+        ],
+        "grammars": [
+          {
+            "language": "javascript",
+            "scopeName": "source.js",
+            "path": "textmate/grammars/javascript.tmLanguage.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "androde.theme-dracula",
+      "name": "dracula",
+      "displayName": "Dracula Theme",
+      "description": "Dark theme inspired by Dracula - VS Code favorite",
+      "version": "1.0.0",
+      "publisher": "Androde",
+      "categories": ["Themes"],
+      "tags": ["theme", "dark", "dracula"],
+      "isBuiltin": true,
+      "contributes": {
+        "themes": [
+          {
+            "label": "Dracula",
+            "uiTheme": "vs-dark",
+            "path": "textmate/themes/darcula.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "androde.theme-vscode-dark",
+      "name": "vscode-dark",
+      "displayName": "VS Code Dark+",
+      "description": "VS Code Dark+ theme - default Androde theme",
+      "version": "1.0.0",
+      "publisher": "Androde",
+      "categories": ["Themes"],
+      "tags": ["theme", "dark", "vscode"],
+      "isBuiltin": true,
+      "contributes": {
+        "themes": [
+          {
+            "label": "Dark+ (default dark)",
+            "uiTheme": "vs-dark",
+            "path": "textmate/themes/vscode_dark.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "androde.theme-monokai",
+      "name": "monokai",
+      "displayName": "Monokai Theme",
+      "description": "Monokai color theme - classic",
+      "version": "1.0.0",
+      "publisher": "Androde",
+      "categories": ["Themes"],
+      "tags": ["theme", "dark", "monokai"],
+      "isBuiltin": true,
+      "contributes": {
+        "themes": [
+          {
+            "label": "Monokai",
+            "uiTheme": "vs-dark",
+            "path": "textmate/themes/monokai.json"
+          }
+        ]
+      }
+    }
+  ]
+}

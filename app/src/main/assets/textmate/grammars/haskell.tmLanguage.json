@@ -1,0 +1,15 @@
+{
+  "name": "Haskell",
+  "scopeName": "source.haskell",
+  "fileTypes": ["hs", "lhs"],
+  "patterns": [
+    { "name": "comment.line.double-dash.haskell", "match": "--.*$" },
+    { "name": "comment.block.haskell", "begin": "\\{-", "end": "-\\}" },
+    { "name": "string.quoted.double.haskell", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.haskell", "match": "\\\\." }] },
+    { "name": "keyword.control.haskell", "match": "\\b(module|where|import|qualified|as|hiding|data|newtype|type|class|instance|deriving|if|then|else|case|of|let|in|do|where|infix|infixl|infixr)\\b" },
+    { "name": "entity.name.function.haskell", "match": "^([a-z][A-Za-z0-9_']*)\\s*(::|=)" },
+    { "name": "entity.name.type.class.haskell", "match": "\\b(data|newtype|type)\\s+([A-Z][A-Za-z0-9_']*)", "captures": { "2": { "name": "entity.name.type.class.haskell" } } },
+    { "name": "constant.numeric.haskell", "match": "\\b\\d+(\\.\\d+)?\\b" },
+    { "name": "constant.language.haskell", "match": "\\b(True|False)\\b" }
+  ]
+}

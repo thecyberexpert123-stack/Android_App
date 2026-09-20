@@ -1,0 +1,15 @@
+{
+  "name": "Scala",
+  "scopeName": "source.scala",
+  "fileTypes": ["scala", "sc"],
+  "patterns": [
+    { "name": "comment.line.double-slash.scala", "match": "//.*$" },
+    { "name": "comment.block.scala", "begin": "/\\*", "end": "\\*/" },
+    { "name": "string.quoted.triple.double.scala", "begin": "\"\"\"", "end": "\"\"\"" },
+    { "name": "string.quoted.double.scala", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.scala", "match": "\\\\." }, { "name": "variable.other.scala", "match": "\\$\\{[^}]+\\}|\\$[A-Za-z_][A-Za-z0-9_]*" }] },
+    { "name": "keyword.control.scala", "match": "\\b(class|object|trait|extends|with|import|package|if|else|for|while|return|new|this|super|override|private|protected|final|sealed|abstract|case|match|implicit|val|var|def|type|extends|yield|try|catch|finally|throw|extends|lazy|macro)\\b" },
+    { "name": "entity.name.type.class.scala", "match": "\\b(class|object|trait|case class|case object)\\s+([A-Za-z_][A-Za-z0-9_]*)", "captures": { "2": { "name": "entity.name.type.class.scala" } } },
+    { "name": "entity.name.function.scala", "match": "\\bdef\\s+([A-Za-z_][A-Za-z0-9_]*)", "captures": { "1": { "name": "entity.name.function.scala" } } },
+    { "name": "constant.numeric.scala", "match": "\\b\\d+(\\.\\d+)?[fFdDlL]?\\b" }
+  ]
+}

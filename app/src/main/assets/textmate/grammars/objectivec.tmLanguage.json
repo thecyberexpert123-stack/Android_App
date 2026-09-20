@@ -1,0 +1,29 @@
+{
+  "scopeName": "source.objc",
+  "name": "Objective-C",
+  "fileTypes": ["m", "mm", "h"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#directive"},
+    {"include": "#function"},
+    {"include": "#class"},
+    {"include": "#numeric"}
+  ],
+  "repository": {
+    "comment": {"patterns": [
+      {"name": "comment.line.double-slash.objc", "match": "//.*$"},
+      {"name": "comment.block.objc", "begin": "/\\*", "end": "\\*/"}
+    ]},
+    "string": {"patterns": [
+      {"name": "string.quoted.double.objc", "begin": "@?\"", "end": "\"", "patterns": [{"name": "constant.character.escape.objc", "match": "\\\\."}]},
+      {"name": "string.quoted.single.objc", "begin": "'", "end": "'", "patterns": [{"name": "constant.character.escape.objc", "match": "\\\\."}]}
+    ]},
+    "keyword": {"name": "keyword.control.objc", "match": "\\b(if|else|for|while|do|switch|case|default|break|continue|return|struct|union|enum|typedef|sizeof|static|extern|auto|register|const|volatile|@interface|@implementation|@end|@property|@synthesize|@dynamic|@class|@protocol|@optional|@required|@public|@private|@protected|@package|@try|@catch|@finally|@throw|@autoreleasepool|@synchronized|self|super|nil|YES|NO|NULL|id|instancetype)\\b"},
+    "directive": {"name": "keyword.directive.objc", "match": "^\\s*#\\s*(?:import|include|define|undef|if|ifdef|ifndef|else|elif|endif|pragma)\\b"},
+    "function": {"name": "entity.name.function.objc", "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\s*(?=\\()"},
+    "class": {"name": "entity.name.type.class.objc", "match": "@interface\\s+([A-Za-z_][A-Za-z0-9_]*)"},
+    "numeric": {"name": "constant.numeric.objc", "match": "\\b\\d+(?:\\.\\d+)?[fFlL]?\\b"}
+  }
+}

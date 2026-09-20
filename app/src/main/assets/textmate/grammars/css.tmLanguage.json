@@ -1,0 +1,17 @@
+{
+  "name": "CSS",
+  "scopeName": "source.css",
+  "fileTypes": ["css", "scss", "less"],
+  "patterns": [
+    { "name": "comment.block.css", "begin": "/\\*", "end": "\\*/" },
+    { "name": "entity.name.tag.css", "match": "\\b(a|abbr|body|div|span|p|h1|h2|h3|h4|h5|h6|ul|ol|li|table|tr|td|th|form|input|button|img|header|footer|nav|section|article|aside|main|figure|figcaption|audio|video|canvas|svg)\\b" },
+    { "name": "entity.other.attribute-name.class.css", "match": "\\.[a-zA-Z_][a-zA-Z0-9_\\-]*" },
+    { "name": "entity.other.attribute-name.id.css", "match": "#[a-zA-Z_][a-zA-Z0-9_\\-]*" },
+    { "name": "support.type.property-name.css", "match": "\\b(color|background|background-color|font|font-size|font-family|margin|padding|border|width|height|display|position|top|left|right|bottom|flex|grid|align-items|justify-content|text-align|line-height|opacity|cursor|overflow|z-index|transition|transform|animation)\\b" },
+    { "name": "constant.numeric.css", "match": "\\b\\d+(px|em|rem|%|vh|vw|vmin|vmax|pt|cm|mm|in|pc)?\\b" },
+    { "name": "constant.other.color.css", "match": "#[0-9a-fA-F]{3,8}\\b" },
+    { "name": "keyword.other.unit.css", "match": "\\b(px|em|rem|%|vh|vw|s|ms)\\b" },
+    { "name": "string.quoted.double.css", "begin": "\"", "end": "\"" },
+    { "name": "string.quoted.single.css", "begin": "'", "end": "'" }
+  ]
+}

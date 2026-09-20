@@ -1,0 +1,19 @@
+{
+  "name": "Markdown",
+  "scopeName": "text.html.markdown",
+  "fileTypes": ["md", "markdown"],
+  "patterns": [
+    { "name": "markup.heading.markdown", "match": "^#{1,6}\\s+.*$" },
+    { "name": "markup.bold.markdown", "begin": "\\*\\*", "end": "\\*\\*" },
+    { "name": "markup.italic.markdown", "begin": "\\*", "end": "\\*" },
+    { "name": "markup.bold.markdown", "begin": "__", "end": "__" },
+    { "name": "markup.italic.markdown", "begin": "_", "end": "_" },
+    { "name": "string.other.link.markdown", "match": "\\[.*?\\]\\(.*?\\)" },
+    { "name": "markup.raw.inline.markdown", "begin": "`", "end": "`" },
+    { "name": "markup.raw.block.markdown", "begin": "```", "end": "```" },
+    { "name": "comment.line.number-sign.markdown", "match": "^>.*$" },
+    { "name": "markup.list.unnumbered.markdown", "match": "^\\s*[-*+]\\s+.*$" },
+    { "name": "markup.list.numbered.markdown", "match": "^\\s*\\d+\\.\\s+.*$" },
+    { "name": "constant.other.reference.link.markdown", "match": "^\\[.*\\]:\\s+.*$" }
+  ]
+}

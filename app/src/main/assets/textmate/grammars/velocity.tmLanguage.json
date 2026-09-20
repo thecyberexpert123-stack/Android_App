@@ -1,0 +1,26 @@
+{
+  "name": "Velocity",
+  "scopeName": "text.html.velocity",
+  "fileTypes": ["vm", "vtl"],
+  "patterns": [
+    {"include": "#velocity-comment"},
+    {"include": "#velocity-directive"},
+    {"include": "#velocity-variable"},
+    {"include": "text.html.basic"}
+  ],
+  "repository": {
+    "velocity-comment": {
+      "name": "comment.block.velocity",
+      "begin": "#\\*",
+      "end": "\\*#"
+    },
+    "velocity-directive": {
+      "name": "keyword.control.velocity",
+      "match": "#(if|elseif|else|end|foreach|set|include|parse|macro|define|stop|break)"
+    },
+    "velocity-variable": {
+      "name": "variable.other.velocity",
+      "match": "\\$!?\\{?[A-Za-z_][A-Za-z0-9_\\.]*\\}?"
+    }
+  }
+}

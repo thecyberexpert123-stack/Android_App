@@ -1,0 +1,21 @@
+{
+  "name": "Pascal",
+  "scopeName": "source.pascal",
+  "fileTypes": ["pas", "p", "pp"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#type"},
+    {"include": "#function"},
+    {"include": "#number"}
+  ],
+  "repository": {
+    "comment": {"name": "comment.block.pascal", "begin": "\\{", "end": "\\}", "patterns": [{"name": "comment.block.pascal", "match": "//.*$"}]},
+    "string": {"name": "string.quoted.single.pascal", "begin": "'", "end": "'", "patterns": [{"name": "constant.character.escape.pascal", "match": "''"}]},
+    "keyword": {"name": "keyword.control.pascal", "match": "\\b(program|unit|uses|begin|end|if|then|else|case|of|while|do|for|to|downto|repeat|until|function|procedure|var|const|type|record|array|set|file|class|object|interface|implementation|inherited|public|private|protected|published|try|except|finally|raise|with|goto|label|packed|inline|forward|external|override|virtual|abstract|sealed|static)\\b"},
+    "type": {"name": "storage.type.pascal", "match": "\\b(integer|real|double|extended|single|string|char|boolean|byte|word|longint|cardinal|int64|pointer)\\b"},
+    "function": {"name": "entity.name.function.pascal", "match": "\\b(function|procedure)\\s+([A-Za-z_][A-Za-z0-9_]*)\\b", "captures": {"2": {"name": "entity.name.function.pascal"}}},
+    "number": {"name": "constant.numeric.pascal", "match": "\\b\\d+(\\.\\d+)?\\b"}
+  }
+}

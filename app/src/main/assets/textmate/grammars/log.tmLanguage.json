@@ -1,0 +1,19 @@
+{
+  "name": "Log",
+  "scopeName": "text.log",
+  "fileTypes": ["log"],
+  "patterns": [
+    {"include": "#timestamp"},
+    {"include": "#level"},
+    {"include": "#ip"},
+    {"include": "#number"},
+    {"include": "#exception"}
+  ],
+  "repository": {
+    "timestamp": {"name": "constant.other.timestamp.log", "match": "\\b\\d{4}-\\d{2}-\\d{2}[T ]\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?\\b"},
+    "level": {"patterns": [{"name": "keyword.other.log.level.error", "match": "\\b(ERROR|FATAL|CRITICAL)\\b"}, {"name": "keyword.other.log.level.warning", "match": "\\b(WARN|WARNING)\\b"}, {"name": "keyword.other.log.level.info", "match": "\\b(INFO|INFORMATION)\\b"}, {"name": "keyword.other.log.level.debug", "match": "\\b(DEBUG|TRACE)\\b"}]},
+    "ip": {"name": "constant.other.ip.log", "match": "\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b"},
+    "number": {"name": "constant.numeric.log", "match": "\\b\\d+\\b"},
+    "exception": {"name": "entity.name.type.exception.log", "match": "\\b([A-Z][a-zA-Z]+Exception|[A-Z][a-zA-Z]+Error)\\b"}
+  }
+}

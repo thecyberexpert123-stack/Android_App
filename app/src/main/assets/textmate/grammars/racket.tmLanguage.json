@@ -1,0 +1,19 @@
+{
+  "name": "Racket",
+  "scopeName": "source.racket",
+  "fileTypes": ["rkt", "rktl", "rktd"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#function"},
+    {"include": "#number"}
+  ],
+  "repository": {
+    "comment": {"patterns": [{"name": "comment.line.semicolon.racket", "match": ";.*$"}, {"name": "comment.block.racket", "begin": "#\\|", "end": "\\|#"}]},
+    "string": {"name": "string.quoted.double.racket", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.racket", "match": "\\\\."}]},
+    "keyword": {"name": "keyword.control.racket", "match": "\\b(define|define-syntax|define-struct|lambda|λ|if|cond|case|when|unless|let|let\\*|letrec|let-values|let\\*-values|begin|begin0|set!|quote|quasiquote|unquote|unquote-splicing|require|provide|module|struct|match|for|for/list|for/vector|for/hash|parameterize|with-handlers|guard|syntax|syntax-rules|#lang)\\b"},
+    "function": {"name": "entity.name.function.racket", "match": "\\(define\\s+\\(?([A-Za-z_\\-\\?\\!][A-Za-z0-9_\\-\\?\\!]*)\", "captures": {"1": {"name": "entity.name.function.racket"}}},
+    "number": {"name": "constant.numeric.racket", "match": "\\b\\d+(\\.\\d+)?\\b"}
+  }
+}

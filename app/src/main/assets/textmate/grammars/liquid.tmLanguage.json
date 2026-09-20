@@ -1,0 +1,32 @@
+{
+  "name": "Liquid",
+  "scopeName": "text.html.liquid",
+  "fileTypes": ["liquid"],
+  "patterns": [
+    {"include": "#liquid-comment"},
+    {"include": "#liquid-tag"},
+    {"include": "#liquid-output"},
+    {"include": "text.html.basic"}
+  ],
+  "repository": {
+    "liquid-comment": {
+      "name": "comment.block.liquid",
+      "begin": "\\{%\\s*comment\\s*%\\}",
+      "end": "\\{%\\s*endcomment\\s*%\\}"
+    },
+    "liquid-tag": {
+      "name": "keyword.control.liquid",
+      "match": "\\{%\\s*(if|elsif|else|endif|for|endfor|case|when|endcase|assign|capture|endcapture|include|section|endsession|comment|endcomment|raw|endraw|unless|endunless)\\b[^%]*%\\}"
+    },
+    "liquid-output": {
+      "name": "variable.other.liquid",
+      "begin": "\\{\\{",
+      "end": "\\}\\}",
+      "patterns": [
+        {"name": "variable.other.liquid", "match": "[A-Za-z_][A-Za-z0-9_\\.]*"},
+        {"name": "keyword.operator.liquid", "match": "\\|"},
+        {"name": "support.function.liquid", "match": "\\b(upcase|downcase|capitalize|strip|truncate|replace|first|last|size|sort|where|map|join|split|default|date|escape)\\b"}
+      ]
+    }
+  }
+}

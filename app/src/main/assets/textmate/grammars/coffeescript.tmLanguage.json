@@ -1,0 +1,32 @@
+{
+  "scopeName": "source.coffee",
+  "name": "CoffeeScript",
+  "fileTypes": ["coffee", "cson", "iced"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#regex"},
+    {"include": "#keyword"},
+    {"include": "#function"},
+    {"include": "#class"},
+    {"include": "#numeric"},
+    {"include": "#variable"}
+  ],
+  "repository": {
+    "comment": {"patterns": [
+      {"name": "comment.line.number-sign.coffee", "match": "#.*$"},
+      {"name": "comment.block.coffee", "begin": "###", "end": "###"}
+    ]},
+    "string": {"patterns": [
+      {"name": "string.quoted.double.coffee", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.coffee", "match": "\\\\."}, {"name": "variable.other.coffee", "match": "#\\{[^}]+\\}"}]},
+      {"name": "string.quoted.single.coffee", "begin": "'", "end": "'"},
+      {"name": "string.quoted.triple.coffee", "begin": "\"\"\"", "end": "\"\"\""}
+    ]},
+    "regex": {"name": "string.regexp.coffee", "match": "/(?![\\s=/*+{}?])(?:[^/\\\\\\n]|\\\\.)+/[gimuy]*"},
+    "keyword": {"name": "keyword.control.coffee", "match": "\\b(if|else|for|while|until|loop|break|continue|return|switch|when|then|and|or|is|isnt|not|in|of|by|where|class|extends|super|this|new|try|catch|finally|throw|import|export|from|as|do|yes|no|on|off|true|false|null|undefined|unless|until|loop|of)\\b"},
+    "function": {"name": "entity.name.function.coffee", "match": "\\b([A-Za-z_][A-Za-z0-9_]*)\\s*(?::)?\\s*(?:\\([^)]*\\))?\\s*(?:->|=>)"},
+    "class": {"name": "entity.name.type.class.coffee", "match": "\\bclass\\s+([A-Za-z_][A-Za-z0-9_]*)"},
+    "numeric": {"name": "constant.numeric.coffee", "match": "\\b\\d+(?:\\.\\d+)?\\b"},
+    "variable": {"name": "variable.other.coffee", "match": "\\b@[A-Za-z_][A-Za-z0-9_]*\\b"}
+  }
+}

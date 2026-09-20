@@ -1,0 +1,14 @@
+{
+  "name": "Batch",
+  "scopeName": "source.batchfile",
+  "fileTypes": ["bat", "cmd"],
+  "patterns": [
+    { "name": "comment.line.rem.bat", "match": "(?i)^\\s*(REM|::).*$" },
+    { "name": "keyword.control.bat", "match": "(?i)\\b(ECHO|SET|IF|ELSE|FOR|GOTO|CALL|EXIT|PAUSE|SHIFT|SETLOCAL|ENDLOCAL|PUSHD|POPD|CD|MD|RD|DEL|COPY|MOVE|REN|TYPE|FIND|FINDSTR|CHOICE|ERRORLEVEL|EXIST|NOT|EQU|NEQ|LSS|LEQ|GTR|GEQ)\\b" },
+    { "name": "string.quoted.double.bat", "begin": "\"", "end": "\"" },
+    { "name": "variable.other.bat", "match": "%[A-Za-z0-9_]+%|%%[A-Za-z]|%\\d|!.*!|%\\*|%~[a-z$]*\\d" },
+    { "name": "entity.name.label.bat", "match": "^\\s*:[A-Za-z0-9_\\-\\.]+.*$" },
+    { "name": "constant.numeric.bat", "match": "\\b\\d+\\b" },
+    { "name": "keyword.operator.bat", "match": "&&|\\|\\||\\||&|>|<|>>|<<|\\^" }
+  ]
+}

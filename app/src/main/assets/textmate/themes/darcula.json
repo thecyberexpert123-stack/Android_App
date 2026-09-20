@@ -1,0 +1,56 @@
+{
+  "name": "Darcula",
+  "type": "dark",
+  "colors": {
+    "editor.background": "#2B2B2B",
+    "editor.foreground": "#A9B7C6",
+    "editor.lineHighlightBackground": "#323232",
+    "editor.selectionBackground": "#214283",
+    "editorCursor.foreground": "#AEAFAD",
+    "editorLineNumber.foreground": "#858585",
+    "editorLineNumber.activeForeground": "#C6C6C6",
+    "sideBar.background": "#313335",
+    "activityBar.background": "#3C3F41",
+    "statusBar.background": "#3C3F41",
+    "statusBar.foreground": "#BBBBBB"
+  },
+  "tokenColors": [
+    {
+      "scope": "comment",
+      "settings": {
+        "foreground": "#808080",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "scope": "keyword",
+      "settings": {
+        "foreground": "#CC7832"
+      }
+    },
+    {
+      "scope": "string",
+      "settings": {
+        "foreground": "#6A8759"
+      }
+    },
+    {
+      "scope": "entity.name.function",
+      "settings": {
+        "foreground": "#FFC66D"
+      }
+    },
+    {
+      "scope": "variable",
+      "settings": {
+        "foreground": "#A9B7C6"
+      }
+    },
+    {
+      "scope": "constant.numeric",
+      "settings": {
+        "foreground": "#6897BB"
+      }
+    }
+  ]
+}

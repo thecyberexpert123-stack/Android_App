@@ -1,0 +1,14 @@
+{
+  "name": "Rust",
+  "scopeName": "source.rust",
+  "fileTypes": ["rs"],
+  "patterns": [
+    { "name": "comment.line.double-slash.rust", "match": "//.*$" },
+    { "name": "comment.block.rust", "begin": "/\\*", "end": "\\*/" },
+    { "name": "string.quoted.double.rust", "begin": "\"", "end": "\"" },
+    { "name": "keyword.control.rust", "match": "\\b(as|break|const|continue|crate|else|enum|extern|false|fn|for|if|impl|in|let|loop|match|mod|move|mut|pub|ref|return|self|Self|static|struct|super|trait|true|type|unsafe|use|where|while|async|await|dyn|abstract|become|box|do|final|macro|override|priv|typeof|unsized|virtual|yield|try)\\b" },
+    { "name": "entity.name.function.rust", "match": "\\b(fn)\\s+([a-zA-Z_][a-zA-Z0-9_]*)" },
+    { "name": "entity.name.type.class.rust", "match": "\\b(struct|enum|trait)\\s+([A-Z][a-zA-Z0-9_]*)" },
+    { "name": "constant.numeric.rust", "match": "\\b\\d+(\\.\\d+)?\\b" }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "scopeName": "source.glsl",
+  "name": "GLSL",
+  "fileTypes": ["glsl", "vert", "frag", "geom", "comp", "vs", "fs"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#function"},
+    {"include": "#type"},
+    {"include": "#numeric"}
+  ],
+  "repository": {
+    "comment": {"patterns": [
+      {"name": "comment.line.double-slash.glsl", "match": "//.*$"},
+      {"name": "comment.block.glsl", "begin": "/\\*", "end": "\\*/"}
+    ]},
+    "string": {"patterns": [
+      {"name": "string.quoted.double.glsl", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.glsl", "match": "\\\\."}]},
+      {"name": "string.quoted.single.glsl", "begin": "'", "end": "'"}
+    ]},
+    "keyword": {"name": "keyword.control.glsl", "match": "\\b(if|else|for|while|do|switch|case|default|break|continue|return|discard|struct|uniform|varying|attribute|in|out|inout|const|centroid|flat|smooth|noperspective|patch|sample|precision|highp|mediump|lowp|layout|location|binding|shared|packed|std140|std430|row_major|column_major)\\b"},
+    "function": {"name": "entity.name.function.glsl", "match": "\\b([A-Za-z_][A-Za-z0-9_]*)\\s*(?=\\()"},
+    "type": {"name": "storage.type.glsl", "match": "\\b(void|bool|int|uint|float|double|vec2|vec3|vec4|bvec2|bvec3|bvec4|ivec2|ivec3|ivec4|uvec2|uvec3|uvec4|mat2|mat3|mat4|mat2x2|mat2x3|mat2x4|mat3x2|mat3x3|mat3x4|mat4x2|mat4x3|mat4x4|sampler2D|sampler3D|samplerCube|sampler2DShadow|samplerCubeShadow|sampler2DArray|sampler2DArrayShadow|isampler2D|isampler3D|isamplerCube|isampler2DArray|usampler2D|usampler3D|usamplerCube|usampler2DArray|sampler1D|sampler1DShadow|sampler1DArray|sampler1DArrayShadow|sampler2DRect|sampler2DRectShadow|samplerBuffer|sampler2DMS|sampler2DMSArray|isampler1D|isampler1DArray|isampler2DRect|isamplerBuffer|isampler2DMS|isampler2DMSArray|usampler1D|usampler1DArray|usampler2DRect|usamplerBuffer|usampler2DMS|usampler2DMSArray|image2D|iimage2D|uimage2D|image3D|iimage3D|uimage3D|imageCube|iimageCube|uimageCube|imageBuffer|iimageBuffer|uimageBuffer|image1D|iimage1D|uimage1D|image1DArray|iimage1DArray|uimage1DArray|image2DArray|iimage2DArray|uimage2DArray|image2DRect|iimage2DRect|uimage2DRect|image2DMS|iimage2DMS|uimage2DMS|image2DMSArray|iimage2DMSArray|uimage2DMSArray)\\b"},
+    "numeric": {"name": "constant.numeric.glsl", "match": "\\b\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?[fFuU]?\\b"}
+  }
+}

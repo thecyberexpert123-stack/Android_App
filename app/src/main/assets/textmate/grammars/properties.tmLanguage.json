@@ -1,0 +1,13 @@
+{
+  "name": "Properties",
+  "scopeName": "source.properties",
+  "fileTypes": ["properties", "ini", "conf", "cfg"],
+  "patterns": [
+    { "name": "comment.line.number-sign.properties", "match": "#.*$|^\\s*;.*$" },
+    { "name": "comment.line.exclamation.properties", "match": "!.*$" },
+    { "name": "keyword.other.key.properties", "match": "^\\s*[a-zA-Z0-9_\\.\\-]+\\s*(?==|:|\\s)" },
+    { "name": "punctuation.separator.key-value.properties", "match": "=|:|\\s" },
+    { "name": "string.unquoted.properties", "match": "(?<==|:).*$" },
+    { "name": "constant.numeric.properties", "match": "\\b\\d+\\b" }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Mustache",
+  "scopeName": "text.html.mustache",
+  "fileTypes": ["mustache"],
+  "patterns": [
+    {"include": "#mustache-comment"},
+    {"include": "#mustache-tag"},
+    {"include": "text.html.basic"}
+  ],
+  "repository": {
+    "mustache-comment": {
+      "name": "comment.block.mustache",
+      "begin": "\\{\\{!",
+      "end": "\\}\\}"
+    },
+    "mustache-tag": {
+      "name": "keyword.control.mustache",
+      "match": "\\{\\{[#\\^/>&]?[A-Za-z_][A-Za-z0-9_\\.]*\\}\\}|\\{\\{\\{[A-Za-z_][A-Za-z0-9_\\.]*\\}\\}\\}"
+    }
+  }
+}

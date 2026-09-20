@@ -1,0 +1,28 @@
+{
+  "scopeName": "source.crystal",
+  "name": "Crystal",
+  "fileTypes": ["cr"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#function"},
+    {"include": "#class"},
+    {"include": "#numeric"},
+    {"include": "#variable"}
+  ],
+  "repository": {
+    "comment": {"patterns": [
+      {"name": "comment.line.number-sign.crystal", "match": "#.*$"}
+    ]},
+    "string": {"patterns": [
+      {"name": "string.quoted.double.crystal", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.crystal", "match": "\\\\."}, {"name": "variable.other.crystal", "match": "#\\{[^}]+\\}"}]},
+      {"name": "string.quoted.single.crystal", "begin": "'", "end": "'"}
+    ]},
+    "keyword": {"name": "keyword.control.crystal", "match": "\\b(if|else|elsif|unless|for|while|until|loop|break|next|return|def|class|module|struct|enum|include|extend|private|protected|public|abstract|def|end|do|begin|rescue|ensure|raise|require|select|when|case|in|out|as|is_a\\?|nil\\?|as\\?|typeof|instance_sizeof|sizeof|pointerof|with|yield|super|self|true|false|nil)\\b"},
+    "function": {"name": "entity.name.function.crystal", "match": "\\bdef\\s+([A-Za-z_][A-Za-z0-9_]*[?!]?)"},
+    "class": {"name": "entity.name.type.class.crystal", "match": "\\b(?:class|module|struct|enum)\\s+([A-Za-z_][A-Za-z0-9_]*)"},
+    "numeric": {"name": "constant.numeric.crystal", "match": "\\b\\d+(?:_\\d+)*(?:\\.\\d+(?:_\\d+)*)?\\b"},
+    "variable": {"name": "variable.other.crystal", "match": "@@?[A-Za-z_][A-Za-z0-9_]*"}
+  }
+}

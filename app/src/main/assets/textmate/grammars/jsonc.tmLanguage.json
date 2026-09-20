@@ -1,0 +1,19 @@
+{
+  "name": "JSON with Comments",
+  "scopeName": "source.json.comments",
+  "fileTypes": ["jsonc", "code-workspace"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#number"},
+    {"include": "#constant"},
+    {"include": "#punctuation"}
+  ],
+  "repository": {
+    "comment": {"patterns": [{"name": "comment.line.double-slash.jsonc", "match": "//.*$"}, {"name": "comment.block.jsonc", "begin": "/\\*", "end": "\\*/"}]},
+    "string": {"name": "string.quoted.double.jsonc", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.jsonc", "match": "\\\\."}]},
+    "number": {"name": "constant.numeric.jsonc", "match": "\\b-?\\d+(\\.\\d+)?([eE][+-]?\\d+)?\\b"},
+    "constant": {"name": "constant.language.jsonc", "match": "\\b(true|false|null)\\b"},
+    "punctuation": {"name": "punctuation.definition.jsonc", "match": "[\\{\\}\\[\\]:,]"}
+  }
+}

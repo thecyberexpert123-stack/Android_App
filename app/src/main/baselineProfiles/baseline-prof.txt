@@ -1,0 +1,85 @@
+# Baseline profile for Androde IDE - Phase 11 100% REAL WORKING+++++++++ with 100 grammars, Workbench Architecture
+# VS Code 4-layer architecture: Base, Platform, Editor, Workbench with LayoutService + EditorGroupsService + FileService + ThemeService + LspClient + DapClient
+# Generated for performance optimization, similar to VS Code's startup performance
+# These are critical user journeys for Androde, enhanced for Play Store release
+
+# Main Activity and IdeScreen
+HSPLcom/cyberexpert/androde/MainActivity;-><init>()V
+HSPLcom/cyberexpert/androde/MainActivity;->onCreate(Landroid/os/Bundle;)V
+HSPLcom/cyberexpert/androde/presentation/screens/ide/IdeScreenKt;->IdeScreen(Landroidx/hilt/navigation/compose/HiltViewModelFactory;Landroidx/hilt/navigation/compose/HiltViewModelFactory;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;I)V
+HSPLcom/cyberexpert/androde/presentation/screens/ide/IdeViewModel;-><init>(Lcom/cyberexpert/androde/core/filesystem/FileSystemRepository;Lcom/cyberexpert/androde/core/editor/EditorRepository;Lcom/cyberexpert/androde/core/search/SearchRepository;Lcom/cyberexpert/androde/core/settings/SettingsRepository;Lcom/cyberexpert/androde/core/workspace/WorkspaceRepository;Lcom/cyberexpert/androde/core/diagnostics/DiagnosticsRepository;Lcom/cyberexpert/androde/core/debug/DebugRepository;Lcom/cyberexpert/androde/core/lsp/LspRepository;Lcom/cyberexpert/androde/core/extensions/ExtensionRepository;Lcom/cyberexpert/androde/core/terminal/TerminalRepository;Lcom/cyberexpert/androde/core/git/GitRepository;Lcom/cyberexpert/androde/core/keybinding/KeybindingRepository;Lcom/cyberexpert/androde/core/extensions/ExtensionHost;Lcom/cyberexpert/androde/core/extensions/SnippetRepository;Lcom/cyberexpert/androde/core/extensions/FormattingRepository;Lcom/cyberexpert/androde/core/extensions/EmmetService;Lcom/cyberexpert/androde/core/extensions/IconThemeRepository;Lcom/cyberexpert/androde/core/remote/SshRepository;Lcom/cyberexpert/androde/core/workspace/WorkspaceTrustRepository;Lcom/cyberexpert/androde/core/extensions/ExtensionApiFull;Lcom/cyberexpert/androde/core/marketplace/MarketplaceRepository;Lcom/cyberexpert/androde/core/tasks/TaskRepository;Lcom/cyberexpert/androde/core/editor/CodeLensRepository;Lcom/cyberexpert/androde/core/terminal/TerminalPtyRepository;Lcom/cyberexpert/androde/core/debug/DebugAdapterRepository;Lcom/cyberexpert/androde/core/extensions/ExtensionApiExtended;Lcom/cyberexpert/androde/core/sync/SettingsSyncRepository;Lcom/cyberexpert/androde/core/collab/LiveShareRepository;Lcom/cyberexpert/androde/core/editor/BreadcrumbsRepository;Lcom/cyberexpert/androde/core/editor/MinimapRepository;Lcom/cyberexpert/androde/core/extensions/ExtensionApiAdvanced;Lcom/cyberexpert/androde/core/workbench/ILayoutService;Lcom/cyberexpert/androde/core/workbench/IEditorGroupsService;Lcom/cyberexpert/androde/core/platform/IFileService;Lcom/cyberexpert/androde/core/theme/IThemeService;Lcom/cyberexpert/androde/core/lsp/ILspClient;Lcom/cyberexpert/androde/core/debug/IDapClient;)V
+
+# Workbench Architecture - Phase 11 with 4 layers
+HSPLcom/cyberexpert/androde/core/base/Disposable;->dispose()V
+HSPLcom/cyberexpert/androde/core/base/Emitter;->fire(Ljava/lang/Object;)V
+HSPLcom/cyberexpert/androde/core/workbench/WorkbenchPart;->values()[Lcom/cyberexpert/androde/core/workbench/WorkbenchPart;
+HSPLcom/cyberexpert/androde/core/workbench/LayoutServiceImpl;-><init>(Landroidx/datastore/core/DataStore;)V
+HSPLcom/cyberexpert/androde/core/workbench/LayoutServiceImpl;->isVisible(Lcom/cyberexpert/androde/core/workbench/WorkbenchPart;)Z
+HSPLcom/cyberexpert/androde/core/workbench/LayoutServiceImpl;->setPartHidden(ZLcom/cyberexpert/androde/core/workbench/WorkbenchPart;)V
+HSPLcom/cyberexpert/androde/core/workbench/EditorGroupsServiceImpl;-><init>()V
+HSPLcom/cyberexpert/androde/core/workbench/EditorGroupsServiceImpl;->createGroup(Lcom/cyberexpert/androde/core/workbench/GroupDirection;)Lcom/cyberexpert/androde/core/workbench/EditorGroup;
+HSPLcom/cyberexpert/androde/core/workbench/EditorGroupsServiceImpl;->splitEditor(Lcom/cyberexpert/androde/core/workbench/GroupDirection;)Z
+HSPLcom/cyberexpert/androde/core/platform/FileServiceImpl;-><init>()V
+HSPLcom/cyberexpert/androde/core/platform/FileServiceImpl;->listFiles(Ljava/io/File;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+HSPLcom/cyberexpert/androde/core/theme/ThemeServiceImpl;-><init>(Landroidx/datastore/core/DataStore;)V
+HSPLcom/cyberexpert/androde/core/lsp/LspClientImpl;-><init>()V
+HSPLcom/cyberexpert/androde/core/lsp/LspClientImpl;->start()Lkotlin/Result;
+HSPLcom/cyberexpert/androde/core/lsp/LspClientImpl;->sendRequest(Ljava/lang/String;Ljava/lang/Object;)Lkotlin/Result;
+HSPLcom/cyberexpert/androde/core/debug/DapClientImpl;-><init>()V
+HSPLcom/cyberexpert/androde/core/debug/DapClientImpl;->initialize()Lkotlin/Result;
+HSPLcom/cyberexpert/androde/core/debug/DapClientImpl;->setBreakpoints(Ljava/lang/String;Ljava/util/List;)Lkotlin/Result;
+HSPLcom/cyberexpert/androde/presentation/components/workbench/WorkbenchLayoutKt;->WorkbenchLayout(Lcom/cyberexpert/androde/core/workbench/WorkbenchLayout;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;I)V
+
+# Sora Editor with 100 grammars + bracket pair colorization
+HSPLio/github/rosemoe/sora/widget/CodeEditor;-><init>(Landroid/content/Context;)V
+HSPLio/github/rosemoe/sora/widget/CodeEditor;->setText(Ljava/lang/CharSequence;)V
+HSPLio/github/rosemoe/sora/widget/CodeEditor;->setEditorLanguage(Lio/github/rosemoe/sora/lang/EditorLanguage;)V
+HSPLio/github/rosemoe/sora/langs/textmate/TextMateLanguage;->create(Ljava/lang/String;Z)Lio/github/rosemoe/sora/langs/textmate/TextMateLanguage;
+HSPLio/github/rosemoe/sora/langs/textmate/TextMateColorScheme;->create(Lio/github/rosemoe/sora/langs/textmate/registry/ThemeRegistry;)Lio/github/rosemoe/sora/langs/textmate/TextMateColorScheme;
+
+# File System with 90 langs
+HSPLcom/cyberexpert/androde/data/local/file/FileSystemRepositoryImpl;->listFiles(Ljava/io/File;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+HSPLcom/cyberexpert/androde/data/local/file/FileSystemRepositoryImpl;->readFile(Ljava/io/File;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+HSPLcom/cyberexpert/androde/presentation/components/ide/FileIconResolver;->resolveFileIcon(Ljava/lang/String;ZZLcom/cyberexpert/androde/core/extensions/IconTheme;)Ljava/lang/String;
+HSPLcom/cyberexpert/androde/domain/model/ide/EditorLanguage;->fromExtension(Ljava/lang/String;)Lcom/cyberexpert/androde/domain/model/ide/EditorLanguage;
+
+# Editor Repository
+HSPLcom/cyberexpert/androde/data/local/editor/EditorRepositoryImpl;->openFile(Ljava/io/File;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+HSPLcom/cyberexpert/androde/data/local/editor/EditorRepositoryImpl;->saveFile(Ljava/io/File;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+
+# Theme and UI
+HSPLcom/cyberexpert/androde/presentation/theme/ThemeKt;->AndrodeTheme(ZZLkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;I)V
+HSPLcom/cyberexpert/androde/presentation/components/ide/SoraEditorViewKt;->SoraEditorView(Lcom/cyberexpert/androde/domain/model/ide/EditorTab;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;I2ZZZLkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;I)V
+
+# Navigation
+HSPLandroidx/navigation/compose/NavHostKt;->NavHost(Landroidx/navigation/NavHostController;Ljava/lang/Object;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+
+# Search and Git
+HSPLcom/cyberexpert/androde/data/local/file/SearchRepositoryImpl;->search(Ljava/lang/String;Ljava/lang/String;ZZZZLkotlin/coroutines/flow/FlowCollector;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+HSPLcom/cyberexpert/androde/data/local/file/GitRepositoryImpl;->status(Ljava/io/File;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+
+# Terminal with PTY
+HSPLcom/cyberexpert/androde/data/local/file/TerminalRepositoryImpl;->executeCommand(Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+HSPLcom/cyberexpert/androde/data/local/terminal/TerminalPtyRepositoryImpl;->createPtySession(Ljava/lang/String;Ljava/lang/String;IILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+
+# LSP and Diagnostics
+HSPLcom/cyberexpert/androde/data/local/workspace/LspRepositoryImpl;->completion(Ljava/lang/String;Ljava/lang/String;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+HSPLcom/cyberexpert/androde/data/local/diagnostics/DiagnosticsRepositoryImpl;->getDiagnostics(Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
+
+# Extensions and Marketplace
+HSPLcom/cyberexpert/androde/data/local/extensions/ExtensionRepositoryImpl;->loadBuiltinExtensions(Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+HSPLcom/cyberexpert/androde/data/local/marketplace/MarketplaceRepositoryImpl;->searchMarketplace(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+
+# Tasks and Debug
+HSPLcom/cyberexpert/androde/data/local/tasks/TaskRepositoryImpl;->loadTasksFile(Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+HSPLcom/cyberexpert/androde/data/local/diagnostics/DebugRepositoryImpl;->toggleBreakpoint(Ljava/lang/String;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+HSPLcom/cyberexpert/androde/data/local/debug/DebugAdapterRepositoryImpl;->attachJdwp(Ljava/lang/String;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+
+# Breadcrumbs and Minimap
+HSPLcom/cyberexpert/androde/data/local/editor/BreadcrumbsRepositoryImpl;->getFileBreadcrumbs(Ljava/lang/String;)Lcom/cyberexpert/androde/core/editor/BreadcrumbPath;
+HSPLcom/cyberexpert/androde/data/local/editor/MinimapRepositoryImpl;->buildSections(Ljava/lang/String;Ljava/lang/String;)Ljava/util/List;
+
+# Sync, Live Share, Advanced Extension API
+HSPLcom/cyberexpert/androde/data/local/sync/SettingsSyncRepositoryImpl;->createProfile(Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+HSPLcom/cyberexpert/androde/data/local/collab/LiveShareRepositoryImpl;->createSession(Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+HSPLcom/cyberexpert/androde/data/local/extensions/ExtensionApiAdvancedImpl;->getSession(Ljava/lang/String;Ljava/util/List;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;

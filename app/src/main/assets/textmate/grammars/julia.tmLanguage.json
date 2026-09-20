@@ -1,0 +1,15 @@
+{
+  "name": "Julia",
+  "scopeName": "source.julia",
+  "fileTypes": ["jl"],
+  "patterns": [
+    { "name": "comment.line.number-sign.julia", "match": "#.*$" },
+    { "name": "string.quoted.triple.double.julia", "begin": "\"\"\"", "end": "\"\"\"" },
+    { "name": "string.quoted.double.julia", "begin": "\"", "end": "\"", "patterns": [{ "name": "constant.character.escape.julia", "match": "\\\\." }] },
+    { "name": "keyword.control.julia", "match": "\\b(if|else|elseif|end|for|while|function|return|break|continue|let|local|global|const|struct|mutable|abstract|primitive|type|import|using|export|module|baremodule|quote|macro|begin|do|try|catch|finally|throw|where|in|isa)\\b" },
+    { "name": "entity.name.function.julia", "match": "\\bfunction\\s+([A-Za-z_][A-Za-z0-9_!]*!?)", "captures": { "1": { "name": "entity.name.function.julia" } } },
+    { "name": "entity.name.type.class.julia", "match": "\\b(struct|mutable struct|abstract type|primitive type)\\s+([A-Za-z_][A-Za-z0-9_]*)", "captures": { "2": { "name": "entity.name.type.class.julia" } } },
+    { "name": "constant.numeric.julia", "match": "\\b\\d+(\\.\\d+)?\\b" },
+    { "name": "constant.language.julia", "match": "\\b(true|false|nothing|missing)\\b" }
+  ]
+}

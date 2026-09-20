@@ -1,0 +1,56 @@
+{
+  "name": "Monokai",
+  "type": "dark",
+  "colors": {
+    "editor.background": "#272822",
+    "editor.foreground": "#F8F8F2",
+    "editor.lineHighlightBackground": "#3E3D32",
+    "editor.selectionBackground": "#49483E",
+    "editorCursor.foreground": "#F8F8F0",
+    "editorLineNumber.foreground": "#90908A",
+    "editorLineNumber.activeForeground": "#F8F8F2",
+    "sideBar.background": "#1E1F1C",
+    "activityBar.background": "#1E1F1C",
+    "statusBar.background": "#1E1F1C",
+    "statusBar.foreground": "#F8F8F2"
+  },
+  "tokenColors": [
+    {
+      "scope": "comment",
+      "settings": {
+        "foreground": "#75715E"
+      }
+    },
+    {
+      "scope": "keyword",
+      "settings": {
+        "foreground": "#F92672"
+      }
+    },
+    {
+      "scope": "string",
+      "settings": {
+        "foreground": "#E6DB74"
+      }
+    },
+    {
+      "scope": "entity.name.function",
+      "settings": {
+        "foreground": "#A6E22E"
+      }
+    },
+    {
+      "scope": "constant.numeric",
+      "settings": {
+        "foreground": "#AE81FF"
+      }
+    },
+    {
+      "scope": "entity.name.type.class",
+      "settings": {
+        "foreground": "#66D9EF",
+        "fontStyle": "italic"
+      }
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "scopeName": "text.pug",
+  "name": "Pug",
+  "fileTypes": ["pug", "jade"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#tag"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#variable"},
+    {"include": "#numeric"}
+  ],
+  "repository": {
+    "comment": {"patterns": [
+      {"name": "comment.line.double-slash.pug", "match": "//.*$"},
+      {"name": "comment.block.pug", "begin": "/-", "end": "-/"}
+    ]},
+    "tag": {"name": "entity.name.tag.pug", "match": "^\\s*(?:[a-zA-Z][a-zA-Z0-9]*|\\.|#|\\||\\s*:\\s*[a-zA-Z]+)"},
+    "string": {"patterns": [
+      {"name": "string.quoted.double.pug", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.pug", "match": "\\\\."}]},
+      {"name": "string.quoted.single.pug", "begin": "'", "end": "'"}
+    ]},
+    "keyword": {"name": "keyword.control.pug", "match": "\\b(if|else|unless|for|each|in|case|when|default|block|extends|include|mixin|append|prepend|yield)\\b"},
+    "variable": {"name": "variable.other.pug", "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\b(?=\\s*=)"},
+    "numeric": {"name": "constant.numeric.pug", "match": "\\b\\d+\\b"}
+  }
+}

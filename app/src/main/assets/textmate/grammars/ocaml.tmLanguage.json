@@ -1,0 +1,24 @@
+{
+  "scopeName": "source.ocaml",
+  "name": "OCaml",
+  "fileTypes": ["ml", "mli", "mly", "mll"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#function"},
+    {"include": "#type"},
+    {"include": "#numeric"}
+  ],
+  "repository": {
+    "comment": {"name": "comment.block.ocaml", "begin": "\\(\\*", "end": "\\*\\)"},
+    "string": {"patterns": [
+      {"name": "string.quoted.double.ocaml", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.ocaml", "match": "\\\\."}]},
+      {"name": "string.quoted.single.ocaml", "begin": "'", "end": "'", "patterns": [{"name": "constant.character.escape.ocaml", "match": "\\\\."}]}
+    ]},
+    "keyword": {"name": "keyword.control.ocaml", "match": "\\b(let|rec|in|if|then|else|match|with|when|fun|function|type|module|struct|sig|open|include|exception|try|begin|end|for|while|do|done|to|downto|as|and|or|mutable|virtual|private|public|inherit|initializer|method|val|constraint|external|class|object|new|of|assert|lazy|let|rec)\\b"},
+    "function": {"name": "entity.name.function.ocaml", "match": "\\blet\\s+(?:rec\\s+)?([A-Za-z_][A-Za-z0-9_']*)"},
+    "type": {"name": "entity.name.type.ocaml", "match": "\\btype\\s+([A-Za-z_][A-Za-z0-9_']*)"},
+    "numeric": {"name": "constant.numeric.ocaml", "match": "\\b\\d+(?:\\.\\d+)?\\b"}
+  }
+}

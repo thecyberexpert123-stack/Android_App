@@ -1,0 +1,26 @@
+{
+  "scopeName": "text.html.twig",
+  "name": "Twig",
+  "fileTypes": ["twig"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#twig"},
+    {"include": "text.html.basic"}
+  ],
+  "repository": {
+    "comment": {"name": "comment.block.twig", "begin": "\\{#", "end": "#\\}"},
+    "twig": {"patterns": [
+      {"name": "entity.name.tag.twig", "begin": "\\{%", "end": "%\\}", "patterns": [
+        {"name": "keyword.control.twig", "match": "\\b(if|elseif|else|endif|for|endfor|in|block|endblock|extends|include|embed|endembed|filter|endfilter|macro|endmacro|import|from|set|do|flush|use|verbatim|endverbatim|autoescape|endautoescape|spaceless|endspaceless|with|endwith)\\b"},
+        {"name": "variable.other.twig", "match": "[A-Za-z_][A-Za-z0-9_]*"},
+        {"name": "string.quoted.double.twig", "begin": "\"", "end": "\""},
+        {"name": "string.quoted.single.twig", "begin": "'", "end": "'"}
+      ]},
+      {"name": "entity.name.tag.twig", "begin": "\\{\\{", "end": "\\}\\}", "patterns": [
+        {"name": "variable.other.twig", "match": "[A-Za-z_][A-Za-z0-9_\\.]*"},
+        {"name": "keyword.operator.twig", "match": "\\||\\~|\\+|-|\\*|/|%|==|!=|<|>|<=|>=|and|or|not|in|is|\\?|:"},
+        {"name": "string.quoted.double.twig", "begin": "\"", "end": "\""}
+      ]}
+    ]}
+  }
+}
