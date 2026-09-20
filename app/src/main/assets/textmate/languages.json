@@ -14,13 +14,13 @@
     },
     {
       "id": "javascript",
-      "extensions": [".js", ".jsx", ".mjs", ".cjs"],
+      "extensions": [".js", ".mjs", ".cjs"],
       "aliases": ["JavaScript", "javascript", "js"],
       "grammar": "textmate/grammars/javascript.tmLanguage.json"
     },
     {
       "id": "typescript",
-      "extensions": [".ts", ".tsx"],
+      "extensions": [".ts"],
       "aliases": ["TypeScript", "typescript", "ts"],
       "grammar": "textmate/grammars/typescript.tmLanguage.json"
     },
@@ -92,7 +92,7 @@
     },
     {
       "id": "xml",
-      "extensions": [".xml", ".xsl", ".xsd", ".svg", ".plist"],
+      "extensions": [".xml", ".xsd", ".svg", ".plist"],
       "aliases": ["XML", "xml"],
       "grammar": "textmate/grammars/xml.tmLanguage.json"
     },
@@ -422,7 +422,7 @@
     },
     {
       "id": "verilog",
-      "extensions": [".v", ".sv", ".svh"],
+      "extensions": [".v"],
       "aliases": ["Verilog", "verilog"],
       "grammar": "textmate/grammars/verilog.tmLanguage.json"
     },
@@ -659,6 +659,66 @@
       "extensions": [".dockercompose"],
       "aliases": ["Docker Compose", "dockercompose", "compose"],
       "grammar": "textmate/grammars/dockercompose.tmLanguage.json"
+    },
+    {
+      "id": "xsl",
+      "extensions": [".xsl", ".xslt"],
+      "aliases": ["XSL", "xsl", "XSLT"],
+      "grammar": "textmate/grammars/xsl.tmLanguage.json"
+    },
+    {
+      "id": "ignore",
+      "extensions": [".ignore", ".dockerignore", ".npmignore", ".eslintignore"],
+      "aliases": ["Ignore", "ignore"],
+      "grammar": "textmate/grammars/ignore.tmLanguage.json"
+    },
+    {
+      "id": "javascriptreact",
+      "extensions": [".jsx"],
+      "aliases": ["JavaScript React", "javascriptreact", "jsx"],
+      "grammar": "textmate/grammars/javascriptreact.tmLanguage.json"
+    },
+    {
+      "id": "typescriptreact",
+      "extensions": [".tsx"],
+      "aliases": ["TypeScript React", "typescriptreact", "tsx"],
+      "grammar": "textmate/grammars/typescriptreact.tmLanguage.json"
+    },
+    {
+      "id": "systemverilog",
+      "extensions": [".sv", ".svh"],
+      "aliases": ["SystemVerilog", "systemverilog", "sv"],
+      "grammar": "textmate/grammars/systemverilog.tmLanguage.json"
+    },
+    {
+      "id": "zig",
+      "extensions": [".zig"],
+      "aliases": ["Zig", "zig"],
+      "grammar": "textmate/grammars/zig.tmLanguage.json"
+    },
+    {
+      "id": "haxe",
+      "extensions": [".hx", ".hxml"],
+      "aliases": ["Haxe", "haxe"],
+      "grammar": "textmate/grammars/haxe.tmLanguage.json"
+    },
+    {
+      "id": "purescript",
+      "extensions": [".purs"],
+      "aliases": ["PureScript", "purescript"],
+      "grammar": "textmate/grammars/purescript.tmLanguage.json"
+    },
+    {
+      "id": "reason",
+      "extensions": [".re", ".rei"],
+      "aliases": ["Reason", "reason", "reasonml"],
+      "grammar": "textmate/grammars/reason.tmLanguage.json"
+    },
+    {
+      "id": "jsonl",
+      "extensions": [".jsonl", ".ndjson"],
+      "aliases": ["JSONL", "jsonl", "JSON Lines"],
+      "grammar": "textmate/grammars/jsonl.tmLanguage.json"
     }
   ]
 }

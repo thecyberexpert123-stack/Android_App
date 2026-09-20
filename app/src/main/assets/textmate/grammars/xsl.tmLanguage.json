@@ -1,0 +1,31 @@
+{
+  "name": "XSL",
+  "scopeName": "text.xml.xsl",
+  "fileTypes": ["xsl", "xslt"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#tag"},
+    {"include": "#entity"},
+    {"include": "#string"}
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [{"name": "comment.block.xml", "begin": "<!--", "end": "-->", "beginCaptures": {"0": {"name": "punctuation.definition.comment.xml"}}, "endCaptures": {"0": {"name": "punctuation.definition.comment.xml"}}}]
+    },
+    "tag": {
+      "patterns": [
+        {"name": "meta.tag.xml", "begin": "(<\\?)(xml)", "end": "(\\?>)", "beginCaptures": {"1": {"name": "punctuation.definition.tag.xml"}, "2": {"name": "entity.name.tag.xml"}}, "endCaptures": {"1": {"name": "punctuation.definition.tag.xml"}}},
+        {"name": "meta.tag.xml", "begin": "(</?)([a-zA-Z0-9_:\\-]+)", "end": "(/?>)", "beginCaptures": {"1": {"name": "punctuation.definition.tag.xml"}, "2": {"name": "entity.name.tag.xml"}}, "endCaptures": {"1": {"name": "punctuation.definition.tag.xml"}}, "patterns": [{"include": "#attribute"}]}
+      ]
+    },
+    "attribute": {
+      "patterns": [
+        {"name": "entity.other.attribute-name.xml", "match": "[a-zA-Z0-9_:\\-]+(?=\\s*=)"},
+        {"name": "string.quoted.double.xml", "begin": "\"", "end": "\"", "beginCaptures": {"0": {"name": "punctuation.definition.string.begin.xml"}}, "endCaptures": {"0": {"name": "punctuation.definition.string.end.xml"}}},
+        {"name": "string.quoted.single.xml", "begin": "'", "end": "'", "beginCaptures": {"0": {"name": "punctuation.definition.string.begin.xml"}}, "endCaptures": {"0": {"name": "punctuation.definition.string.end.xml"}}}
+      ]
+    },
+    "entity": {"name": "constant.character.entity.xml", "match": "&[a-zA-Z0-9]+;|&#\\d+;|&#x[0-9a-fA-F]+;"},
+    "string": {"name": "string.quoted.double.xml", "begin": "\"", "end": "\""}
+  }
+}

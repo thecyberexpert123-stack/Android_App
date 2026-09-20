@@ -1,0 +1,36 @@
+{
+  "name": "SystemVerilog",
+  "scopeName": "source.systemverilog",
+  "fileTypes": ["sv", "svh"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#type"},
+    {"include": "#function"},
+    {"include": "#numeric"}
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {"name": "comment.line.double-slash.sv", "match": "//.*$"},
+        {"name": "comment.block.sv", "begin": "/\\*", "end": "\\*/"}
+      ]
+    },
+    "string": {
+      "patterns": [
+        {"name": "string.quoted.double.sv", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.sv", "match": "\\\\."}]}
+      ]
+    },
+    "keyword": {
+      "name": "keyword.control.sv",
+      "match": "\\b(module|endmodule|interface|endinterface|program|endprogram|package|endpackage|class|endclass|function|endfunction|task|endtask|begin|end|if|else|else if|for|foreach|while|do|case|endcase|casex|casez|default|break|continue|return|import|export|extends|implements|virtual|static|automatic|local|protected|rand|randc|constraint|covergroup|endgroup|coverpoint|cross|bins|binsof|illegal_bins|ignore_bins|with|inside|dist|inside|posedge|negedge|edge|wait|fork|join|join_any|join_none|disable|always|always_comb|always_ff|always_latch|initial|final|assign|deassign|force|release|generate|endgenerate|genvar|parameter|localparam|typedef|struct|union|enum|logic|bit|reg|wire|input|output|inout|ref)\\b"
+    },
+    "type": {
+      "name": "storage.type.sv",
+      "match": "\\b(logic|bit|reg|wire|int|integer|byte|shortint|longint|time|real|shortreal|string|chandle|event|void|logic\\s*\\[|bit\\s*\\[)\\b"
+    },
+    "function": {"name": "entity.name.function.sv", "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\s*(?=\\()"},
+    "numeric": {"name": "constant.numeric.sv", "match": "\\b\\d+'?[bhd]?[0-9a-fA-F_xz]+\\b|\\b\\d+(\\.\\d+)?\\b"}
+  }
+}

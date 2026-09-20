@@ -39,8 +39,8 @@ data class EditorTab(
 }
 
 /**
- * Language mode, similar to VS Code language detection - Phase 12 with 110 languages.
- * Uses file extension to determine language for Sora Editor with 110 TextMate grammars.
+ * Language mode, similar to VS Code language detection - Phase 13 with 120 languages.
+ * Uses file extension to determine language for Sora Editor with 120 TextMate grammars.
  */
 enum class EditorLanguage(
     val id: String,
@@ -50,8 +50,8 @@ enum class EditorLanguage(
     PLAINTEXT("plaintext", "Plain Text", listOf("txt")),
     KOTLIN("kotlin", "Kotlin", listOf("kt", "kts")),
     JAVA("java", "Java", listOf("java")),
-    JAVASCRIPT("javascript", "JavaScript", listOf("js", "jsx", "mjs", "cjs")),
-    TYPESCRIPT("typescript", "TypeScript", listOf("ts", "tsx")),
+    JAVASCRIPT("javascript", "JavaScript", listOf("js", "mjs", "cjs")),
+    TYPESCRIPT("typescript", "TypeScript", listOf("ts")),
     PYTHON("python", "Python", listOf("py", "pyw")),
     C("c", "C", listOf("c", "h")),
     CPP("cpp", "C++", listOf("cpp", "cc", "cxx", "hpp", "hh")),
@@ -64,7 +64,7 @@ enum class EditorLanguage(
     LESS("less", "Less", listOf("less")),
     STYLUS("stylus", "Stylus", listOf("styl", "stylus")),
     JSON("json", "JSON", listOf("json")),
-    XML("xml", "XML", listOf("xml", "xsl", "xsd", "svg", "plist")),
+    XML("xml", "XML", listOf("xml", "xsd", "svg", "plist")),
     YAML("yaml", "YAML", listOf("yaml", "yml")),
     MARKDOWN("markdown", "Markdown", listOf("md", "markdown")),
     SHELL("shellscript", "Shell Script", listOf("sh", "bash", "zsh")),
@@ -118,7 +118,7 @@ enum class EditorLanguage(
     HAML("haml", "Haml", listOf("haml")),
     SLIM("slim", "Slim", listOf("slim")),
     VHDL("vhdl", "VHDL", listOf("vhd", "vhdl", "vho")),
-    VERILOG("verilog", "Verilog", listOf("v", "sv", "svh")),
+    VERILOG("verilog", "Verilog", listOf("v")),
     CRYSTAL("crystal", "Crystal", listOf("cr")),
     SMARTY("smarty", "Smarty", listOf("tpl")),
     LIQUID("liquid", "Liquid", listOf("liquid")),
@@ -157,7 +157,17 @@ enum class EditorLanguage(
     BIBTEX("bibtex", "BibTeX", listOf("bib")),
     GIT_COMMIT("git-commit", "Git Commit", listOf("git-commit")),
     GIT_REBASE("git-rebase", "Git Rebase", listOf("git-rebase")),
-    DOCKERCOMPOSE("dockercompose", "Docker Compose", listOf("dockercompose"));
+    DOCKERCOMPOSE("dockercompose", "Docker Compose", listOf("dockercompose")),
+    XSL("xsl", "XSL", listOf("xsl", "xslt")),
+    IGNORE("ignore", "Ignore", listOf("ignore", "dockerignore", "npmignore", "eslintignore")),
+    JAVASCRIPTREACT("javascriptreact", "JavaScript React", listOf("jsx")),
+    TYPESCRIPTREACT("typescriptreact", "TypeScript React", listOf("tsx")),
+    SYSTEMVERILOG("systemverilog", "SystemVerilog", listOf("sv", "svh")),
+    ZIG("zig", "Zig", listOf("zig")),
+    HAXE("haxe", "Haxe", listOf("hx", "hxml")),
+    PURESCRIPT("purescript", "PureScript", listOf("purs")),
+    REASON("reason", "Reason", listOf("re", "rei")),
+    JSONL("jsonl", "JSON Lines", listOf("jsonl", "ndjson"));
 
     companion object {
         fun fromExtension(ext: String): EditorLanguage {
@@ -182,7 +192,8 @@ enum class EditorLanguage(
             if (lower == "haml") return HAML
             if (lower == "slim") return SLIM
             if (lower == "vhd" || lower == "vhdl" || lower == "vho") return VHDL
-            if (lower == "v" || lower == "sv" || lower == "svh") return VERILOG
+            if (lower == "v") return VERILOG
+            if (lower == "sv" || lower == "svh") return SYSTEMVERILOG
             if (lower == "cr") return CRYSTAL
             if (lower == "tpl") return SMARTY
             if (lower == "liquid") return LIQUID
@@ -224,6 +235,15 @@ enum class EditorLanguage(
             if (lower == "dockercompose") return DOCKERCOMPOSE
             if (lower == "mm") return OBJECTIVECPP
             if (lower == "c" || lower == "h") return C
+            if (lower == "xsl" || lower == "xslt") return XSL
+            if (lower == "ignore" || lower == "dockerignore" || lower == "npmignore" || lower == "eslintignore") return IGNORE
+            if (lower == "jsx") return JAVASCRIPTREACT
+            if (lower == "tsx") return TYPESCRIPTREACT
+            if (lower == "zig") return ZIG
+            if (lower == "hx" || lower == "hxml") return HAXE
+            if (lower == "purs") return PURESCRIPT
+            if (lower == "re" || lower == "rei") return REASON
+            if (lower == "jsonl" || lower == "ndjson") return JSONL
             return entries.find { lower in it.extensions } ?: PLAINTEXT
         }
 

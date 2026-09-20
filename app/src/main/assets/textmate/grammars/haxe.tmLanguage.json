@@ -1,0 +1,39 @@
+{
+  "name": "Haxe",
+  "scopeName": "source.haxe",
+  "fileTypes": ["hx", "hxml"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#type"},
+    {"include": "#function"},
+    {"include": "#class"},
+    {"include": "#numeric"}
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {"name": "comment.line.double-slash.haxe", "match": "//.*$"},
+        {"name": "comment.block.haxe", "begin": "/\\*", "end": "\\*/"}
+      ]
+    },
+    "string": {
+      "patterns": [
+        {"name": "string.quoted.double.haxe", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.haxe", "match": "\\\\."}, {"name": "meta.embedded.expression.haxe", "begin": "\\$\\{", "end": "\\}"}]},
+        {"name": "string.quoted.single.haxe", "begin": "'", "end": "'", "patterns": [{"name": "constant.character.escape.haxe", "match": "\\\\."}]}
+      ]
+    },
+    "keyword": {
+      "name": "keyword.control.haxe",
+      "match": "\\b(break|case|cast|catch|class|continue|default|do|dynamic|else|enum|extends|extern|false|for|from|function|if|implements|import|in|inline|interface|macro|new|null|operator|overload|override|package|private|public|return|static|super|switch|this|throw|true|try|typedef|untyped|using|var|while|abstract)\\b"
+    },
+    "type": {
+      "name": "storage.type.haxe",
+      "match": "\\b(Int|Float|String|Bool|Void|Array|Map|Dynamic|Any)\\b"
+    },
+    "function": {"name": "entity.name.function.haxe", "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\s*(?=\\()"},
+    "class": {"name": "entity.name.type.class.haxe", "match": "\\b[A-Z][A-Za-z0-9_]*\\b"},
+    "numeric": {"name": "constant.numeric.haxe", "match": "\\b\\d+(\\.\\d+)?\\b"}
+  }
+}

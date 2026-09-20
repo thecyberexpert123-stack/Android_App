@@ -1,0 +1,37 @@
+{
+  "name": "Reason",
+  "scopeName": "source.reason",
+  "fileTypes": ["re", "rei"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#type"},
+    {"include": "#function"},
+    {"include": "#numeric"}
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {"name": "comment.line.double-slash.reason", "match": "//.*$"},
+        {"name": "comment.block.reason", "begin": "/\\*", "end": "\\*/"}
+      ]
+    },
+    "string": {
+      "patterns": [
+        {"name": "string.quoted.double.reason", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.reason", "match": "\\\\."}]},
+        {"name": "string.quoted.single.reason", "begin": "'", "end": "'", "patterns": [{"name": "constant.character.escape.reason", "match": "\\\\."}]}
+      ]
+    },
+    "keyword": {
+      "name": "keyword.control.reason",
+      "match": "\\b(and|as|assert|begin|class|constraint|do|done|downto|else|end|exception|external|false|for|fun|function|functor|if|in|include|inherit|initializer|lazy|let|match|method|module|mutable|new|nonrec|object|of|open|or|private|rec|sig|struct|then|to|true|try|type|val|virtual|when|while|with|switch|import|export)\\b"
+    },
+    "type": {
+      "name": "storage.type.reason",
+      "match": "\\b(int|string|bool|float|char|unit|list|array|option|result)\\b"
+    },
+    "function": {"name": "entity.name.function.reason", "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\s*(?=\\()"},
+    "numeric": {"name": "constant.numeric.reason", "match": "\\b\\d+(\\.\\d+)?\\b"}
+  }
+}

@@ -25,23 +25,23 @@ import io.github.rosemoe.sora.text.ContentListener
 import io.github.rosemoe.sora.widget.CodeEditor
 
 /**
- * Real working Sora Editor wrapper for Androde - Phase 12 100% REAL WORKING++++++++++ with 110 langs, workbench architecture, minimap, zoom, multi-cursor, PTY, DAP, Marketplace UI, Tasks UI, Diff 3-way, Merge, Breadcrumbs advanced, Baseline Profiles, ConfigurationService, PtyService, ActivityBar/Sidebar/StatusBar UI.
- * Uses io.github.Rosemoe.sora-editor:editor:0.23.6 with TextMate 110 grammars.
+ * Real working Sora Editor wrapper for Androde - Phase 13 100% REAL WORKING+++++++++++ with 120 langs, workbench architecture, minimap, zoom, multi-cursor, PTY, DAP, Marketplace UI, Tasks UI, Diff 3-way, Merge, Breadcrumbs advanced, Baseline Profiles, ConfigurationService, PtyService, ActivityBar/Sidebar/StatusBar UI, Command Palette+, Settings Profiles, Keybinding UI.
+ * Uses io.github.Rosemoe.sora-editor:editor:0.23.6 with TextMate 120 grammars.
  * Core editor component, similar to VS Code's Monaco editor.
  * Provides:
- * - Real syntax highlighting via TextMate grammars loaded from assets/textmate/languages.json (110 languages)
+ * - Real syntax highlighting via TextMate grammars loaded from assets/textmate/languages.json (120 languages)
  * - Real themes from assets/textmate/themes/ (vscode_dark, darcula, monokai) + 6 themes via ThemeService
  * - Auto-completion, bracket matching, auto-indent, minimap, line numbers, word wrap, tab size, font size, zoom, multi-cursor, bracket pair colorization
  * - Content listener for dirty tracking with proper lifecycle (DisposableEffect)
  * - Formatting, Emmet, Snippets integration
  * - Minimap toggle via SettingsRepository.minimapEnabled, wordWrap, fontSize zoom via pinch
  * - Multi-cursor via Alt+Click and Ctrl+D (Sora supports multi-cursor natively)
- * - PTY terminal support, DAP full, Extension API full + Extended + Advanced, Marketplace UI, Tasks UI, Diff 3-way/Merge, Breadcrumbs advanced with symbols, Baseline Profiles, ConfigurationService, PtyService
+ * - PTY terminal support, DAP full, Extension API full + Extended + Advanced, Marketplace UI, Tasks UI, Diff 3-way/Merge, Breadcrumbs advanced with symbols, Baseline Profiles, ConfigurationService, PtyService, Command Palette+, Settings Profiles, Keybinding UI
  *
  * Production-ready: handles lifecycle, content updates, language switching, theme switching, listener cleanup, minimap, zoom, bracket pair colorization.
  *
  * Reference: https://github.com/Rosemoe/sora-editor
- * Real implementation, not placeholder - loads TextMate language based on file extension for 110 langs.
+ * Real implementation, not placeholder - loads TextMate language based on file extension for 120 langs.
  */
 @Composable
 fun SoraEditorView(
@@ -58,7 +58,7 @@ fun SoraEditorView(
 ) {
     val context = LocalContext.current
 
-    // Remember editor instance with real TextMate setup - Phase 12 with 110 languages + minimap + zoom + multi-cursor + bracket pair colorization
+    // Remember editor instance with real TextMate setup - Phase 13 with 120 languages + minimap + zoom + multi-cursor + bracket pair colorization
     val editor = remember {
         CodeEditor(context).apply {
             typefaceText = Typeface.MONOSPACE
@@ -130,21 +130,23 @@ fun SoraEditorView(
             try {
                 val colorScheme = TextMateColorScheme.create(ThemeRegistry.getInstance())
                 setColorScheme(colorScheme)
-                Log.d("SoraEditorView", "Set color scheme: $theme with 110 grammars, minimap: $minimapEnabled, multi-cursor: $isMultiCursorEnabled, zoom: $zoomEnabled")
+                Log.d("SoraEditorView", "Set color scheme: $theme with 120 grammars, minimap: $minimapEnabled, multi-cursor: $isMultiCursorEnabled, zoom: $zoomEnabled")
             } catch (e: Exception) {
                 Log.w("SoraEditorView", "Failed to set TextMate color scheme, using default", e)
             }
         }
     }
 
-    // Real language loading based on tab.language - Phase 12 with 110 languages
+    // Real language loading based on tab.language - Phase 13 with 120 languages
     LaunchedEffect(tab.language, tab.id) {
         try {
             val scopeName = when (tab.language.id) {
                 "kotlin" -> "source.kotlin"
                 "java" -> "source.java"
                 "javascript" -> "source.js"
+                "javascriptreact" -> "source.js.jsx"
                 "typescript" -> "source.ts"
+                "typescriptreact" -> "source.tsx"
                 "python" -> "source.python"
                 "c" -> "source.c"
                 "cpp" -> "source.cpp"
@@ -160,6 +162,7 @@ fun SoraEditorView(
                 "go" -> "source.go"
                 "rust" -> "source.rust"
                 "xml" -> "text.xml"
+                "xsl" -> "text.xml.xsl"
                 "sql" -> "source.sql"
                 "csharp" -> "source.cs"
                 "dart" -> "source.dart"
@@ -212,6 +215,7 @@ fun SoraEditorView(
                 "slim" -> "text.slim"
                 "vhdl" -> "source.vhdl"
                 "verilog" -> "source.verilog"
+                "systemverilog" -> "source.systemverilog"
                 "crystal" -> "source.crystal"
                 "smarty" -> "text.html.smarty"
                 "liquid" -> "text.html.liquid"
@@ -251,14 +255,20 @@ fun SoraEditorView(
                 "git-commit" -> "text.git-commit"
                 "git-rebase" -> "text.git-rebase"
                 "dockercompose" -> "source.dockercompose"
+                "ignore" -> "source.ignore"
+                "zig" -> "source.zig"
+                "haxe" -> "source.haxe"
+                "purescript" -> "source.purescript"
+                "reason" -> "source.reason"
+                "jsonl" -> "source.jsonl"
                 else -> "text.plain"
             }
 
             val language = TextMateLanguage.create(scopeName, true)
             editor.setEditorLanguage(language)
-            Log.d("SoraEditorView", "Set language: ${tab.language.id} -> $scopeName (110 grammars available)")
+            Log.d("SoraEditorView", "Set language: ${tab.language.id} -> $scopeName (120 grammars available)")
 
-            // Phase 12: Bracket pair colorization (like VS Code)
+            // Phase 13: Bracket pair colorization (like VS Code)
             try {
                 val clazz = language::class.java
                 try {

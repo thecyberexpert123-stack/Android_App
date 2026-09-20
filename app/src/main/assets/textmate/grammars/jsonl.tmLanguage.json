@@ -1,0 +1,27 @@
+{
+  "name": "JSONL",
+  "scopeName": "source.jsonl",
+  "fileTypes": ["jsonl", "ndjson"],
+  "patterns": [
+    {"include": "#string"},
+    {"include": "#number"},
+    {"include": "#keyword"},
+    {"include": "#punctuation"}
+  ],
+  "repository": {
+    "string": {
+      "patterns": [
+        {"name": "string.quoted.double.jsonl", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.jsonl", "match": "\\\\."}]}
+      ]
+    },
+    "number": {"name": "constant.numeric.jsonl", "match": "-?\\d+(\\.\\d+)?([eE][+-]?\\d+)?"},
+    "keyword": {"name": "constant.language.jsonl", "match": "\\b(true|false|null)\\b"},
+    "punctuation": {
+      "patterns": [
+        {"name": "punctuation.brace.jsonl", "match": "[\\{\\}]"},
+        {"name": "punctuation.bracket.jsonl", "match": "[\\[\\]]"},
+        {"name": "punctuation.separator.jsonl", "match": "[,:]"}
+      ]
+    }
+  }
+}

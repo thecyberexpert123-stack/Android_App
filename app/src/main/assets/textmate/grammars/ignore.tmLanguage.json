@@ -1,0 +1,28 @@
+{
+  "name": "Ignore",
+  "scopeName": "source.ignore",
+  "fileTypes": ["ignore", "dockerignore", "npmignore", "eslintignore", "prettierignore"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#pattern"},
+    {"include": "#negation"}
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {"name": "comment.line.number-sign.ignore", "match": "^\\s*#.*$"}
+      ]
+    },
+    "pattern": {
+      "patterns": [
+        {"name": "string.unquoted.ignore", "match": "^[^#\\!\\s].*$"},
+        {"name": "constant.character.escape.ignore", "match": "\\\\[\\*\\?\\[\\]]"},
+        {"name": "keyword.operator.wildcard.ignore", "match": "\\*\\*|\\*|\\?|\\[|\\]"}
+      ]
+    },
+    "negation": {
+      "name": "keyword.operator.negation.ignore",
+      "match": "^\\s*!.*$"
+    }
+  }
+}

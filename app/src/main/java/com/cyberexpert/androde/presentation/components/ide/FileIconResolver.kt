@@ -19,10 +19,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.cyberexpert.androde.core.extensions.IconTheme
 
 /**
- * Real file icon resolver using icon theme mappings - Phase 12 with 110 languages.
+ * Real file icon resolver using icon theme mappings - Phase 13 with 120 languages.
  * Similar to VS Code's icon theme resolution, maps file extensions/names to icons and colors.
- * Uses vscode_icons.json and material_icons.json mappings for 110 file types.
- * Production-ready with fallback to extension-based icons for 110 langs.
+ * Uses vscode_icons.json and material_icons.json mappings for 120 file types.
+ * Production-ready with fallback to extension-based icons for 120 langs.
  */
 
 data class FileIcon(
@@ -70,8 +70,10 @@ object FileIconResolver {
         return when (ext) {
             "kt", "kts" -> "kotlin"
             "java" -> "java"
-            "js", "jsx", "mjs", "cjs" -> "javascript"
-            "ts", "tsx" -> "typescript"
+            "js", "mjs", "cjs" -> "javascript"
+            "jsx" -> "javascriptreact"
+            "ts" -> "typescript"
+            "tsx" -> "typescriptreact"
             "py", "pyw" -> "python"
             "c" -> "c"
             "h" -> "c"
@@ -83,12 +85,14 @@ object FileIconResolver {
             "styl", "stylus" -> "stylus"
             "json" -> "json"
             "jsonc", "code-workspace" -> "jsonc"
+            "jsonl", "ndjson" -> "jsonl"
             "md", "markdown" -> "markdown"
             "yaml", "yml" -> "yaml"
             "sh", "bash", "zsh" -> "shellscript"
             "go" -> "go"
             "rs" -> "rust"
-            "xml" -> "xml"
+            "xml", "xsd", "svg", "plist" -> "xml"
+            "xsl", "xslt" -> "xsl"
             "sql" -> "sql"
             "cs" -> "csharp"
             "dart" -> "dart"
@@ -138,7 +142,8 @@ object FileIconResolver {
             "haml" -> "haml"
             "slim" -> "slim"
             "vhd", "vhdl", "vho" -> "vhdl"
-            "v", "sv", "svh" -> "verilog"
+            "v" -> "verilog"
+            "sv", "svh" -> "systemverilog"
             "cr" -> "crystal"
             "tpl" -> "smarty"
             "liquid" -> "liquid"
@@ -177,6 +182,11 @@ object FileIconResolver {
             "git-commit" -> "git-commit"
             "git-rebase" -> "git-rebase"
             "dockercompose" -> "dockercompose"
+            "ignore", "dockerignore", "npmignore", "eslintignore" -> "ignore"
+            "zig" -> "zig"
+            "hx", "hxml" -> "haxe"
+            "purs" -> "purescript"
+            "re", "rei" -> "reason"
             else -> null
         }
     }
@@ -267,7 +277,8 @@ object FileIconResolver {
             "haml" -> "_file_haml"
             "slim" -> "_file_slim"
             "vhd", "vhdl", "vho" -> "_file_vhdl"
-            "v", "sv", "svh" -> "_file_verilog"
+            "v" -> "_file_verilog"
+            "sv", "svh" -> "_file_systemverilog"
             "cr" -> "_file_crystal"
             "tpl" -> "_file_smarty"
             "liquid" -> "_file_liquid"
@@ -306,6 +317,16 @@ object FileIconResolver {
             "git-commit" -> "_file_git_commit"
             "git-rebase" -> "_file_git_rebase"
             "dockercompose" -> "_file_dockercompose"
+            "xsl", "xslt" -> "_file_xsl"
+            "ignore", "dockerignore", "npmignore", "eslintignore" -> "_file_ignore"
+            "jsx" -> "_file_react"
+            "tsx" -> "_file_react_ts"
+            "sv", "svh" -> "_file_systemverilog"
+            "zig" -> "_file_zig"
+            "hx", "hxml" -> "_file_haxe"
+            "purs" -> "_file_purescript"
+            "re", "rei" -> "_file_reason"
+            "jsonl", "ndjson" -> "_file_jsonl"
             "txt" -> "_file_text"
             else -> "_file"
         }
@@ -416,6 +437,15 @@ object FileIconResolver {
             iconId.contains("git_commit") -> Icons.Default.Code to Color(0xFFF05032)
             iconId.contains("git_rebase") -> Icons.Default.Code to Color(0xFFF05032)
             iconId.contains("dockercompose") -> Icons.Default.Storage to Color(0xFF0DB7ED)
+            iconId.contains("xsl") -> Icons.Default.Code to Color(0xFFEB8A93)
+            iconId.contains("ignore") -> Icons.Default.Code to Color(0xFF6B6B6B)
+            iconId.contains("react") -> Icons.Default.Code to Color(0xFF61DAFB)
+            iconId.contains("systemverilog") -> Icons.Default.Code to Color(0xFF848BF5)
+            iconId.contains("zig") -> Icons.Default.Code to Color(0xFFEC915C)
+            iconId.contains("haxe") -> Icons.Default.Code to Color(0xFFEA8220)
+            iconId.contains("purescript") -> Icons.Default.Code to Color(0xFF14161A)
+            iconId.contains("reason") -> Icons.Default.Code to Color(0xFFDB4D3D)
+            iconId.contains("jsonl") -> Icons.Default.DataObject to Color(0xFF292929)
             iconId.contains("folder_src") -> Icons.Default.Folder to Color(0xFF90A4AE)
             iconId.contains("folder") -> Icons.Default.Folder to MaterialTheme.colorScheme.primary
             iconId.contains("text") -> Icons.Default.Description to MaterialTheme.colorScheme.onSurfaceVariant

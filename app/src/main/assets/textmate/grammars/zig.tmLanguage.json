@@ -1,0 +1,38 @@
+{
+  "name": "Zig",
+  "scopeName": "source.zig",
+  "fileTypes": ["zig"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#type"},
+    {"include": "#function"},
+    {"include": "#numeric"},
+    {"include": "#builtin"}
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {"name": "comment.line.double-slash.zig", "match": "//.*$"}
+      ]
+    },
+    "string": {
+      "patterns": [
+        {"name": "string.quoted.double.zig", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.zig", "match": "\\\\."}]},
+        {"name": "string.quoted.single.zig", "begin": "'", "end": "'", "patterns": [{"name": "constant.character.escape.zig", "match": "\\\\."}]}
+      ]
+    },
+    "keyword": {
+      "name": "keyword.control.zig",
+      "match": "\\b(align|allowzero|and|anyframe|anytype|asm|async|await|break|callconv|cancel|catch|comptime|const|continue|defer|else|enum|errdefer|error|export|extern|fn|for|if|inline|linksection|noalias|noinline|nosuspend|null|or|orelse|packed|pub|resume|return|linksection|struct|nosuspend|try|test|threadlocal|switch|union|unreachable|usingnamespace|var|volatile|while)\\b"
+    },
+    "type": {
+      "name": "storage.type.zig",
+      "match": "\\b(bool|void|noreturn|type|anyerror|comptime_int|comptime_float|f16|f32|f64|f80|f128|u1|u2|u4|u8|u16|u32|u64|u128|i1|i2|i4|i8|i16|i32|i64|i128|isize|usize|c_short|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble)\\b"
+    },
+    "function": {"name": "entity.name.function.zig", "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\s*(?=\\()"},
+    "numeric": {"name": "constant.numeric.zig", "match": "\\b0x[0-9a-fA-F]+\\b|\\b0b[01]+\\b|\\b\\d+(\\.\\d+)?\\b"},
+    "builtin": {"name": "support.function.builtin.zig", "match": "@[A-Za-z_][A-Za-z0-9_]*"}
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "PureScript",
+  "scopeName": "source.purescript",
+  "fileTypes": ["purs"],
+  "patterns": [
+    {"include": "#comment"},
+    {"include": "#string"},
+    {"include": "#keyword"},
+    {"include": "#type"},
+    {"include": "#function"},
+    {"include": "#numeric"}
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {"name": "comment.line.double-dash.purescript", "match": "--.*$"},
+        {"name": "comment.block.purescript", "begin": "\\{-", "end": "-\\}"}
+      ]
+    },
+    "string": {
+      "patterns": [
+        {"name": "string.quoted.double.purescript", "begin": "\"", "end": "\"", "patterns": [{"name": "constant.character.escape.purescript", "match": "\\\\."}]},
+        {"name": "string.quoted.triple.purescript", "begin": "\"\"\"", "end": "\"\"\""}
+      ]
+    },
+    "keyword": {
+      "name": "keyword.control.purescript",
+      "match": "\\b(ado|case|class|data|derive|do|else|false|forall|foreign|if|import|in|infix|infixl|infixr|instance|let|module|newtype|of|then|true|type|where|let|where)\\b"
+    },
+    "type": {
+      "name": "storage.type.purescript",
+      "match": "\\b(Int|Number|String|Boolean|Array|Record|Unit|Effect|Maybe|Either|Tuple)\\b"
+    },
+    "function": {"name": "entity.name.function.purescript", "match": "\\b[a-z][A-Za-z0-9_']*\\s*(?=::|\\=)"},
+    "numeric": {"name": "constant.numeric.purescript", "match": "\\b\\d+(\\.\\d+)?\\b"}
+  }
+}
